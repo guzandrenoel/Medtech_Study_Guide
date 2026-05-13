@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rizal's Novels — Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5efe6;
+    --paper: #faf6f0;
+    --ink: #1a1208;
+    --sepia: #7a5c38;
+    --rust: #9b3a1e;
+    --gold: #c8922a;
+    --light-sepia: #e8dcc8;
+    --muted: #8a7560;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  /* Header */
+  header {
+    background: var(--ink);
+    color: var(--cream);
+    text-align: center;
+    padding: 3.5rem 2rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(200,146,42,0.04) 40px,
+      rgba(200,146,42,0.04) 80px
+    );
+  }
+  .header-tag {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    position: relative;
+  }
+  header h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .header-sub {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: rgba(245,239,230,0.65);
+    letter-spacing: 0.05em;
+  }
+  .divider-ornament {
+    color: var(--gold);
+    font-size: 1.1rem;
+    margin: 1.25rem 0 0;
+    letter-spacing: 0.5em;
+  }
+
+  /* Layout */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  /* Section titles */
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-family: 'Source Serif 4', serif;
+    margin-bottom: 0.4rem;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1.5px solid var(--light-sepia);
+  }
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--rust);
+    margin: 1.4rem 0 0.5rem;
+  }
+
+  /* Book cards */
+  .book-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  @media (max-width: 600px) { .book-grid { grid-template-columns: 1fr; } }
+
+  .book-card {
+    background: var(--paper);
+    border: 1px solid var(--light-sepia);
+    border-top: 4px solid var(--rust);
+    padding: 1.5rem;
+    border-radius: 2px;
+  }
+  .book-card.fili { border-top-color: var(--sepia); }
+  .book-card h3 {
+    font-size: 1.05rem;
+    margin-top: 0;
+    margin-bottom: 0.4rem;
+  }
+  .book-meta {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+  .book-card p { font-size: 0.9rem; }
+
+  /* Content sections */
+  .section {
+    margin-bottom: 3rem;
+  }
+
+  /* Character table */
+  .char-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+  .char-table th {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.6rem 1rem;
+    text-align: left;
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+  .char-table td {
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid var(--light-sepia);
+    vertical-align: top;
+  }
+  .char-table tr:last-child td { border-bottom: none; }
+  .char-table tr:nth-child(even) td { background: rgba(232,220,200,0.3); }
+  .char-book {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.45rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+  .tag-noli { background: rgba(155,58,30,0.12); color: var(--rust); }
+  .tag-fili { background: rgba(122,92,56,0.15); color: var(--sepia); }
+  .tag-both { background: rgba(26,18,8,0.1); color: var(--ink); }
+
+  /* Theme boxes */
+  .themes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+  .theme-box {
+    border: 1px solid var(--light-sepia);
+    padding: 1rem 1.1rem;
+    background: var(--paper);
+    border-radius: 2px;
+  }
+  .theme-box strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    color: var(--rust);
+    margin-bottom: 0.3rem;
+  }
+  .theme-box p { font-size: 0.85rem; color: var(--ink); }
+
+  /* Plot summaries */
+  .plot-step {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    align-items: flex-start;
+  }
+  .plot-num {
+    flex-shrink: 0;
+    width: 1.8rem;
+    height: 1.8rem;
+    background: var(--rust);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 50%;
+    margin-top: 0.15rem;
+    font-family: 'Source Serif 4', serif;
+  }
+  .plot-step.fili-step .plot-num { background: var(--sepia); }
+  .plot-step p { font-size: 0.92rem; }
+
+  /* Key quotes */
+  blockquote {
+    border-left: 3px solid var(--gold);
+    margin: 1rem 0;
+    padding: 0.75rem 1.25rem;
+    background: rgba(200,146,42,0.05);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--sepia);
+  }
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-size: 0.78rem;
+    margin-top: 0.4rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* Quiz Section */
+  .quiz-section {
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 3px;
+    padding: 2rem;
+    margin-top: 3rem;
+  }
+  .quiz-section .section-label { color: var(--gold); }
+  .quiz-section h2 {
+    color: var(--cream);
+    border-bottom-color: rgba(200,146,42,0.3);
+    font-size: 1.5rem;
+  }
+  .quiz-intro {
+    font-size: 0.9rem;
+    color: rgba(245,239,230,0.7);
+    margin-bottom: 1.5rem;
+  }
+  .question-block {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(200,146,42,0.2);
+  }
+  .question-block:last-of-type { border-bottom: none; margin-bottom: 0; }
+  .q-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+  .q-num {
+    color: var(--gold);
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.1em;
+    font-family: 'Source Serif 4', serif;
+  }
+  .options { list-style: none; }
+  .options li {
+    padding: 0.4rem 0.75rem;
+    margin-bottom: 0.3rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 2px;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .options li:hover { background: rgba(200,146,42,0.15); border-color: var(--gold); }
+  .options li.correct { background: rgba(60,160,90,0.25); border-color: #4caf72; }
+  .options li.wrong { background: rgba(180,60,60,0.25); border-color: #c05050; }
+  .reveal-btn {
+    margin-top: 1.25rem;
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    padding: 0.6rem 1.5rem;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: opacity 0.2s;
+  }
+  .reveal-btn:hover { opacity: 0.85; }
+  .score-display {
+    margin-top: 1.25rem;
+    padding: 0.75rem 1rem;
+    background: rgba(200,146,42,0.15);
+    border: 1px solid rgba(200,146,42,0.4);
+    border-radius: 2px;
+    font-size: 0.95rem;
+    display: none;
+  }
+  .score-display strong { color: var(--gold); }
+
+  /* Key differences comparison */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    margin-top: 0.75rem;
+  }
+  .compare-table th {
+    padding: 0.6rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+  }
+  .compare-table th:first-child { background: var(--ink); color: var(--cream); width: 22%; }
+  .compare-table th:nth-child(2) { background: var(--rust); color: white; }
+  .compare-table th:nth-child(3) { background: var(--sepia); color: white; }
+  .compare-table td {
+    padding: 0.55rem 1rem;
+    border-bottom: 1px solid var(--light-sepia);
+    vertical-align: top;
+  }
+  .compare-table td:first-child { font-weight: 600; background: rgba(26,18,8,0.04); }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:nth-child(even) td:not(:first-child) { background: rgba(232,220,200,0.25); }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--light-sepia);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="header-tag">Philippine Literature · José Rizal</p>
+  <h1><em>Noli Me Tangere</em> &amp; <em>El Filibusterismo</em><br>Study Guide</h1>
+  <p class="header-sub">Translated by Ma. Soledad Lacson-Locsin · Bookmark Inc., 1996</p>
+  <p class="divider-ornament">✦ ✦ ✦</p>
+</header>
+
+<div class="container">
+
+  <!-- Overview -->
+  <section class="section">
+    <p class="section-label">Overview</p>
+    <h2>The Two Novels at a Glance</h2>
+    <div class="book-grid">
+      <div class="book-card">
+        <h3>Noli Me Tangere</h3>
+        <p class="book-meta">Published 1887 · Berlin · Originally in Spanish</p>
+        <p>The "Social Cancer." Crisostomo Ibarra returns from Europe with idealistic dreams of reform, only to collide with colonial corruption, friar power, and social injustice. The novel exposes the wounds of Philippine society through his tragic arc and that of the people around him.</p>
+      </div>
+      <div class="book-card fili">
+        <h3>El Filibusterismo</h3>
+        <p class="book-meta">Published 1891 · Ghent · Sequel to the Noli</p>
+        <p>The "Subversion." A darker, angrier novel. Ibarra resurfaces as the wealthy jeweler Simoun, now bent on violent revolution. The story asks whether reform is still possible—or whether the system is too rotten to save without burning down.</p>
+      </div>
+    </div>
+
+    <!-- Noli plot -->
+    <h3>Noli Me Tangere — Plot Summary</h3>
+    <div style="margin-top:0.75rem">
+      <div class="plot-step"><div class="plot-num">1</div><p><strong>Return:</strong> Ibarra comes home to Manila after 7 years in Europe, welcomed by Capitan Tiago and reunited with his childhood love, Maria Clara.</p></div>
+      <div class="plot-step"><div class="plot-num">2</div><p><strong>Conflict begins:</strong> He learns his father, Don Rafael, died in prison — persecuted by Padre Damaso. He tries to build a school as a peaceful reform, but the friars obstruct him at every turn.</p></div>
+      <div class="plot-step"><div class="plot-num">3</div><p><strong>Excommunication &amp; betrayal:</strong> After a confrontation in the cemetery and the sabotage of the school's foundation, Ibarra is excommunicated. Maria Clara, believing rumors and pressured by Padre Damaso, breaks off their engagement.</p></div>
+      <div class="plot-step"><div class="plot-num">4</div><p><strong>Revolution &amp; fall:</strong> Ibarra is implicated in a false uprising. Elias, a man of the masses who genuinely loves his country, sacrifices himself. Ibarra flees, presumed dead, while Maria Clara retreats to a convent.</p></div>
+    </div>
+
+    <h3 style="margin-top:1.5rem">El Filibusterismo — Plot Summary</h3>
+    <div style="margin-top:0.75rem">
+      <div class="plot-step fili-step"><div class="plot-num">1</div><p><strong>Simoun arrives:</strong> Years later, a mysterious jeweler named Simoun travels on a steamer with government officials. He is secretly Ibarra, now cynical and plotting revolution from within.</p></div>
+      <div class="plot-step fili-step"><div class="plot-num">2</div><p><strong>New characters, old wounds:</strong> We meet Basilio (now a medical student), Isagani (an idealist poet), Cabesang Tales (a farmer robbed of his land), and the students fighting for a Spanish language academy.</p></div>
+      <div class="plot-step fili-step"><div class="plot-num">3</div><p><strong>The lamp plot:</strong> Simoun plants a nitroglycerine-filled lamp at a wedding party, intending to blow up the colonial elite. Isagani, to save his beloved Paulita, throws the lamp into the river — foiling the revolution.</p></div>
+      <div class="plot-step fili-step"><div class="plot-num">4</div><p><strong>Reckoning:</strong> Simoun, wounded and dying, reaches Padre Florentino's seaside house. He questions the righteousness of his methods. Florentino tells him God did not grant his wish because it came from hate, not love. Simoun dies; his treasure sinks into the sea.</p></div>
+    </div>
+  </section>
+
+  <!-- Characters -->
+  <section class="section">
+    <p class="section-label">Characters</p>
+    <h2>Key Characters</h2>
+    <table class="char-table">
+      <thead>
+        <tr><th>Character</th><th>Role</th><th>Appears in</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Crisostomo Ibarra / Simoun</strong></td>
+          <td>Protagonist. Educated ilustrado who moves from idealistic reformer (Noli) to revenge-driven revolutionary (Fili).</td>
+          <td><span class="char-book tag-both">Both</span></td>
+        </tr>
+        <tr>
+          <td><strong>Maria Clara</strong></td>
+          <td>Ibarra's love. Symbol of the Philippines—beautiful, passive, trapped. Ends in a convent. Her "choice" reveals the cost of colonial society on women.</td>
+          <td><span class="char-book tag-both">Both</span></td>
+        </tr>
+        <tr>
+          <td><strong>Elias</strong></td>
+          <td>Man of the masses. Brave, selfless, and ultimately sacrificial. Contrasts with Ibarra's privilege. The true revolutionary heart of the Noli.</td>
+          <td><span class="char-book tag-noli">Noli</span></td>
+        </tr>
+        <tr>
+          <td><strong>Padre Damaso</strong></td>
+          <td>Corrupt Franciscan friar. Antagonist in the Noli. Symbol of abusive clerical power. Reveals he is Maria Clara's biological father.</td>
+          <td><span class="char-book tag-noli">Noli</span></td>
+        </tr>
+        <tr>
+          <td><strong>Basilio</strong></td>
+          <td>Poor boy in the Noli who grows into a medical student in the Fili. His arc shows the limits of colonial education. Rejects Simoun's plot but suffers for it.</td>
+          <td><span class="char-book tag-both">Both</span></td>
+        </tr>
+        <tr>
+          <td><strong>Isagani</strong></td>
+          <td>Idealistic student poet in the Fili. Throws the lamp into the river — an act of love that also saves his enemy's life. Embodies the tension between passion and pragmatism.</td>
+          <td><span class="char-book tag-fili">Fili</span></td>
+        </tr>
+        <tr>
+          <td><strong>Cabesang Tales</strong></td>
+          <td>Farmer whose land is stolen by the friars. Becomes the bandit Matanglawin. Represents the violence born of injustice.</td>
+          <td><span class="char-book tag-fili">Fili</span></td>
+        </tr>
+        <tr>
+          <td><strong>Padre Florentino</strong></td>
+          <td>Filipino secular priest. The moral voice at the end of the Fili. Tells Simoun that freedom earned through crime will not last.</td>
+          <td><span class="char-book tag-fili">Fili</span></td>
+        </tr>
+        <tr>
+          <td><strong>Sisa / Basilio &amp; Crispin</strong></td>
+          <td>Sisa is a mother driven mad by the loss of her sons. One of Rizal's most haunting figures — the cost of colonial cruelty on ordinary families.</td>
+          <td><span class="char-book tag-noli">Noli</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Themes -->
+  <section class="section">
+    <p class="section-label">Themes &amp; Ideas</p>
+    <h2>Major Themes</h2>
+    <div class="themes-grid">
+      <div class="theme-box">
+        <strong>Colonial Oppression</strong>
+        <p>The Spanish colonial system — friars, guardia civil, corrupt officials — is dissected as a machine that crushes Filipinos socially, legally, and spiritually.</p>
+      </div>
+      <div class="theme-box">
+        <strong>Reform vs. Revolution</strong>
+        <p>The Noli asks if peaceful reform is possible; the Fili answers darkly: maybe not. Ibarra's transformation into Simoun is Rizal's most painful argument.</p>
+      </div>
+      <div class="theme-box">
+        <strong>Education &amp; Enlightenment</strong>
+        <p>Ibarra builds a school; students fight for a Spanish academy in the Fili. Education is simultaneously a tool of liberation and a prize the colonizer withholds.</p>
+      </div>
+      <div class="theme-box">
+        <strong>The Church's Abuse of Power</strong>
+        <p>Friars control land, politics, and social life. Characters like Padre Damaso and Padre Salvi show how the cloth shields corruption and cruelty.</p>
+      </div>
+      <div class="theme-box">
+        <strong>National Identity</strong>
+        <p>Who is Filipino? The ilustrado, the farmer, the indio? Rizal grapples with class and belonging, showing that colonial rule fractures the nation from within.</p>
+      </div>
+      <div class="theme-box">
+        <strong>Violence &amp; Moral Limits</strong>
+        <p>The Fili's central question: does the end justify the means? Padre Florentino's final speech argues that freedom built on hatred will not stand.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison -->
+  <section class="section">
+    <p class="section-label">Comparison</p>
+    <h2>Noli vs. Fili — Side by Side</h2>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>Noli Me Tangere</th>
+          <th>El Filibusterismo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Tone</td><td>Hopeful but tragic; satirical</td><td>Dark, bitter, revolutionary</td></tr>
+        <tr><td>Protagonist's goal</td><td>Reform through education &amp; goodwill</td><td>Violent overthrow of the colonial system</td></tr>
+        <tr><td>Central love story</td><td>Ibarra &amp; Maria Clara</td><td>Isagani &amp; Paulita (secondary)</td></tr>
+        <tr><td>Symbol of the Philippines</td><td>Maria Clara (passive, beautiful, trapped)</td><td>Simoun's hidden treasure (ideals buried by hate)</td></tr>
+        <tr><td>Ending</td><td>Ibarra flees; Elias dies; Maria Clara enters convent</td><td>Simoun dies; treasure thrown into the sea; no victor</td></tr>
+        <tr><td>Message on freedom</td><td>Reform is worth fighting for peacefully</td><td>Violent revolution without virtue is doomed</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Key Quotes -->
+  <section class="section">
+    <p class="section-label">Key Passages</p>
+    <h2>Quotes Worth Remembering</h2>
+
+    <blockquote>
+      "He who does not love his own language is worse than an animal and smells worse than a fish."
+      <cite>— José Rizal</cite>
+    </blockquote>
+
+    <blockquote>
+      "The youth is the hope of our Motherland."
+      <cite>— Rizal (commonly attributed, reflects the spirit of both novels)</cite>
+    </blockquote>
+
+    <blockquote>
+      "I do not want my country to be free if it is going to cost so much blood and so many tears."
+      <cite>— Ibarra, Noli Me Tangere</cite>
+    </blockquote>
+
+    <blockquote>
+      "It is not the criminals who do the most evil in this world, but the good people who watch and do nothing."
+      <cite>— Spirit of Padre Florentino's speech, El Filibusterismo</cite>
+    </blockquote>
+
+    <blockquote>
+      "God has not granted your wish because you asked Him with hatred in your heart, not love."
+      <cite>— Padre Florentino to Simoun, El Filibusterismo</cite>
+    </blockquote>
+  </section>
+
+  <!-- Quiz -->
+  <section class="quiz-section" id="quiz">
+    <p class="section-label">Test Yourself</p>
+    <h2>Quick Quiz</h2>
+    <p class="quiz-intro">Choose the best answer for each question. Click "Check Answers" when done.</p>
+
+    <div class="question-block">
+      <p class="q-num">Q1</p>
+      <p class="q-text">In <em>Noli Me Tangere</em>, what does Crisostomo Ibarra try to build in San Diego as a symbol of peaceful reform?</p>
+      <ul class="options" data-answer="1">
+        <li>A church</li>
+        <li>A school</li>
+        <li>A hospital</li>
+        <li>A government hall</li>
+      </ul>
+    </div>
+
+    <div class="question-block">
+      <p class="q-num">Q2</p>
+      <p class="q-text">What is Simoun's true identity in <em>El Filibusterismo</em>?</p>
+      <ul class="options" data-answer="0">
+        <li>Crisostomo Ibarra in disguise</li>
+        <li>Elias's brother</li>
+        <li>A Spanish agent</li>
+        <li>Cabesang Tales's son</li>
+      </ul>
+    </div>
+
+    <div class="question-block">
+      <p class="q-num">Q3</p>
+      <p class="q-text">Who throws Simoun's bomb (hidden in a pomegranate lamp) into the river, foiling the revolution?</p>
+      <ul class="options" data-answer="2">
+        <li>Basilio</li>
+        <li>Padre Florentino</li>
+        <li>Isagani</li>
+        <li>Cabesang Tales</li>
+      </ul>
+    </div>
+
+    <div class="question-block">
+      <p class="q-num">Q4</p>
+      <p class="q-text">Sisa in the <em>Noli</em> goes mad because of what tragedy?</p>
+      <ul class="options" data-answer="3">
+        <li>Her husband is executed by the guardia civil</li>
+        <li>She is evicted from her home by friars</li>
+        <li>She discovers her daughter entered a convent</li>
+        <li>She loses her two sons — Basilio and Crispin</li>
+      </ul>
+    </div>
+
+    <div class="question-block">
+      <p class="q-num">Q5</p>
+      <p class="q-text">Which character in the <em>Noli</em> sacrifices his life to save Ibarra and is considered the true voice of the Filipino masses?</p>
+      <ul class="options" data-answer="1">
+        <li>Padre Florentino</li>
+        <li>Elias</li>
+        <li>Isagani</li>
+        <li>Capitan Tiago</li>
+      </ul>
+    </div>
+
+    <div class="question-block">
+      <p class="q-num">Q6</p>
+      <p class="q-text">What is the key difference in tone between the two novels?</p>
+      <ul class="options" data-answer="0">
+        <li>The Noli is hopeful and satirical; the Fili is darker and more revolutionary</li>
+        <li>The Noli is violent; the Fili is peaceful</li>
+        <li>Both novels share the same hopeful tone throughout</li>
+        <li>The Fili is a comedy; the Noli is a tragedy</li>
+      </ul>
+    </div>
+
+    <div class="question-block">
+      <p class="q-num">Q7</p>
+      <p class="q-text">What does Padre Florentino do with Simoun's treasure at the end of <em>El Filibusterismo</em>?</p>
+      <ul class="options" data-answer="3">
+        <li>Hides it in the church to fund a future revolution</li>
+        <li>Gives it to the poor farmers of the town</li>
+        <li>Surrenders it to the Spanish authorities</li>
+        <li>Throws it into the sea</li>
+      </ul>
+    </div>
+
+    <div class="question-block">
+      <p class="q-num">Q8</p>
+      <p class="q-text">Maria Clara is symbolic of what in Rizal's novels?</p>
+      <ul class="options" data-answer="2">
+        <li>The Spanish colonial government</li>
+        <li>The ideal educated Filipina woman</li>
+        <li>The Philippines itself — beautiful, passive, and trapped</li>
+        <li>The Catholic Church's power over women</li>
+      </ul>
+    </div>
+
+    <button class="reveal-btn" onclick="checkAnswers()">Check Answers</button>
+    <div class="score-display" id="score-display"></div>
+  </section>
+
+</div>
+
+<footer>
+  Study guide based on the Lacson-Locsin translations of <em>Noli Me Tangere</em> (1996) and <em>El Filibusterismo</em> (1996) published by Bookmark Inc.
+</footer>
+
+<script>
+function checkAnswers() {
+  const blocks = document.querySelectorAll('.question-block');
+  let score = 0;
+  let answered = 0;
+
+  blocks.forEach(block => {
+    const options = block.querySelectorAll('li');
+    const correct = parseInt(block.querySelector('ul').dataset.answer);
+    let selected = -1;
+    options.forEach((li, i) => { if (li.classList.contains('selected')) selected = i; });
+
+    if (selected !== -1) {
+      answered++;
+      options.forEach((li, i) => {
+        li.classList.remove('correct', 'wrong');
+        if (i === correct) li.classList.add('correct');
+        else if (i === selected && selected !== correct) li.classList.add('wrong');
+      });
+      if (selected === correct) score++;
+    } else {
+      // Still reveal correct
+      options[correct].classList.add('correct');
+    }
+  });
+
+  const display = document.getElementById('score-display');
+  display.style.display = 'block';
+  if (answered === 0) {
+    display.innerHTML = '⚠️ Select some answers first to see your score!';
+  } else {
+    const pct = Math.round((score / blocks.length) * 100);
+    let msg = pct === 100 ? '🏆 Perfect score!' : pct >= 75 ? '👏 Great job!' : pct >= 50 ? '📖 Keep studying!' : '✏️ Review the guide and try again.';
+    display.innerHTML = `<strong>${score} / ${blocks.length}</strong> correct (${pct}%) — ${msg}`;
+  }
+}
+
+document.querySelectorAll('.options li').forEach(li => {
+  li.addEventListener('click', function() {
+    const ul = this.parentElement;
+    ul.querySelectorAll('li').forEach(l => { l.classList.remove('selected'); l.style.outline = ''; });
+    this.classList.add('selected');
+    this.style.outline = '2px solid var(--gold)';
+    // Reset colors on new selection
+    ul.querySelectorAll('li').forEach(l => l.classList.remove('correct', 'wrong'));
+  });
+});
+</script>
+
+</body>
+</html>
