@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trematodes — Clinical Parasitology Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0e0c;
+    --bg2: #191714;
+    --bg3: #211f1b;
+    --surface: #2a2722;
+    --surface2: #333028;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #f0ece4;
+    --text2: #a09b8e;
+    --text3: #6b6660;
+    --accent: #d4a853;
+    --accent2: #8fb87a;
+    --accent3: #7ab8c4;
+    --accent4: #c47a7a;
+    --accent5: #9b7ac4;
+    --red: #e06b6b;
+    --green: #7ab87a;
+    --blue: #7aabc4;
+    --amber: #d4a853;
+    --purple: #9b7ac4;
+    --teal: #6fc4b8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border2);
+    padding: 2rem 2.5rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .badge-lec {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(212,168,83,0.12);
+    border: 1px solid rgba(212,168,83,0.25);
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 6px;
+    display: inline-block;
+  }
+
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .header-meta {
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 4px;
+  }
+
+  /* NAV TABS */
+  nav {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .tab {
+    padding: 7px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--text3);
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .tab:hover { color: var(--text2); background: var(--surface); border-color: var(--border); }
+  .tab.active { color: var(--accent); background: rgba(212,168,83,0.1); border-color: rgba(212,168,83,0.3); }
+
+  /* MAIN LAYOUT */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 2.5rem;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; animation: fadeIn 0.25s ease; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* SECTION HEADING */
+  .sh {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin: 2rem 0 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 10px;
+  }
+
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 5px;
+  }
+
+  .card-body {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  /* GRIDS */
+  .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+
+  /* METRIC TILES */
+  .metric {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .metric-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text3); margin-bottom: 4px; }
+  .metric-val { font-size: 16px; font-weight: 600; color: var(--text); }
+  .metric-sub { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+  /* ALERT BOXES */
+  .alert { border-radius: 6px; padding: 10px 14px; font-size: 13px; line-height: 1.6; margin-bottom: 12px; }
+  .alert b { font-weight: 600; }
+  .alert-warn { background: rgba(212,168,83,0.08); border-left: 3px solid var(--amber); color: #c9a248; }
+  .alert-info { background: rgba(122,171,196,0.08); border-left: 3px solid var(--blue); color: #7aabc4; }
+  .alert-danger { background: rgba(224,107,107,0.08); border-left: 3px solid var(--red); color: #e06b6b; }
+  .alert-success { background: rgba(122,184,122,0.08); border-left: 3px solid var(--green); color: #7ab87a; }
+
+  /* TABLE */
+  .tbl-wrap { overflow-x: auto; margin-bottom: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th {
+    background: var(--surface);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text3);
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border2);
+    white-space: nowrap;
+  }
+  td {
+    padding: 8px 12px;
+    color: var(--text2);
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--surface); color: var(--text); }
+
+  /* BADGE */
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.04em;
+    margin: 1px 2px;
+  }
+  .badge-r { background: rgba(224,107,107,0.15); color: var(--red); border: 1px solid rgba(224,107,107,0.25); }
+  .badge-g { background: rgba(122,184,122,0.15); color: var(--green); border: 1px solid rgba(122,184,122,0.25); }
+  .badge-b { background: rgba(122,171,196,0.15); color: var(--blue); border: 1px solid rgba(122,171,196,0.25); }
+  .badge-y { background: rgba(212,168,83,0.15); color: var(--amber); border: 1px solid rgba(212,168,83,0.25); }
+  .badge-p { background: rgba(155,122,196,0.15); color: var(--purple); border: 1px solid rgba(155,122,196,0.25); }
+  .badge-t { background: rgba(111,196,184,0.15); color: var(--teal); border: 1px solid rgba(111,196,184,0.25); }
+
+  /* ROWS */
+  .row { display: flex; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+  .row:last-child { border-bottom: none; }
+  .row-lbl { font-size: 11px; font-weight: 600; color: var(--text3); min-width: 130px; flex-shrink: 0; text-transform: uppercase; letter-spacing: 0.06em; padding-top: 2px; }
+  .row-val { font-size: 13px; color: var(--text2); }
+
+  /* STEPS */
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step { display: flex; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: rgba(212,168,83,0.12);
+    border: 1px solid rgba(212,168,83,0.3);
+    color: var(--amber);
+    font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .step-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
+  .step-text strong { color: var(--text); font-weight: 600; }
+
+  /* QUIZ */
+  .q-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .q-card:hover { border-color: var(--border2); }
+  .q-card.open { border-color: rgba(212,168,83,0.35); }
+  .q-question { font-size: 13px; font-weight: 500; color: var(--text); display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .q-icon { font-size: 16px; color: var(--text3); flex-shrink: 0; transition: transform 0.2s; }
+  .q-card.open .q-icon { transform: rotate(45deg); color: var(--accent); }
+  .q-answer {
+    display: none;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+  .q-card.open .q-answer { display: block; }
+
+  /* HABITAT TAGS */
+  .hab-blood { background: rgba(224,107,107,0.12); color: var(--red); border: 1px solid rgba(224,107,107,0.2); padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 600; }
+  .hab-liver { background: rgba(212,168,83,0.12); color: var(--amber); border: 1px solid rgba(212,168,83,0.2); padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 600; }
+  .hab-gut { background: rgba(122,184,122,0.12); color: var(--green); border: 1px solid rgba(122,184,122,0.2); padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 600; }
+  .hab-lung { background: rgba(122,171,196,0.12); color: var(--blue); border: 1px solid rgba(122,171,196,0.2); padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 600; }
+
+  /* ACCENT LINE */
+  .accent-line { height: 2px; background: linear-gradient(90deg, var(--accent) 0%, transparent 100%); border-radius: 2px; margin-bottom: 1.5rem; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text3);
+    font-size: 11px;
+    border-top: 1px solid var(--border);
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 700px) {
+    header { padding: 1.5rem 1rem 1rem; }
+    main { padding: 1.5rem 1rem; }
+    h1 { font-size: 1.8rem; }
+    .g2, .g3, .g4 { grid-template-columns: 1fr; }
+    .row-lbl { min-width: 90px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-top">
+      <div>
+        <div class="badge-lec">Clinical Parasitology · Lecture 10</div>
+        <h1>Trematodes — <em>Flukes</em></h1>
+        <div class="header-meta">Michael David C. Gu, RMT &nbsp;·&nbsp; Second Semester Study Guide</div>
+      </div>
+    </div>
+    <nav>
+      <button class="tab active" onclick="show('overview', this)">Overview</button>
+      <button class="tab" onclick="show('blood', this)">Blood Flukes</button>
+      <button class="tab" onclick="show('liver', this)">Liver Flukes</button>
+      <button class="tab" onclick="show('intestinal', this)">Intestinal Flukes</button>
+      <button class="tab" onclick="show('lung', this)">Lung Flukes</button>
+      <button class="tab" onclick="show('lifecycle', this)">Life Cycle</button>
+      <button class="tab" onclick="show('dx', this)">Dx &amp; Treatment</button>
+      <button class="tab" onclick="show('quiz', this)">Quick Quiz</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ OVERVIEW ============ -->
+<div id="overview" class="section active">
+  <div class="accent-line"></div>
+
+  <div class="alert alert-warn">
+    <b>Core identity:</b> Leaf-shaped (except schistosomes), unsegmented, dorsoventrally flat, with an incomplete digestive system (no anus — waste is regurgitated). Most are hermaphroditic. All require a freshwater mollusk as their 1st intermediate host.
+  </div>
+
+  <div class="g4" style="margin-bottom:16px">
+    <div class="metric"><div class="metric-label">Phylum</div><div class="metric-val">Platyhelminthes</div><div class="metric-sub">Subclass: Digenea</div></div>
+    <div class="metric"><div class="metric-label">Smallest fluke</div><div class="metric-val">H. heterophyes</div><div class="metric-sub">&lt; 2 mm</div></div>
+    <div class="metric"><div class="metric-label">Largest fluke</div><div class="metric-val">F. buski</div><div class="metric-sub">up to 75 mm</div></div>
+    <div class="metric"><div class="metric-label">Name origin</div><div class="metric-val">"Floc"</div><div class="metric-sub">Anglo-Saxon = flatfish</div></div>
+  </div>
+
+  <div class="sh">Classification by habitat in man</div>
+  <div class="card">
+    <div class="row"><div class="row-lbl"><span class="hab-blood">Blood</span></div><div class="row-val">S. haematobium · S. mansoni · S. japonicum · S. mekongi — reside in mesenteric/vesical veins</div></div>
+    <div class="row"><div class="row-lbl"><span class="hab-liver">Liver/Biliary</span></div><div class="row-val">F. hepatica · C. sinensis · O. felineus · O. viverrini · D. dendriticum — reside in bile ducts/gallbladder</div></div>
+    <div class="row"><div class="row-lbl"><span class="hab-gut">Intestinal</span></div><div class="row-val">F. buski · E. ilocanum · H. heterophyes · M. yokogawai · G. hominis — small/large intestine</div></div>
+    <div class="row"><div class="row-lbl"><span class="hab-lung">Lung</span></div><div class="row-val">P. westermani — reside in lung parenchyma</div></div>
+  </div>
+
+  <div class="sh">Flukes vs other helminths</div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Feature</th><th>Flukes (Trematodes)</th><th>Cestodes (Tapeworms)</th><th>Nematodes (Roundworms)</th></tr>
+      <tr><td>Segmentation</td><td>Unsegmented</td><td>Segmented (proglottids)</td><td>Unsegmented</td></tr>
+      <tr><td>Shape</td><td>Dorsoventrally flat / leaf-shaped</td><td>Flat / ribbon-shaped</td><td>Cylindrical</td></tr>
+      <tr><td>Digestive system</td><td>Incomplete (no anus)</td><td>Absent entirely</td><td>Complete (mouth + anus)</td></tr>
+      <tr><td>Sex</td><td>Hermaphroditic (except schistosomes)</td><td>Hermaphroditic</td><td>Separate sexes</td></tr>
+      <tr><td>Muscle layers</td><td>Outer circular, middle oblique, inner longitudinal (OCMOIL)</td><td>Outer circular, inner longitudinal (OCIL)</td><td>Longitudinal only</td></tr>
+    </table>
+  </div>
+
+  <div class="sh">Key structures</div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">Oral sucker</div>
+      <div class="card-body">Surrounds the mouth at the anterior end. Primary function: <b>nutrition/feeding</b>. Reason flukes are also called "distomes" (two suckers).</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Ventral sucker (acetabulum)</div>
+      <div class="card-body">Located on ventral surface. <b>Attachment only</b> — holds the worm in position against fluid flow within host organs. Contains no nutritive function.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Tegument</div>
+      <div class="card-body">Living acellular/syncytial layer (Neodermata). Absorbs nutrients, excretes waste, and protects against host immunity. May bear spines, papillae, or tubercles.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Flame cells (solenocytes)</div>
+      <div class="card-body">Cilia-driven excretory cells. Fan fluid wastes into collecting tubules → excretory bladder → posterior pore. Pattern used taxonomically to identify species.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Genital sucker (gonotyl)</div>
+      <div class="card-body">Present <b>only in heterophyids</b> (H. heterophyes). Used during copulation. Located at the left posterior border of the ventral sucker.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Alimentary system</div>
+      <div class="card-body">Mouth → muscular pharynx → short esophagus → 2 blind intestinal ceca. No anus — waste is regurgitated. IC are <b>simple</b> in flukes; reunite to form single cecum in schistosomes.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ BLOOD FLUKES ============ -->
+<div id="blood" class="section">
+  <div class="accent-line"></div>
+  <div class="alert alert-info">
+    <b>What makes schistosomes unique:</b> Dioecious (separate sexes) · non-operculated eggs · bifid-tailed cercariae · skin penetration route · only 1 intermediate host (snail) · no redia stage · no metacercaria stage · live in "eternal copulation" (gynecophoric canal).
+  </div>
+
+  <div class="sh">Species comparison — master table</div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Feature</th><th>S. haematobium</th><th>S. mansoni</th><th>S. japonicum</th><th>S. mekongi</th><th>S. intercalatum</th></tr>
+      <tr><td>Common name</td><td>Vesical/bladder fluke</td><td>Manson's blood fluke</td><td>Oriental blood fluke</td><td>Mekong schistosome</td><td>—</td></tr>
+      <tr><td>Disease</td><td>Vesical schistosomiasis</td><td>Bilharziasis / Katayama's disease</td><td>Oriental schistosomiasis / Farmer's disease</td><td>Similar to japonicum (hepatosplenomegaly, ascites)</td><td>Mesenteric portal symptoms</td></tr>
+      <tr><td>Habitat (adult)</td><td>Vesical & pelvic venous plexus; rectal venules</td><td>Inferior mesenteric veins</td><td>Superior mesenteric veins</td><td>Mesenteric veins</td><td>Inferior mesenteric plexus</td></tr>
+      <tr><td>Egg exit</td><td><span class="badge badge-r">URINE</span></td><td><span class="badge badge-g">FECES</span></td><td><span class="badge badge-g">FECES</span></td><td><span class="badge badge-g">FECES</span></td><td><span class="badge badge-g">FECES</span></td></tr>
+      <tr><td>Egg spine</td><td><b>Terminal spine</b></td><td><b>Large lateral spine</b></td><td>Small lateral knob (hard to see)</td><td>Similar to japonicum; smaller &amp; round</td><td>Terminal spine (slightly curved)</td></tr>
+      <tr><td>Integument</td><td>Finely tuberculated</td><td>Grossly tuberculated (rough)</td><td>Smooth (non-tubercular)</td><td>Non-tuberculate but spinose</td><td>—</td></tr>
+      <tr><td>Testes</td><td>4–5 large, in groups</td><td>6–9 small, zigzag row</td><td>7 medium, single file</td><td>7, slightly lobed</td><td>—</td></tr>
+      <tr><td>Eggs/day (female)</td><td>up to 300</td><td>very few (1–3 in uterus)</td><td>up to 3,500 per pair</td><td>—</td><td>—</td></tr>
+      <tr><td>Snail IH (genus)</td><td>Bulinus / Ferrissia (India)</td><td>Biomphalaria / Planorbis</td><td>Oncomelania (O. quadrasi in PH)</td><td>Tricula aperta</td><td>—</td></tr>
+      <tr><td>Geography</td><td>Africa, Nile Valley, W Asia</td><td>Africa, S America, Caribbean</td><td>Far East, Philippines, China, Indonesia</td><td>Mekong river basin (Laos, Cambodia)</td><td>West & Central Africa</td></tr>
+      <tr><td>Animal reservoir</td><td>None known</td><td>Monkeys, baboons</td><td>Domestic animals & rodents</td><td>Pigs, dogs</td><td>—</td></tr>
+      <tr><td>Prepatent period</td><td>10–12 weeks</td><td>4–5 weeks</td><td>4–5 weeks</td><td>—</td><td>—</td></tr>
+    </table>
+  </div>
+
+  <div class="sh">Clinical phases of schistosomiasis</div>
+  <div class="card">
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Cercarial dermatitis (Swimmer's itch).</strong> Pruritic papular rash at penetration site. Self-limiting. Non-human schistosomes cause more severe dermatitis but cannot develop into adults in humans. Also called: clam digger's itch, lake itch, duck itch.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Katayama fever (acute schistosomiasis).</strong> 4–8 weeks post-infection, at onset of egg-laying. Systemic allergic reaction to massive egg antigen release. Symptoms: fever, chills, cough, rash, myalgia, arthralgia, hepatosplenomegaly, generalized lymphadenopathy, high peripheral eosinophilia. First studied in Japan.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Chronic intestinal schistosomiasis</strong> (S. mansoni / S. japonicum). Colicky abdominal pain, bloody diarrhea, weight loss. Granulomas in colon/rectum → fibrosis → periportal fibrosis ("clay pipestem fibrosis") → portal hypertension → esophageal varices → ascites.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Chronic urinary schistosomiasis</strong> (S. haematobium only). Cardinal symptom: terminal hematuria. Dysuria, bladder colic, bladder calcification ("sandy patch" on X-ray). Long-term: hydronephrosis, squamous cell carcinoma of bladder. Eggs passed more at midday.</div></div>
+    </div>
+  </div>
+
+  <div class="sh">Immune evasion</div>
+  <div class="card">
+    <div class="card-body">
+      Adult worms coat themselves in host proteins — a phenomenon called <b>concomitant immunity (molecular mimicry)</b>. This makes them invisible to immune attack for up to 30 years. It is <b>the eggs — not the adult worms</b> — that cause disease, through intense granuloma formation → scarring → fibrosis → organ failure.
+    </div>
+  </div>
+
+  <div class="sh">Treatment</div>
+  <div class="alert alert-success">
+    <b>Praziquantel</b> is the universal DOC for all human schistosomes. Dose: 40–60 mg/kg in divided doses (1 day). Mechanism: increases Ca²⁺ permeability → muscle contraction/paralysis + tegumental damage exposing parasite antigens. Effective against adults only — a second dose weeks later catches worms that were immature at first treatment.
+  </div>
+</div>
+
+<!-- ============ LIVER FLUKES ============ -->
+<div id="liver" class="section">
+  <div class="accent-line"></div>
+  <div class="alert alert-warn">
+    All hermaphroditic liver flukes inhabit the biliary tract/gallbladder. Infection route: ingestion of metacercariae (in fish or aquatic vegetation). <b>Critical exception: Fasciola hepatica requires triclabendazole — praziquantel is INEFFECTIVE.</b>
+  </div>
+
+  <div class="sh">Species comparison</div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Feature</th><th>C. sinensis</th><th>O. felineus</th><th>O. viverrini</th><th>F. hepatica</th><th>D. dendriticum</th></tr>
+      <tr><td>Common name</td><td>Chinese/Oriental liver fluke</td><td>Cat's / Siberian liver fluke</td><td>SE Asian liver fluke</td><td>Sheep's liver fluke</td><td>Lancet fluke</td></tr>
+      <tr><td>Adult size</td><td>10–25 mm</td><td>7–12 mm</td><td>8–12 mm (smaller than felineus)</td><td>20–30 mm (largest)</td><td>5–15 mm</td></tr>
+      <tr><td>Testes shape</td><td><span class="badge badge-p">Highly branched (dendritic)</span></td><td>Lobed, arranged obliquely</td><td>Lobed (NOT branched)</td><td>2 highly dendritic, tandem</td><td>Lobed; ANTERIOR to ovary</td></tr>
+      <tr><td>1st IH</td><td>Operculate aquatic snails (Bithynia)</td><td>Bulimus/Bithynia snail</td><td>Bulimus/Bithynia snail</td><td>Lymnaea / Succinea snails</td><td>Land snails</td></tr>
+      <tr><td>2nd IH</td><td>Freshwater fish (Cyprinidae — carp)</td><td>Freshwater Cyprinoid fish</td><td>Puntius fish</td><td>Watercress / aquatic vegetation</td><td>Ants (genus Formica)</td></tr>
+      <tr><td>Egg hatching</td><td>Inside 1st IH (NOT in water)</td><td>Inside 1st IH</td><td>Inside 1st IH</td><td>In water (unembryonated when laid)</td><td>Fully embryonated; ingested by snail</td></tr>
+      <tr><td>Egg description</td><td>"Jug-shaped"; old electric bulb look; comma-shaped knob at abopercular end</td><td>Broadly ovoid; yellowish-brown; small tubercular knob; narrower than sinensis</td><td>Less prominent shoulders; may have "melon-like" ridges; 27×15 μm</td><td>Large hen's egg-shaped; inconspicuous operculum; indistinguishable from F. buski</td><td>Thick-shelled; dark brown; large operculum; 38–45×22–30 μm</td></tr>
+      <tr><td>Geography</td><td>China, Korea, Japan, Vietnam (35M people)</td><td>E Europe, Russia/Siberia (1.5M in Russia)</td><td>Thailand (up to 70% in some villages), Laos, Cambodia</td><td>Cosmopolitan (wherever sheep/cattle raised)</td><td>Europe, N Africa, Asia, Americas</td></tr>
+      <tr><td>Cancer association</td><td>Cholangiocarcinoma (bile duct cancer)</td><td>—</td><td><span class="badge badge-r">Very high cholangiocarcinoma risk — leading cause of death in endemic region</span></td><td>—</td><td>—</td></tr>
+      <tr><td>Definitive host</td><td>Humans, dogs, cats, pigs, rats</td><td>Cats, dogs, humans, fish-eating mammals</td><td>Civet cats, domestic cats, dogs, humans</td><td>Sheep (primary); humans accidental</td><td>Sheep; humans accidental</td></tr>
+      <tr><td>Drug of choice</td><td>Praziquantel</td><td>Praziquantel</td><td>Praziquantel</td><td><span class="badge badge-r">Triclabendazole</span></td><td>Praziquantel</td></tr>
+    </table>
+  </div>
+
+  <div class="sh">Fasciola hepatica — special highlights</div>
+  <div class="g2">
+    <div>
+      <div class="alert alert-danger">
+        <b>Praziquantel is INEFFECTIVE against Fasciola.</b><br>DOC: Triclabendazole 10 mg/kg single dose. Works against both adult and actively migrating juvenile worms.
+      </div>
+      <div class="card">
+        <div class="card-title">Halzoun syndrome (pharyngeal fascioliasis)</div>
+        <div class="card-body">Caused by ingestion of raw animal liver infected with adult flukes. Worms use suckers to attach to the pharyngeal mucosa → rapid edema, pain, bleeding, potential respiratory interference, deafness (rare tube blockage), suffocation (rare). Common in Lebanon and Middle East.</div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-title">Spurious infection — key exam trap</div>
+        <div class="card-body">If a patient eats infected liver, eggs pass through their stool without true infection. <b>Always require a 3-day liver-free diet before repeat stool testing.</b> Eggs don't appear until 3–4 months after infection anyway.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Migration path</div>
+        <div class="card-body">Metacercariae excyst in duodenum → pierce intestinal wall → peritoneal cavity → crawl to liver → Glisson's capsule → liver parenchyma → biliary passages. Spends ~2 months tunneling through liver parenchyma. Matures in ~3–4 months.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sh">Dicrocoelium dendriticum — the brainworm</div>
+  <div class="card">
+    <div class="card-body" style="line-height:1.8">
+      <b>Unique terrestrial life cycle — no water required.</b><br>
+      Eggs → feces of sheep → ingested by <b>land snails</b> → cercariae form in slime balls secreted by snail → eaten by <b>ants (genus Formica)</b> → most metacercariae encyst in ant's body, but one ("the brainworm") migrates to the <b>subesophageal ganglion</b> → behavioral manipulation: infected ant climbs blade of grass at night and clamps its mandibles — perfectly positioned to be eaten by grazing sheep next morning → sheep (definitive host) ingests infected ant while grazing.<br><br>
+      Lobed testes are <b>ANTERIOR to the ovary</b> (opposite of Clonorchis/Opisthorchis). Human infections usually spurious (from eating infected sheep liver).
+    </div>
+  </div>
+</div>
+
+<!-- ============ INTESTINAL FLUKES ============ -->
+<div id="intestinal" class="section">
+  <div class="accent-line"></div>
+  <div class="alert alert-info">
+    All intestinal flukes are hermaphroditic, transmitted by metacercariae ingestion, and require a freshwater snail as 1st IH. Treatment: praziquantel for all.
+  </div>
+
+  <div class="sh">Species comparison</div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Feature</th><th>F. buski</th><th>E. ilocanum</th><th>H. heterophyes</th><th>M. yokogawai</th><th>G. hominis</th></tr>
+      <tr><td>Common name</td><td>Giant intestinal fluke</td><td>Garrison's fluke</td><td>Minute intestinal fluke / Von Siebold's fluke</td><td>Yokogawa's fluke</td><td>Discoid fluke</td></tr>
+      <tr><td>Size</td><td><span class="badge badge-r">20–75 mm (LARGEST fluke)</span></td><td>Medium</td><td><span class="badge badge-g">&lt;2 mm (SMALLEST)</span></td><td>1–2.5 mm</td><td>5–14 mm</td></tr>
+      <tr><td>Intestinal location</td><td>Small intestine (duodenum/jejunum)</td><td>Small intestine</td><td>Small intestine (crypts of mucosa)</td><td>Small intestine</td><td><b>Large intestine</b> (cecum + ascending colon)</td></tr>
+      <tr><td>1st IH</td><td>Planorbid snails (Segmentina, Hippeutis)</td><td>Gyraulus convexiusculus / Hippeutis</td><td>Pironella (Asia) / Cerithidea (Middle East)</td><td>Semisulcospira (most frequent)</td><td>Freshwater snail</td></tr>
+      <tr><td>2nd IH</td><td>Aquatic vegetation (water chestnut, lotus, water caltrop — Trapa bicornis)</td><td><b>Edible snails/mussels</b> (Pila luzonica, Vivipara angularis)</td><td>Freshwater fish (mullet, tilapia)</td><td>Freshwater fish (muscles/scales)</td><td>Aquatic plants</td></tr>
+      <tr><td>Reservoir host</td><td>Pigs</td><td>Rats, dogs</td><td>Cats, dogs, foxes, fish-eating mammals</td><td>Pigs, dogs, cats, foxes</td><td>Pigs, deer, monkeys</td></tr>
+      <tr><td>Egg state</td><td>Unembryonated (~25,000/day)</td><td>Unembryonated</td><td>Embryonated when laid</td><td>Embryonated (contains miracidium)</td><td>Immature; greenish-brown</td></tr>
+      <tr><td>Special structure</td><td>No cephalic cone; oral sucker smaller than ventral</td><td>Collar of <b>49–51 spines</b> in two rows around oral sucker (diagnostic)</td><td>Has <b>genital sucker (gonotyl)</b>; pear/avocado shaped</td><td>Ventral sucker <b>deflected to the right</b>; NO genital sucker</td><td>Prominent acetabulum with characteristic notch; bright pink</td></tr>
+      <tr><td>Egg look-alike</td><td>Indistinguishable from F. hepatica</td><td>Similar to Fasciolopsis (slightly smaller)</td><td>Similar to M. yokogawai (virtually indistinguishable)</td><td>Similar to H. heterophyes; lacks "light bulb" shoulders</td><td>Resembles Fasciolopsis; greenish tint distinguishes</td></tr>
+      <tr><td>Geography (PH)</td><td>China, SE Asia, Indian subcontinent</td><td><span class="badge badge-p">Philippine species — Luzon, Leyte, Samar</span></td><td>Middle East (Nile Delta), Far East</td><td>Far East, Siberia, Balkans, Spain</td><td>Assam India; Vietnam, Philippines</td></tr>
+    </table>
+  </div>
+
+  <div class="sh">Heterophyids — ectopic danger</div>
+  <div class="g2">
+    <div class="alert alert-danger">
+      <b>Heterophyid myocarditis:</b> Eggs of H. heterophyes / M. yokogawai can invade intestinal mucosa → enter lymphatics/circulation → embolize to heart, brain, spinal cord. Myocarditis leading to heart failure reported in <b>14–15% of Philippine cases</b>. Most dangerous destination is the myocardium — trapped eggs provoke severe granulomatous reaction.
+    </div>
+    <div class="card">
+      <div class="card-title">E. ilocanum — Philippine highlights</div>
+      <div class="card-body">2nd IH is another snail (Pila luzonica/Pila conica) — unique among intestinal flukes. Common where raw <i>kuhol</i> are eaten with lime or coconut milk. Discovered by Garrison in 1907 in Manila. Collar of 49–51 spines around oral sucker is the key distinguishing feature.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LUNG FLUKES ============ -->
+<div id="lung" class="section">
+  <div class="accent-line"></div>
+  <div class="alert alert-warn">
+    <b>P. westermani</b> — Oriental lung fluke. ~20 million infected worldwide. Often misdiagnosed as pulmonary tuberculosis. Adults found in pairs within fibrotic capsules in lung parenchyma.
+  </div>
+
+  <div class="g2" style="margin-bottom:12px">
+    <div class="card">
+      <div class="card-title">Adult worm morphology</div>
+      <div class="row"><div class="row-lbl">Shape</div><div class="row-val">"Coffee-bean shaped" — plump, ovoid, fleshy</div></div>
+      <div class="row"><div class="row-lbl">Size</div><div class="row-val">~7.5 mm × 4–6 mm × 3.5–5 mm thick</div></div>
+      <div class="row"><div class="row-lbl">Color</div><div class="row-val">Reddish-brown when living</div></div>
+      <div class="row"><div class="row-lbl">Integument</div><div class="row-val">Scale-like spines</div></div>
+      <div class="row"><div class="row-lbl">Suckers</div><div class="row-val">Oral and ventral approximately the same size</div></div>
+      <div class="row"><div class="row-lbl">Lifespan</div><div class="row-val">Up to 20 years in humans</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Eggs</div>
+      <div class="row"><div class="row-lbl">Size</div><div class="row-val">80–120 μm × 45–70 μm</div></div>
+      <div class="row"><div class="row-lbl">State when laid</div><div class="row-val">Unembryonated — requires weeks in freshwater</div></div>
+      <div class="row"><div class="row-lbl">Operculum</div><div class="row-val">Flattened with distinct opercular shoulders; thickened shell at abopercular end</div></div>
+      <div class="row"><div class="row-lbl">Color</div><div class="row-val">Yellowish-brown</div></div>
+      <div class="row"><div class="row-lbl">Exit route</div><div class="row-val"><span class="badge badge-y">Sputum</span> (primary) OR <span class="badge badge-g">Feces</span> if swallowed</div></div>
+      <div class="row"><div class="row-lbl">Diagnostic stage</div><div class="row-val">Unembryonated eggs in rusty/blood-stained sputum</div></div>
+    </div>
+  </div>
+
+  <div class="sh">Hosts</div>
+  <div class="card">
+    <div class="row"><div class="row-lbl">Definitive host</div><div class="row-val">Humans, cats, tigers, leopards, foxes, dogs, pigs, beavers, mongoose</div></div>
+    <div class="row"><div class="row-lbl">1st IH</div><div class="row-val">Freshwater snails — <i>Semisulcospira</i> (prev. <i>Melania</i>) / <i>Brotia</i></div></div>
+    <div class="row"><div class="row-lbl">2nd IH</div><div class="row-val">Freshwater crab or crayfish (metacercariae in gills, liver, muscle tissue)</div></div>
+    <div class="row"><div class="row-lbl">Paratenic host</div><div class="row-val">Wild boar — metacercariae migrate into muscle tissue; eating raw boar meat (common in Japan) can cause human infection</div></div>
+    <div class="row"><div class="row-lbl">Philippines</div><div class="row-val">Leyte · Samar · Mindanao (Cotabato) · Sorsogon · Camarines</div></div>
+  </div>
+
+  <div class="sh">Migration path to lungs</div>
+  <div class="card">
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Ingest undercooked/pickled crab or crayfish with encysted metacercariae</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Excystation in <strong>duodenum</strong> → penetrates intestinal wall</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Peritoneal cavity → abdominal wall → diaphragm</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">Enters lungs → lung parenchyma → host forms <strong>fibrotic capsule</strong> around pair of flukes (matures in 6–10 weeks)</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text">Adults lay eggs → eggs exit in reddish-brown sputum (or swallowed → feces). Time from infection to oviposition: 65–90 days.</div></div>
+    </div>
+  </div>
+
+  <div class="sh">Clinical features</div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">Pulmonary (chronic) phase</div>
+      <div class="card-body">
+        Fibrotic cysts form around adult worm pairs. <b>Chronic cough</b> (most common symptom) · hemoptysis (bloodstained/"rusty" sputum) · chest pain · dyspnea.<br><br>
+        <span class="badge badge-r">TB mimicry</span> — frequently misdiagnosed as pulmonary tuberculosis. Differentiate by: eggs in sputum, serology (ELISA up to 99% sensitive), CT showing "ring shadows."
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Ectopic paragonimiasis — cerebral</div>
+      <div class="card-body">
+        Route: worms migrate through soft tissues around the jugular vein into the skull. Most common in <b>children</b>.<br><br>
+        Symptoms: seizures (Jackson epilepsy), severe headache, visual disturbances, hemiplegia. Prognosis: often serious or fatal if untreated early.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LIFE CYCLE ============ -->
+<div id="lifecycle" class="section">
+  <div class="accent-line"></div>
+
+  <div class="sh">General digenean life cycle — step by step</div>
+  <div class="card">
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Eggs</strong> exit definitive host via feces, urine (S. haematobium), or sputum (P. westermani) and reach water — or are ingested directly by 1st IH (C. sinensis, Opisthorchis).</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Miracidium</strong> — free-swimming, fully ciliated 1st stage larva. Lifespan: 24–48 hours. Does not feed. Has specialized glands to bore into snail tissue. Must find its snail quickly or die.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Sporocyst</strong> — sac-like, contains germ balls. Asexual multiplication begins. <em>Schistosomes produce a 2nd generation sporocyst here; all other flukes proceed to redia.</em></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Redia</strong> — more complex larva with pharynx and gut. Produced within sporocyst. <em>Absent in schistosomes.</em> A single miracidium can produce over 500,000 cercariae.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text"><strong>Cercariae</strong> — final larval stage in snail host. Emerge into water. Schistosomes: bifid (forked) tails — directly penetrate human skin. Others: straight/tapered tail — encyst as metacercariae.</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-text"><strong>Metacercariae</strong> — encysted resting stage (absent in schistosomes). Found on aquatic vegetation or inside tissues of 2nd IH (fish, crab, another snail). Human infection via ingestion.</div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-text"><strong>Adult worm</strong> matures in definitive host (excystation occurs in duodenum), migrates to final habitat, copulates, and produces eggs to restart the cycle.</div></div>
+    </div>
+  </div>
+
+  <div class="sh">Schistosomes vs other trematodes — master comparison</div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Feature</th><th>Schistosomes</th><th>All other flukes</th></tr>
+      <tr><td>Reproductive system</td><td><span class="badge badge-r">Dioecious</span> (separate sexes; gynecophoric canal)</td><td><span class="badge badge-g">Monoecious (hermaphroditic)</span></td></tr>
+      <tr><td>Redia stage</td><td>Absent — 2nd generation sporocyst instead</td><td>Present</td></tr>
+      <tr><td>Cercariae tail</td><td>Forked / bifid</td><td>Straight / tapered</td></tr>
+      <tr><td>Infective stage for humans</td><td>Cercariae (direct skin penetration)</td><td>Metacercariae (ingestion)</td></tr>
+      <tr><td>Intermediate hosts needed</td><td>Only 1 (snail)</td><td>1st and 2nd IH required</td></tr>
+      <tr><td>Ovum / eggs</td><td>Non-operculated; fully embryonated</td><td>Operculated (lid present)</td></tr>
+      <tr><td>Intestinal ceca</td><td>Reunite to form a single cecum</td><td>Two separate, blind-ending ceca</td></tr>
+      <tr><td>Metacercariae stage</td><td>Absent</td><td>Present</td></tr>
+      <tr><td>Body shape</td><td>Cylindrical/elongated (adapted for vascular life)</td><td>Leaf-shaped, flat</td></tr>
+    </table>
+  </div>
+
+  <div class="sh">Egg embryonation — key differentiation</div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Egg behavior</th><th>Species</th></tr>
+      <tr><td>Embryonated — <b>hatch immediately in water</b> (release miracidium)</td><td>S. haematobium · S. mansoni · S. japonicum</td></tr>
+      <tr><td>Embryonated — <b>hatch inside 1st IH</b> (must be ingested by snail first)</td><td>C. sinensis · O. felineus · O. viverrini · M. yokogawai</td></tr>
+      <tr><td>Unembryonated — <b>must embryonate in water first</b>, then hatch</td><td>F. hepatica · F. buski · P. westermani</td></tr>
+    </table>
+  </div>
+
+  <div class="sh">2nd intermediate host by species</div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>2nd IH</th><th>Species</th></tr>
+      <tr><td>Aquatic vegetation (watercress, water chestnut, lotus)</td><td>F. hepatica · F. buski · W. watsoni</td></tr>
+      <tr><td>Freshwater fish (Cyprinidae, mullet, tilapia)</td><td>C. sinensis · H. heterophyes · M. yokogawai · O. felineus</td></tr>
+      <tr><td>Freshwater crab / crayfish</td><td>P. westermani</td></tr>
+      <tr><td>Another snail (Pila luzonica)</td><td>E. ilocanum</td></tr>
+      <tr><td>Ants (genus Formica)</td><td>D. dendriticum</td></tr>
+      <tr><td>None (cercariae directly infect DH)</td><td>All Schistosoma spp.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============ DX & TX ============ -->
+<div id="dx" class="section">
+  <div class="accent-line"></div>
+  <div class="alert alert-warn">
+    <b>Gold standard:</b> Direct microscopic visualization of eggs in the appropriate specimen. Collecting the correct sample is the most critical first step to diagnosis.
+  </div>
+
+  <div class="sh">Specimen of choice</div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Specimen</th><th>Species / When</th></tr>
+      <tr><td><span class="badge badge-r">Urine</span> — collect 10AM–2PM</td><td>S. haematobium (eggs more abundant at midday)</td></tr>
+      <tr><td><span class="badge badge-g">Feces</span> — stool examination</td><td>All intestinal & liver flukes; S. mansoni; S. japonicum; P. westermani (if sputum negative)</td></tr>
+      <tr><td><span class="badge badge-y">Sputum</span> — early morning deep-cough</td><td>P. westermani (primary specimen)</td></tr>
+      <tr><td>Duodenal aspirate / bile</td><td>C. sinensis, F. hepatica — backup when stool negative but symptoms persist</td></tr>
+      <tr><td>Rectal biopsy</td><td>S. mansoni, S. japonicum — proctoscopic snips of mucosa</td></tr>
+      <tr><td>Bladder biopsy</td><td>S. haematobium</td></tr>
+    </table>
+  </div>
+
+  <div class="sh">Diagnostic techniques</div>
+  <div class="g2">
+    <div class="card"><div class="card-title">Direct saline wet mount</div><div class="card-body">Simplest method. Requires 400× magnification for very small eggs (e.g., Clonorchis at 28–35 μm).</div></div>
+    <div class="card"><div class="card-title">Kato-Katz method</div><div class="card-body">Quantifies eggs per gram of stool → estimates total worm burden. Correlates with disease severity. Used in field studies and to monitor chemotherapy. Superior to flotation for Heterophyids.</div></div>
+    <div class="card"><div class="card-title">Formalin-ether (FECT) concentration</div><div class="card-body">Best for light infections. <b>Critical note: trematode eggs do NOT float</b> — always use sedimentation techniques, never flotation.</div></div>
+    <div class="card"><div class="card-title">Hatching test</div><div class="card-body">Place eggs in warm fresh water; watch for miracidia to hatch. Used to check viability of eggs — if miracidia hatch, infection is active.</div></div>
+    <div class="card"><div class="card-title">Serology — ELISA / IFA / Immunoblot</div><div class="card-body">Useful for early/light infections, travelers, ectopic disease. Fasciola ELISA becomes positive within 2 weeks and goes negative after treatment. Paragonimiasis ELISA: up to 99% sensitivity.</div></div>
+    <div class="card"><div class="card-title">Imaging</div><div class="card-body">Ultrasound: liver fibrosis, dilated bile ducts, bladder thickening. CT: liver/lung cysts, brain lesions (P. westermani ring shadows). ERCP: occluded bile ducts (C. sinensis). Chest X-ray: ring shadows for paragonimiasis.</div></div>
+  </div>
+
+  <div class="sh">Drugs of choice — complete summary</div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Drug</th><th>Species treated</th><th>Dose</th><th>Mechanism</th></tr>
+      <tr><td><span class="badge badge-p">Praziquantel</span></td><td>All schistosomes · C. sinensis · Opisthorchis spp. · P. westermani · F. buski · E. ilocanum · H. heterophyes · M. yokogawai · D. dendriticum · G. hominis</td><td>25–60 mg/kg (varies by species/duration)</td><td>Increases Ca²⁺ permeability → muscle contraction/paralysis + tegumental damage → exposes antigens to host immunity</td></tr>
+      <tr><td><span class="badge badge-r">Triclabendazole</span></td><td>F. hepatica · F. gigantica (ONLY)</td><td>10 mg/kg single oral dose</td><td>Effective against both adult and actively migrating juvenile worms. Praziquantel is INEFFECTIVE for Fasciola.</td></tr>
+      <tr><td>Albendazole</td><td>C. sinensis (alternative)</td><td>10 mg/kg × 7 days</td><td>Microtubule disruption</td></tr>
+      <tr><td>Bithionol</td><td>F. hepatica (alternative, more toxic)</td><td>30–50 mg/kg alternate days × 10–15 doses</td><td>More toxic; used when triclabendazole unavailable</td></tr>
+    </table>
+  </div>
+
+  <div class="sh">Eggs not to confuse</div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Look-alike pair</th><th>How to differentiate</th></tr>
+      <tr><td>F. hepatica vs F. buski</td><td>Morphologically indistinguishable. Differentiate by: clinical picture (hepatic vs intestinal), sample source (bile = only Fasciola), dietary history (watercress vs aquatic plants), endemic area</td></tr>
+      <tr><td>C. sinensis vs Opisthorchis</td><td>Sinensis: more prominent opercular shoulders + comma-shaped knob at abopercular end; O. viverrini has less prominent shoulders, may have "melon-like" ridges</td></tr>
+      <tr><td>H. heterophyes vs M. yokogawai</td><td>Virtually indistinguishable by egg alone. Differentiate by adult: Metagonimus has ventral sucker deflected to the right and NO genital sucker; Heterophyes has genital sucker (gonotyl)</td></tr>
+      <tr><td>Echinostoma vs Fasciolopsis / Fasciola</td><td>Echinostoma egg slightly smaller (86–116 μm), straw-colored. Confirmed by adult worm recovery: 49–51 collar spines around oral sucker</td></tr>
+      <tr><td>Schistosome species by egg</td><td>S. haematobium: terminal spine · S. mansoni: large lateral spine · S. japonicum: tiny lateral knob (often hard to see) · S. mekongi: smaller and more round than japonicum</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============ QUIZ ============ -->
+<div id="quiz" class="section">
+  <div class="accent-line"></div>
+  <div class="alert alert-info">Click any question to reveal the answer. Cover the answers and self-test before your board exams.</div>
+
+  <div class="sh">High-yield questions</div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">What is the primary difference between schistosomes and all other trematodes? <span class="q-icon">+</span></div>
+    <div class="q-answer">Schistosomes are <b>dioecious</b> (separate sexes), have only <b>one intermediate host</b> (snail), lack the redia stage and metacercariae stage, produce <b>non-operculated</b> eggs, and their bifid-tailed cercariae <b>directly penetrate unbroken human skin</b> — instead of being ingested as metacercariae. They also live in venous plexuses rather than organ lumens.</div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">Why is praziquantel ineffective against Fasciola hepatica? What should be used instead? <span class="q-icon">+</span></div>
+    <div class="q-answer">Fasciola has <b>tegumental resistance</b> to praziquantel's mechanism (Ca²⁺ permeability increase + tegumental damage). DOC: <b>triclabendazole 10 mg/kg single dose</b> — the only drug effective against both adult and actively migrating juvenile worms. Alternative: bithionol (more toxic). Remember: this is a major boards trap.</div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">Which schistosome produces the most eggs per day, and why is this clinically significant? <span class="q-icon">+</span></div>
+    <div class="q-answer"><b>S. japonicum</b> — up to 3,500 eggs/pair/day (vs ~300 for S. haematobium). Because so many eggs are produced, a high percentage enters general circulation, causing severe pathology in the liver, lungs, and even the brain. Its smooth integument, high egg output, and lack of host specificity (infects virtually all mammals) make it the hardest schistosome to control.</div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">What is Katayama fever? Which species most commonly causes it and why? <span class="q-icon">+</span></div>
+    <div class="q-answer">Katayama fever is an <b>acute serum sickness-like syndrome</b> occurring 4–8 weeks post-infection, at the onset of egg-laying. Caused by a massive systemic allergic reaction to egg antigens. Symptoms: fever, chills, cough, rash, myalgia, arthralgia, hepatosplenomegaly, generalized lymphadenopathy, high peripheral eosinophilia. Named after a Japanese district. Most severe with <b>S. japonicum</b> due to its much higher egg output. Also occurs with S. mansoni.</div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">What is the cardinal symptom of S. haematobium? Why does it occur at a specific time? <span class="q-icon">+</span></div>
+    <div class="q-answer"><b>Terminal hematuria</b> — blood at the <i>end</i> of urination. Eggs pierce the vesical wall using their terminal spine and lytic enzymes, releasing blood into the bladder lumen. Eggs are passed more abundantly at <b>midday</b> — possibly an adaptation coinciding with when humans are most likely to be in water, improving chances of miracidial transmission to the snail intermediate host.</div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">Describe the "brainworm" phenomenon of Dicrocoelium dendriticum. <span class="q-icon">+</span></div>
+    <div class="q-answer">Most cercariae encyst in the ant's body as metacercariae, but <b>one cercariae</b> (the "brainworm") migrates to the <b>subesophageal ganglion</b> of the ant. This causes behavioral manipulation: the infected ant climbs to the tip of a blade of grass at night and clamps its mandibles — perfectly positioning itself to be eaten by grazing sheep the next morning. This is the only trematode with a fully terrestrial life cycle (no water required). 2nd IH = ants (genus Formica).</div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">What is the most dangerous ectopic complication of Heterophyes heterophyes in the Philippines? <span class="q-icon">+</span></div>
+    <div class="q-answer"><b>Heterophyid myocarditis</b> — eggs invade the intestinal mucosa and embolize via lymphatics/circulation to the <b>myocardium</b>, causing severe granulomatous reactions and heart failure. Reported in 14–15% of Philippine cases. Despite its minute size (&lt;2 mm), H. heterophyes can be fatal through this ectopic complication. Eggs can also reach the brain and spinal cord.</div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">Why is P. westermani frequently misdiagnosed as pulmonary tuberculosis? <span class="q-icon">+</span></div>
+    <div class="q-answer">Both cause <b>chronic cough, hemoptysis</b> (bloodstained/rusty sputum), chest pain, and pulmonary infiltrates on X-ray. Differentiate by: identifying large <b>operculated, yellowish-brown eggs</b> in sputum or feces; serology (ELISA up to 99% sensitive); CT showing <b>"ring shadows"</b> (cysts) rather than TB consolidation/cavitation. P. westermani eggs are unembryonated when freshly laid — a key feature.</div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">C. sinensis vs O. viverrini — key morphological and clinical differentiators? <span class="q-icon">+</span></div>
+    <div class="q-answer">Testes shape is the key: <b>C. sinensis</b> has 4 highly <b>branched (dendritic)</b> testes in the posterior third. <b>O. viverrini</b> has <b>lobed</b> (NOT branched) testes arranged obliquely. Both cause cholangiocarcinoma — but sinensis in China/Korea/Japan, viverrini in NE Thailand (up to 70% of some Thai villages). Viverrini has lesser opercular shoulders and may show "melon-like" ridges on eggs under high magnification.</div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">What is the intermediate host rule that applies universally to ALL trematodes? <span class="q-icon">+</span></div>
+    <div class="q-answer">The <b>1st intermediate host is ALWAYS a freshwater mollusk (snail)</b> — no exceptions across any trematode species. Asexual multiplication occurs in the snail, and the magnitude is enormous: a single miracidium can give rise to over half a million cercariae. This compensates for the extremely low probability that any single egg in nature will find a suitable host.</div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">What does "concomitant immunity" mean in schistosomiasis, and what is its clinical implication? <span class="q-icon">+</span></div>
+    <div class="q-answer">Adult schistosomes coat their tegument with <b>host proteins (molecular mimicry)</b>, making them functionally invisible to the immune system — they can survive for up to 30 years. Clinical implication: <b>the adult worms cause little damage</b>. Disease is caused by the host's intense inflammatory (granulomatous) reaction to the thousands of <b>trapped eggs</b> in tissues (liver, bladder) → granuloma formation → scarring → fibrosis → portal hypertension or bladder carcinoma.</div>
+  </div>
+
+</div>
+</main>
+
+<footer>
+  Clinical Parasitology LEC 10 — Trematodes (Flukes) &nbsp;·&nbsp; Based on the lecture of Michael David C. Gu, RMT &nbsp;·&nbsp; For study use only
+</footer>
+
+<script>
+  function show(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function toggleQ(el) {
+    el.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
