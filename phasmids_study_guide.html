@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phasmids Study Guide — Clinical Parasitology</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0c1a;
+    --surface: #161228;
+    --surface2: #1e1835;
+    --border: #2e2850;
+    --accent1: #c084fc;   /* purple */
+    --accent2: #f472b6;   /* pink */
+    --accent3: #34d399;   /* green */
+    --accent4: #fbbf24;   /* amber */
+    --accent5: #60a5fa;   /* blue */
+    --text: #e2ddf0;
+    --text-muted: #8b82b0;
+    --red: #f87171;
+    --teal: #2dd4bf;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #0e0c1a 0%, #1a0f2e 40%, #0e1a2e 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(192,132,252,.15), transparent);
+  }
+  .hero-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--accent1);
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--accent1), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+  .hero-sub {
+    color: var(--text-muted);
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  /* ── NAV ── */
+  .toc {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    position: sticky; top: 0;
+    z-index: 100;
+  }
+  .toc a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .toc a:hover { color: var(--accent1); }
+
+  /* ── LAYOUT ── */
+  .content { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* ── SECTION HEADERS ── */
+  .section {
+    margin-bottom: 60px;
+    animation: fadeUp .5s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent1);
+    background: rgba(192,132,252,.1);
+    border: 1px solid rgba(192,132,252,.3);
+    border-radius: 4px;
+    padding: 2px 8px;
+    white-space: nowrap;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px 24px;
+    margin-bottom: 18px;
+  }
+  .card-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    color: var(--accent2);
+    margin-bottom: 10px;
+  }
+
+  /* ── COMPARISON GRID ── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+  .compare-col {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .compare-col.left { border-top: 3px solid var(--accent2); }
+  .compare-col.right { border-top: 3px solid var(--accent5); }
+  .compare-head {
+    padding: 12px 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+  }
+  .compare-col.left .compare-head { color: var(--accent2); background: rgba(244,114,182,.06); }
+  .compare-col.right .compare-head { color: var(--accent5); background: rgba(96,165,250,.06); }
+  .compare-body { padding: 14px 18px; }
+
+  /* ── TABLE ── */
+  .diff-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 18px;
+    font-size: 14px;
+  }
+  .diff-table th {
+    background: var(--surface2);
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .diff-table th.pink { color: var(--accent2); }
+  .diff-table th.blue { color: var(--accent5); }
+  .diff-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid rgba(46,40,80,.5);
+    vertical-align: top;
+  }
+  .diff-table tr:last-child td { border-bottom: none; }
+  .diff-table tr:hover td { background: rgba(255,255,255,.02); }
+  .diff-table td:first-child {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    width: 22%;
+  }
+
+  /* ── TAGS ── */
+  .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin: 2px 3px 2px 0;
+  }
+  .tag-purple { background: rgba(192,132,252,.15); color: var(--accent1); border: 1px solid rgba(192,132,252,.3); }
+  .tag-pink   { background: rgba(244,114,182,.15); color: var(--accent2); border: 1px solid rgba(244,114,182,.3); }
+  .tag-green  { background: rgba(52,211,153,.15);  color: var(--accent3); border: 1px solid rgba(52,211,153,.3); }
+  .tag-amber  { background: rgba(251,191,36,.15);  color: var(--accent4); border: 1px solid rgba(251,191,36,.3); }
+  .tag-blue   { background: rgba(96,165,250,.15);  color: var(--accent5); border: 1px solid rgba(96,165,250,.3); }
+  .tag-red    { background: rgba(248,113,113,.15); color: var(--red);     border: 1px solid rgba(248,113,113,.3); }
+  .tag-teal   { background: rgba(45,212,191,.15);  color: var(--teal);    border: 1px solid rgba(45,212,191,.3); }
+
+  /* ── HIGHLIGHT BOX ── */
+  .hbox {
+    border-left: 3px solid;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-size: 14px;
+  }
+  .hbox-purple { border-color: var(--accent1); background: rgba(192,132,252,.07); }
+  .hbox-pink   { border-color: var(--accent2); background: rgba(244,114,182,.07); }
+  .hbox-green  { border-color: var(--accent3); background: rgba(52,211,153,.07); }
+  .hbox-amber  { border-color: var(--accent4); background: rgba(251,191,36,.07); }
+  .hbox-red    { border-color: var(--red);     background: rgba(248,113,113,.07); }
+  .hbox-teal   { border-color: var(--teal);    background: rgba(45,212,191,.07); }
+  .hbox strong { color: var(--accent4); }
+
+  /* ── LIFECYCLE STEPS ── */
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step {
+    display: flex;
+    gap: 16px;
+    position: relative;
+  }
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 19px; top: 38px;
+    width: 2px;
+    height: calc(100% - 12px);
+    background: var(--border);
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--surface2);
+    border: 2px solid var(--accent1);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent1);
+    margin-top: 2px;
+  }
+  .step-body {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    flex: 1;
+    font-size: 14px;
+  }
+  .step-body strong {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--accent3);
+    margin-bottom: 4px;
+  }
+
+  /* ── FACT ROW ── */
+  .fact-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 0;
+    border-bottom: 1px solid rgba(46,40,80,.5);
+    padding: 7px 0;
+    font-size: 14px;
+  }
+  .fact-row:last-child { border-bottom: none; }
+  .fact-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    padding-right: 12px;
+    padding-top: 2px;
+  }
+
+  /* ── REMEMBER BOX ── */
+  .remember {
+    background: linear-gradient(135deg, rgba(192,132,252,.1), rgba(244,114,182,.06));
+    border: 1px solid rgba(192,132,252,.3);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .remember::before {
+    content: '⚡ REMEMBER';
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .2em;
+    color: var(--accent1);
+    margin-bottom: 6px;
+  }
+
+  /* ── PILL LIST ── */
+  ul.pill-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; }
+  ul.pill-list li {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 13px;
+  }
+
+  /* ── GENERIC UL ── */
+  ul.clean { list-style: none; padding: 0; }
+  ul.clean li { padding: 4px 0 4px 16px; position: relative; font-size: 14px; }
+  ul.clean li::before { content: '›'; position: absolute; left: 0; color: var(--accent1); }
+
+  /* ── TWO COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+  /* ── ORGANISM CARD ── */
+  .org-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .org-card-header {
+    padding: 14px 18px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+  }
+
+  /* ── MINI BADGE ── */
+  .badge {
+    display: inline-block;
+    background: rgba(251,191,36,.15);
+    color: var(--accent4);
+    border: 1px solid rgba(251,191,36,.3);
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 1px 7px;
+    letter-spacing: .1em;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  /* ── SUBSECTION ── */
+  .sub-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--accent1);
+    margin: 24px 0 12px;
+  }
+
+  p { font-size: 14px; margin-bottom: 10px; }
+
+  /* ── PANEL SYSTEM ── */
+  .panel { display: none; }
+  .panel.active { display: block; animation: fadeUp .3s ease both; }
+
+  /* ── TAB BUTTONS ── */
+  .tab {
+    padding: 6px 16px;
+    border-radius: 5px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .tab:hover { color: var(--text); background: var(--surface2); border-color: var(--border); }
+  .tab.active { color: var(--accent1); background: rgba(192,132,252,.1); border-color: rgba(192,132,252,.3); }
+
+  .toc-divider {
+    width: 1px;
+    background: var(--border);
+    align-self: stretch;
+    margin: 2px 4px;
+  }
+
+  /* ── QUIZ INTRO ── */
+  .quiz-intro {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 28px;
+  }
+  .quiz-intro-icon { font-size: 2rem; flex-shrink: 0; }
+  .quiz-intro-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .quiz-intro-sub { font-size: 13px; color: var(--text-muted); }
+  .quiz-score-box {
+    margin-left: auto;
+    text-align: center;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 20px;
+    flex-shrink: 0;
+  }
+  .quiz-score-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+  }
+  .quiz-score-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--accent3);
+  }
+
+  /* ── QUIZ GROUP LABEL ── */
+  .quiz-group-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    color: var(--text-muted);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin: 28px 0 12px;
+  }
+
+  /* ── Q CARDS ── */
+  .q-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: border-color .2s;
+  }
+  .q-card:hover { border-color: rgba(192,132,252,.25); }
+  .q-card.open { border-color: rgba(192,132,252,.4); }
+
+  .q-question {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    line-height: 1.5;
+  }
+  .q-icon {
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: transform .25s, color .2s;
+    margin-top: -2px;
+  }
+  .q-card.open .q-icon { transform: rotate(45deg); color: var(--accent1); }
+
+  .q-answer {
+    display: none;
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .q-answer strong { color: var(--text); }
+  .q-card.open .q-answer { display: block; animation: fadeUp .2s ease; }
+
+  /* ── SCORE BUTTONS ── */
+  .q-check {
+    display: none;
+    gap: 8px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .q-card.open .q-check { display: flex; }
+  .q-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 5px 14px;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all .15s;
+    letter-spacing: .05em;
+  }
+  .q-btn:hover { color: var(--text); border-color: rgba(255,255,255,.2); }
+  .q-btn-right.selected { background: rgba(52,211,153,.15); color: var(--accent3); border-color: rgba(52,211,153,.4); }
+  .q-btn-wrong.selected { background: rgba(248,113,113,.15); color: var(--red); border-color: rgba(248,113,113,.4); }
+
+  @media (max-width: 680px) {
+    .compare-grid, .two-col, .three-col { grid-template-columns: 1fr; }
+    .toc { padding: 12px 16px; gap: 6px 12px; }
+    .content { padding: 24px 16px 60px; }
+    .hero { padding: 40px 20px 36px; }
+    .toc-divider { display: none; }
+    .quiz-intro { flex-wrap: wrap; }
+    .quiz-score-box { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">MT 2 · Second Semester · Clinical Parasitology · LEC 8B</div>
+  <h1>Phasmids Study Guide</h1>
+  <div class="hero-sub">Hookworms · Angiostrongylus · Enterobius · Ascaris · Toxocara — Justin Chen, RMT</div>
+</div>
+
+<!-- NAV -->
+<nav class="toc">
+  <button class="tab active" onclick="showPanel('study', this)">📖 Study Notes</button>
+  <button class="tab" onclick="showPanel('quiz', this)">🧠 Quiz</button>
+  <span class="toc-divider"></span>
+  <a href="#hookworms" class="toc-anchor" id="anchor-hookworms">I. Hookworms</a>
+  <a href="#angio" class="toc-anchor" id="anchor-angio">II. A. cantonensis</a>
+  <a href="#entero" class="toc-anchor" id="anchor-entero">III. Enterobius</a>
+  <a href="#ascaris" class="toc-anchor" id="anchor-ascaris">IV. Ascaris</a>
+  <a href="#toxocara" class="toc-anchor" id="anchor-toxocara">V. Toxocara</a>
+</nav>
+
+<div id="panel-study" class="panel active">
+<div class="content">
+
+<!-- ══════════════════════════════════════════ -->
+<!--  I. HOOKWORMS                              -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="hookworms">
+  <div class="section-header">
+    <span class="section-number">01</span>
+    <h2 class="section-title">Hookworms</h2>
+  </div>
+
+  <div class="remember">
+    Soil-transmitted helminths and <strong>blood-sucking nematodes</strong> that attach to the mucosa of the small intestine. <strong>No intermediate host.</strong> Eggs &amp; larvae of both species are <strong>indistinguishable</strong> — reported simply as "hookworm."
+  </div>
+
+  <div class="hbox hbox-pink">
+    🇵🇭 <strong>Necator americanus</strong> is the predominant human hookworm in the Philippines (90%).
+  </div>
+
+  <!-- Quick-reference tags -->
+  <div class="card">
+    <div class="card-title">Quick Reference</div>
+    <div class="two-col">
+      <div>
+        <p style="color:var(--accent2); font-weight:600; font-family:'JetBrains Mono',monospace; font-size:12px; margin-bottom:8px;">ANCYLOSTOMA DUODENALE</p>
+        <div class="fact-row"><div class="fact-label">Alias</div><div>Old World hookworm</div></div>
+        <div class="fact-row"><div class="fact-label">Disease</div><div>Ancylostomiasis</div></div>
+        <div class="fact-row"><div class="fact-label">Shape</div><div><span class="tag tag-pink">C-shaped</span></div></div>
+        <div class="fact-row"><div class="fact-label">Color</div><div>Grayish-white / Pinkish</div></div>
+        <div class="fact-row"><div class="fact-label">Distribution</div><div>Europe, Asia (cosmopolitan)</div></div>
+        <div class="fact-row"><div class="fact-label">Infective</div><div>Filariform larva L3</div></div>
+        <div class="fact-row"><div class="fact-label">Diagnostic</div><div>Egg in feces</div></div>
+        <div class="fact-row"><div class="fact-label">Portal of entry</div><div>Unprotected feet (barefoot)</div></div>
+      </div>
+      <div>
+        <p style="color:var(--accent5); font-weight:600; font-family:'JetBrains Mono',monospace; font-size:12px; margin-bottom:8px;">NECATOR AMERICANUS</p>
+        <div class="fact-row"><div class="fact-label">Alias</div><div>New World / American murderer</div></div>
+        <div class="fact-row"><div class="fact-label">Disease</div><div>Necatoriasis / Uncinariasis</div></div>
+        <div class="fact-row"><div class="fact-label">Shape</div><div><span class="tag tag-blue">S-shaped</span></div></div>
+        <div class="fact-row"><div class="fact-label">Color</div><div>Grayish-yellowish / Reddish</div></div>
+        <div class="fact-row"><div class="fact-label">Distribution</div><div>Southern USA, Puerto Rico, tropics</div></div>
+        <div class="fact-row"><div class="fact-label">Infective</div><div>Filariform larva L3</div></div>
+        <div class="fact-row"><div class="fact-label">Diagnostic</div><div>Egg in feces</div></div>
+        <div class="fact-row"><div class="fact-label">Portal of entry</div><div>Unprotected feet (barefoot)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparison Table -->
+  <div class="sub-title">Morphological Differences <span class="badge">MEMORIZE</span></div>
+  <table class="diff-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th class="pink">A. duodenale</th>
+        <th class="blue">N. americanus</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Size</td><td>Larger, thicker (F: 10–15 mm, M: 8–12 mm)</td><td>Smaller, more slender (F: 9–11 mm, M: 5–9 mm)</td></tr>
+      <tr><td>Anterior end</td><td>Bends <em>same</em> direction as body curvature</td><td>Bends <em>opposite</em> to body curvature</td></tr>
+      <tr><td>Buccal capsule</td><td>4 hook-like (ventral) + 2 knob-like (dorsal) cutting teeth</td><td>4 ventral semi-lunar cutting plates</td></tr>
+      <tr><td>Bursa rays</td><td><span class="tag tag-pink">13 rays total</span> · Dorsal ray: tripartite</td><td><span class="tag tag-blue">14 rays total</span> · Dorsal ray: bipartite</td></tr>
+      <tr><td>Bursa shape</td><td>Broader than long; campanulate (bell-shaped)</td><td>Long &amp; wide; umbrella-shaped</td></tr>
+      <tr><td>Spicules</td><td>2 separate; long, bristle-like, not fused</td><td>2 fused spicules forming delicate barb/bifid tips</td></tr>
+      <tr><td>Female tail</td><td>Spine <strong>present</strong></td><td>Spine <strong>absent</strong></td></tr>
+      <tr><td>Pathogenicity</td><td><span class="tag tag-red">MORE pathogenic</span></td><td>Less pathogenic</td></tr>
+      <tr><td>Daily eggs</td><td>10,000–20,000/day</td><td>~9,000/day</td></tr>
+    </tbody>
+  </table>
+
+  <!-- Eggs -->
+  <div class="sub-title">Ovum (Identical in Both Species)</div>
+  <div class="card">
+    <div class="two-col">
+      <div>
+        <ul class="clean">
+          <li>Size: 55–76 μm × 34–45 μm</li>
+          <li>Color: <strong>Colorless</strong> (not bile-stained)</li>
+          <li>Shape: Oval/elliptical (A. duo.) · Longer, elongated (N. amer.)</li>
+          <li>Shell: Transparent hyaline membrane, double-layered, <strong>no albumin layer</strong></li>
+          <li>Contains segmented protoplasm, usually <strong>2–8 blastomeres</strong></li>
+          <li>Clear space between eggshell and vitelline membrane</li>
+        </ul>
+      </div>
+      <div>
+        <div class="hbox hbox-amber">
+          <strong>Key memory tip:</strong> Feeding stage = mouth <em>open</em> (Rhabditiform). Infective stage = mouth <em>closed</em> (Filariform).
+        </div>
+        <div class="hbox hbox-purple">
+          Hookworm ID is <strong>NOT</strong> based on eggs — eggs are indistinguishable from each other (and from Strongyloides at the larval stage, though hookworm rhabditiform has a <em>longer</em> buccal canal).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Larvae -->
+  <div class="sub-title">Larval Stages</div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Rhabditiform Larvae (L1 &amp; L2) — Feeding Stage</div>
+      <ul class="clean">
+        <li>Longer buccal cavity &amp; canal</li>
+        <li>Smaller genital primordium</li>
+        <li>More tapered posteriorly</li>
+        <li>Hatches from egg within <strong>24–48 hrs</strong> in suitable conditions</li>
+        <li>Transforms to L3 on <strong>day 5–8</strong></li>
+      </ul>
+      <div class="hbox hbox-teal" style="margin-top:10px">
+        vs. S. stercoralis: hookworm rhabditiform has <strong>longer buccal canal</strong>; S. stercoralis has a short one.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Filariform Larvae (L3) — Infective Stage</div>
+      <ul class="clean">
+        <li>Mouth <strong>closed</strong> (non-feeding)</li>
+        <li>Esophagus elongated</li>
+        <li>Cuticle: transverse striations, ridges near tail</li>
+        <li>Tail: distinctly <strong>pointed</strong> posterior end</li>
+        <li>Larger than S. stercoralis filariform</li>
+        <li>Viable in soil for <strong>several weeks</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Life Cycle -->
+  <div class="sub-title">Life Cycle</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body"><strong>Skin penetration</strong>L3 filariform larvae penetrate unprotected skin (usually feet). Produces maculopapular lesions, localized edema → <em>Cutaneous Larva Migrans (CLM)</em>.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body"><strong>Bloodstream</strong>Larvae enter lymphatics and blood vessels.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body"><strong>Lung migration</strong>Blood → Right heart → Lungs → Break out into alveoli → Bronchioles → Pharynx/Trachea → coughed up and swallowed.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body"><strong>Maturation in SI</strong>Reach gastrointestinal tract → mature into adults in the <em>small intestine</em>. Attach to mucosa → abdominal pain, steatorrhea, diarrhea.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body"><strong>Copulation &amp; egg production</strong>Adult females lay 9,000–20,000 eggs/day.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-body"><strong>Eggs passed in feces</strong>Reach morula/tadpole stage within hours. Hatch to L1 (Rhabditiform) within 24–48 hrs under ideal conditions (moist, shady, warm, sandy loam).</div>
+    </div>
+    <div class="step">
+      <div class="step-num">7</div>
+      <div class="step-body"><strong>Molting (×2 in environment)</strong>L1 → L2 → L3 (infective). Ready to infect a new host.</div>
+    </div>
+  </div>
+
+  <!-- Clinical + Diagnosis -->
+  <div class="sub-title">Clinical Manifestations</div>
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title">Cutaneous</div>
+      <ul class="clean">
+        <li>Maculopapular lesions</li>
+        <li>Localized erythema</li>
+        <li>Serpiginous / creeping eruption</li>
+        <li>Intense pruritus (itching)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Pulmonary</div>
+      <ul class="clean">
+        <li>Bronchitis / pneumonitis</li>
+        <li>Swelling of bronchioles</li>
+        <li>Hemorrhage from intestinal walls</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Systemic</div>
+      <ul class="clean">
+        <li>Microcytic iron deficiency anemia (hypochromic)</li>
+        <li>Hypoalbuminemia</li>
+        <li>Eosinophilia</li>
+        <li>Protein malnutrition</li>
+        <li>Children: stunted growth, mental retardation</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sub-title">Laboratory Diagnosis &amp; Treatment</div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Diagnostic Techniques</div>
+      <ul class="clean">
+        <li><strong>Direct Fecal Smear</strong> — cost-effective, good for heavy infections only (&gt;400 epg)</li>
+        <li><strong>Kato-Katz</strong> — quantitative; note rapid clearance (30–60 min) with glycerine</li>
+        <li><strong>Concentration Method</strong> — zinc sulfate flotation OR formalin-ether/ethyl acetate</li>
+        <li><strong>Harada-Mori culture</strong> — filter paper + tube; quantifies parasite load</li>
+        <li>ELISA / PCR</li>
+        <li>Fecal specimen &gt;24 hrs at room temp → egg hatches → larvae visible</li>
+        <li>Heavily infected: <strong>Charcot-Leyden crystals</strong> in feces</li>
+        <li>Subnormal hemoglobin — very common</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Treatment &amp; Prevention</div>
+      <div class="hbox hbox-green" style="margin-bottom:12px">
+        Single dose <strong>benzimidazole</strong>: Albendazole or Mebendazole. Note: drug resistance emerging.
+      </div>
+      <ul class="pill-list">
+        <li>Clean water &amp; sanitation</li>
+        <li>Education</li>
+        <li>Regular deworming</li>
+        <li>Proper hygiene</li>
+        <li>Wear footwear</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  II. ANGIOSTRONGYLUS CANTONENSIS           -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="angio">
+  <div class="section-header">
+    <span class="section-number">02</span>
+    <h2 class="section-title">Angiostrongylus cantonensis</h2>
+  </div>
+
+  <div class="hbox hbox-purple">
+    First discovered by Chen in 1935 (Canton/Guangzhou, China). First report in Taiwan, 1945. From Greek: <em>angio</em> = blood vessel, <em>strongylus</em> = round.
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="card-title">General Characteristics</div>
+    <div class="two-col">
+      <div>
+        <div class="fact-row"><div class="fact-label">Synonyms</div><div>Pulmonema cantonensis · Haemostrongylus ratti · Parastrongylus cantonensis</div></div>
+        <div class="fact-row"><div class="fact-label">Common name</div><div>Rodent Lung Worm</div></div>
+        <div class="fact-row"><div class="fact-label">Disease</div><div><span class="tag tag-red">Eosinophilic Meningitis</span></div></div>
+        <div class="fact-row"><div class="fact-label">Infective stage</div><div>L3 larva (humans &amp; rats) · L1 larva (mollusks)</div></div>
+        <div class="fact-row"><div class="fact-label">Diagnostic stage</div><div>L3 larvae inside rat lungs</div></div>
+        <div class="fact-row"><div class="fact-label">Distribution</div><div>Australia, Malaysia, Taiwan, Fiji, Tahiti, Hawaii</div></div>
+      </div>
+      <div>
+        <div class="fact-row"><div class="fact-label">Definitive host</div><div>Domestic rats</div></div>
+        <div class="fact-row"><div class="fact-label">Intermediate host</div><div>Mollusks (Achatina fulica, Vaginulus plebius, etc.)</div></div>
+        <div class="fact-row"><div class="fact-label">Accidental host</div><div>Humans</div></div>
+        <div class="fact-row"><div class="fact-label">Paratenic host</div><div>Crabs, freshwater prawns, lizards, frogs</div></div>
+        <div class="fact-row"><div class="fact-label">Transmission</div><div>Ingestion of mollusks / contaminated produce with L3 larva in slug mucus</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-title">Morphology</div>
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title">Eggs</div>
+      <ul class="clean">
+        <li>Size: 46–48 μm</li>
+        <li>Shape: Elongated-ovoidal</li>
+        <li>Hyaline shell</li>
+        <li>Unembryonated when oviposited</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">L1 Larva</div>
+      <ul class="clean">
+        <li>Distinct small knob near tip of tail</li>
+        <li>Found in lungs or feces of rodents</li>
+      </ul>
+      <div class="card-title" style="margin-top:12px">L3 Larva</div>
+      <ul class="clean">
+        <li>2 well-developed chitinous rods below buccal cavity</li>
+        <li>Expanded subventral groove</li>
+        <li>Infective stage in mollusks</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Adult Female</div>
+      <ul class="clean">
+        <li>Length: 19–33 mm; Width: 0.30–0.36 mm</li>
+        <li><span class="tag tag-pink">Barber-pole appearance</span></li>
+        <li>Uterine tubules wound spirally around intestine</li>
+        <li>Blunt posterior end with subterminal anus</li>
+        <li>Up to 15,000 eggs/day</li>
+      </ul>
+      <div class="card-title" style="margin-top:8px">Adult Male</div>
+      <ul class="clean">
+        <li>Length: 16–19 mm; Width: 0.26 mm</li>
+        <li>Kidney-shaped, single-lobed caudal bursa</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sub-title">Life Cycle</div>
+  <div class="hbox hbox-amber">Humans are <strong>only accidental hosts</strong>. Larvae cannot complete their normal cycle in humans and migrate erratically → brain → eosinophilic meningitis.</div>
+
+  <div class="two-col" style="margin-top:14px">
+    <div>
+      <p style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--accent3); text-transform:uppercase; letter-spacing:.1em; margin-bottom:8px;">In Definitive Host (Rats)</p>
+      <div class="steps">
+        <div class="step"><div class="step-num" style="font-size:11px">R1</div><div class="step-body"><strong>Eggs in rat lungs</strong>Hatch to L1 larvae.</div></div>
+        <div class="step"><div class="step-num" style="font-size:11px">R2</div><div class="step-body"><strong>L1 exit</strong>Coughed up → swallowed → passed in feces.</div></div>
+        <div class="step"><div class="step-num" style="font-size:11px">R3</div><div class="step-body"><strong>Mollusks ingest L1</strong>L1 → L2 → L3 (infective) inside mollusk.</div></div>
+        <div class="step"><div class="step-num" style="font-size:11px">R4</div><div class="step-body"><strong>Rat eats mollusk</strong>L3 → hepatic portal → heart → lungs → brain (gray matter, cerebrum/cerebellum) → molts twice → young adults → subarachnoid space → cerebral vein → heart → pulmonary arteries (maturation).</div></div>
+        <div class="step"><div class="step-num" style="font-size:11px">R5</div><div class="step-body"><strong>Eggs laid in lungs</strong>Cycle repeats.</div></div>
+      </div>
+    </div>
+    <div>
+      <p style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--red); text-transform:uppercase; letter-spacing:.1em; margin-bottom:8px;">In Accidental Host (Humans)</p>
+      <div class="steps">
+        <div class="step"><div class="step-num" style="font-size:11px; border-color:var(--red); color:var(--red)">H1</div><div class="step-body"><strong>Ingest L3</strong>Via undercooked snails, slugs, or contaminated vegetables.</div></div>
+        <div class="step"><div class="step-num" style="font-size:11px; border-color:var(--red); color:var(--red)">H2</div><div class="step-body"><strong>Erratic migration</strong>Larvae get "lost" — primary target: <span class="tag tag-red">Brain</span> → Eosinophilic Meningitis. Secondary: eyes, lungs.</div></div>
+        <div class="step"><div class="step-num" style="font-size:11px; border-color:var(--red); color:var(--red)">H3</div><div class="step-body"><strong>Dead-end host</strong>Cannot complete cycle. Dead larvae → granulomas → tissue necrosis.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-title">Clinical Manifestations</div>
+  <div class="hbox hbox-teal">Incubation: <strong>6–15 days</strong> (up to several weeks). Generally good prognosis.</div>
+  <div class="two-col" style="margin-top:12px">
+    <div class="card">
+      <div class="card-title">Symptoms</div>
+      <ul class="clean">
+        <li>Acute, severe, intermittent occipital &amp; bitemporal headache</li>
+        <li>Neck stiffness (nuchal rigidity)</li>
+        <li>Paresthesia (pins-and-needles)</li>
+        <li>Low-grade fever</li>
+        <li>Myopia / blurred vision</li>
+        <li>Myalgia</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">CSF Profile</div>
+      <ul class="clean">
+        <li>Increased WBC (pleocytosis)</li>
+        <li><span class="tag tag-red">Eosinophilia &gt;10% WBC</span> (often up to 90%)</li>
+        <li>Charcot-Leyden crystals (bipyramidal, from eosinophil breakdown)</li>
+        <li>Occasional multinucleated giant cells</li>
+      </ul>
+      <div class="card-title" style="margin-top:10px">Severe / Untreated</div>
+      <ul class="clean">
+        <li>Confusion, disorientation, coma (rare)</li>
+        <li>Intraocular hemorrhage, retinal detachment</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sub-title">Diagnosis &amp; Treatment</div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Diagnosis</div>
+      <ul class="clean">
+        <li>Travel history to endemic areas</li>
+        <li>Blood eosinophilia (peaks ~day 30)</li>
+        <li>CSF eosinophilia (90%)</li>
+        <li>CSF: young larvae / adult worms (definitive in 16/32 proven cases)</li>
+        <li>MRI: granulomas or meningeal enhancement</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Treatment</div>
+      <ul class="clean">
+        <li>Usually self-limiting (4–6 weeks)</li>
+        <li>Albendazole ± corticosteroids (used in China, Taiwan, Thailand)</li>
+        <li>Severe headache: spinal puncture, remove ~10 mL CSF</li>
+        <li>Ocular: surgical removal of larvae (eye removal if severe)</li>
+        <li><strong>Caution:</strong> killing larvae in CNS may increase inflammation</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  III. ENTEROBIUS VERMICULARIS              -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="entero">
+  <div class="section-header">
+    <span class="section-number">03</span>
+    <h2 class="section-title">Enterobius vermicularis</h2>
+  </div>
+
+  <div class="remember">
+    <strong>Most common helminth infection worldwide.</strong> Especially children in crowded/temperate environments. Eggs survive best on bedding, clothing, perianal skin in warm, humid conditions.
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="card-title">General Characteristics</div>
+    <div class="two-col">
+      <div>
+        <div class="fact-row"><div class="fact-label">Synonym</div><div>Oxyuris vermicularis</div></div>
+        <div class="fact-row"><div class="fact-label">Common names</div><div>"Kigwa" · <span class="tag tag-pink">Pinworm (♀)</span> · Seatworm (♂) · Threadworm</div></div>
+        <div class="fact-row"><div class="fact-label">Disease</div><div>Enterobiasis · Oxyuriasis · Pinworm Infection</div></div>
+        <div class="fact-row"><div class="fact-label">Host</div><div>Definitive: Humans · No intermediate host</div></div>
+        <div class="fact-row"><div class="fact-label">Habitat</div><div>Cecum · Appendix · Ascending colon</div></div>
+      </div>
+      <div>
+        <div class="fact-row"><div class="fact-label">Infective stage</div><div>Embryonated egg (ovum)</div></div>
+        <div class="fact-row"><div class="fact-label">Diagnostic stage</div><div>Ovum on perianal folds</div></div>
+        <div class="fact-row"><div class="fact-label">Distribution</div><div>Cosmopolitan; temperate/cold countries</div></div>
+        <div class="fact-row"><div class="fact-label">Life span</div><div>Oral infection: 11–35 days · Retroinfection: 14–18 days</div></div>
+        <div class="fact-row"><div class="fact-label">Transmission</div><div>Ingestion of ova · Inhalation · Autoinfection · Retroinfection</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-title">Morphology</div>
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title">Egg (Ovum)</div>
+      <ul class="clean">
+        <li>Length: 50–60 μm · Width: 20–30 μm</li>
+        <li><span class="tag tag-blue">D-shaped (inverted)</span></li>
+        <li>Elongated-ovoidal; <strong>asymmetrical</strong></li>
+        <li>Flattened on one side, convex on the other</li>
+        <li>Shell: conspicuous, double-layered, thick-walled, colorless</li>
+        <li>Outer: triple albuminous covering</li>
+        <li>Inner: lipoidal membrane</li>
+        <li>~11,105 eggs laid/day</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Adult Male</div>
+      <ul class="clean">
+        <li>Length: 2–5 mm; Width: 0.1–0.2 mm</li>
+        <li>Yellowish-white</li>
+        <li>Posterior end: strongly curved ventrad</li>
+        <li>Cephalic alae present (anterior end)</li>
+        <li><strong>Single</strong> copulatory spicule · No gubernaculum</li>
+        <li>Rarely seen — dies after copulation (eaten by female)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Adult Female</div>
+      <ul class="clean">
+        <li>Length: 9–13 mm; Width: 0.3–0.5 mm</li>
+        <li>Yellowish-white, larger</li>
+        <li>Posterior tail: clear, sharply <strong>pointed</strong> (pin-shaped)</li>
+        <li>Cephalic alae present</li>
+        <li>Vulva opens in <strong>mid-third</strong> of body</li>
+        <li>Prominent posterior esophageal bulb (unique to Enterobius)</li>
+        <li>No true buccal capsule at oral end</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sub-title">Life Cycle</div>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Ingestion of embryonated egg</strong>Mouth → stomach → digestive tract.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Hatches in small intestine (duodenum)</strong>L3 larva emerges → migrates to cecum → develops into adult worm.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Copulation</strong>Male dies after copulation. Female becomes gravid (~11,105 eggs).</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Female migration (nocturnal)</strong>Migrates down colon → exits anus → deposits eggs on perianal/perineal skin. (May enter vagina in female patients.)</div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Egg deposition</strong>Perianal skin — eggs need <strong>oxygen</strong> for final development. Infective within <strong>a few hours</strong>. Viable up to <strong>13 days</strong> in cool, moist conditions.</div></div>
+  </div>
+
+  <div class="hbox hbox-pink" style="margin-top:14px">
+    <strong>Modes of transmission:</strong> Autoinfection (anus→mouth by fingers) · Airborne inhalation of eggs in dust · Retroinfection (eggs hatch in anal mucosa, larvae migrate back into rectum).
+  </div>
+
+  <div class="sub-title">Specimen Collection &amp; Diagnosis</div>
+  <div class="card">
+    <div class="card-title">Methods</div>
+    <table class="diff-table">
+      <thead><tr><th>Method</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Graham's Scotch Tape Swab <span class="badge">METHOD OF CHOICE</span></td><td>Press sticky tape on perianal skin → place on slide sticky-side down → add toluene/glycerol (clears debris, makes eggs refractive). Best taken in the <strong>morning before stool or bath</strong>.</td></tr>
+        <tr><td>Wet Pestle (Schuffner &amp; Swellengrebel)</td><td>Massage perianal skin with rough ground glass pestle; breaks up egg clusters.</td></tr>
+        <tr><td>Non-Adhesive Cellophane Anal Swab</td><td>3 swabs = 90% positive · 5 swabs = 97% positive · 7 consecutive negative days = free of infection.</td></tr>
+        <tr><td>Rectal smear</td><td>Adult worms; eggs found in 5% of infected persons' feces only.</td></tr>
+      </tbody>
+    </table>
+    <div class="hbox hbox-amber" style="margin-top:8px"><strong>Remember:</strong> Only 5% of eggs are found in feces. Best specimen is perianal swab, not feces.</div>
+  </div>
+
+  <div class="sub-title">Clinical Manifestations</div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Symptoms</div>
+      <ul class="clean">
+        <li>Pruritus ani (intense perianal itching) — initial sign</li>
+        <li>Insomnia (nocturnal activity)</li>
+        <li>Poor appetite · Weight loss</li>
+        <li>Abdominal pain</li>
+        <li>Teeth grinding</li>
+        <li>Granuloma formation</li>
+        <li>Mild eosinophilia</li>
+        <li>Vaginitis in females (mucoid discharge)</li>
+        <li>Appendicitis (~2% of cases)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Treatment &amp; Prevention</div>
+      <div class="hbox hbox-green">Usually <strong>self-limiting</strong> with good prognosis.</div>
+      <ul class="clean" style="margin-top:8px">
+        <li><strong>Mebendazole</strong> — treatment of choice</li>
+        <li>Albendazole · Pyrantel pamoate · Piperazine citrate · Pyrvinium pamoate</li>
+      </ul>
+      <div class="card-title" style="margin-top:12px">Prevention</div>
+      <ul class="pill-list">
+        <li>Cut fingernails short</li>
+        <li>Use showers, not baths</li>
+        <li>Wash sleep clothes in hot soapy water</li>
+        <li>Isolate infected persons</li>
+        <li>Vacuum cleaning</li>
+        <li>Strict hygiene</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  IV. ASCARIS LUMBRICOIDES                  -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="ascaris">
+  <div class="section-header">
+    <span class="section-number">04</span>
+    <h2 class="section-title">Ascaris lumbricoides</h2>
+  </div>
+
+  <div class="remember">
+    <strong>Most common intestinal nematode of man.</strong> No intermediate host. Infective stage: fully embryonated egg with L3 larva.
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="two-col">
+      <div>
+        <div class="fact-row"><div class="fact-label">Synonyms</div><div>Giant/Large Intestinal Roundworm · Common Roundworm</div></div>
+        <div class="fact-row"><div class="fact-label">Disease</div><div>Acariasis / Roundworm Infection</div></div>
+        <div class="fact-row"><div class="fact-label">Habitat</div><div><span class="tag tag-amber">Small intestine</span></div></div>
+        <div class="fact-row"><div class="fact-label">Infective form</div><div>Embryonated egg with L3 larva</div></div>
+      </div>
+      <div>
+        <div class="fact-row"><div class="fact-label">Diagnostic form</div><div>Fertilized egg · Unfertilized egg · Decorticated egg · Adult worms in SI</div></div>
+        <div class="fact-row"><div class="fact-label">Transmission</div><div>Ingestion of embryonated ovum (contaminated food/water) · Inhalation</div></div>
+        <div class="fact-row"><div class="fact-label">Distribution</div><div>Philippines, Indonesia, other SEA countries</div></div>
+        <div class="fact-row"><div class="fact-label">Host</div><div>Definitive: Man · No intermediate host</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-title">Egg Morphology <span class="badge">KEY COMPARISONS</span></div>
+  <table class="diff-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th class="pink">Fertilized</th>
+        <th class="blue">Unfertilized</th>
+        <th style="color:var(--accent3)">Decorticated</th>
+        <th style="color:var(--accent4)">Embryonated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Size</td><td>45–70 × 35–50 μm (shorter, stouter)</td><td>88–94 × 28 μm (narrow, elongated)</td><td>—</td><td>—</td></tr>
+      <tr><td>Color</td><td>Brownish (bile-stained)</td><td>Brownish</td><td>—</td><td>—</td></tr>
+      <tr><td>Shell layers</td><td>Trilayered: vitelline + chorionic + albuminous</td><td>Double (inner chorionic + outer albuminous); vitelline <strong>absent</strong></td><td>Smooth outer layer; <strong>no mammillated albuminoid</strong></td><td>3-layered (or may lack outer coat)</td></tr>
+      <tr><td>Contents</td><td>Coarse lecithin granules</td><td>Disorganized refractile mass</td><td>Developing embryos</td><td>Coiled embryo inside</td></tr>
+      <tr><td>Flotation</td><td><span class="tag tag-green">Floats</span></td><td><span class="tag tag-red">Does NOT float</span> (no vitelline membrane)</td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Adult Worm</div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Adult Male</div>
+      <ul class="clean">
+        <li>Size: 15–31 cm × 2–4 mm</li>
+        <li>Flesh/Creamy white</li>
+        <li>Ventrally curved posterior end (prominent)</li>
+        <li><strong>2 spicules</strong> (contrast: Enterobius has only 1!)</li>
+        <li>Single and tortuous tubule</li>
+        <li>Small, triangular buccal cavity</li>
+        <li>Tapered at both ends; 3 denticulate lips</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Adult Female</div>
+      <ul class="clean">
+        <li>Size: 20–35 cm × 3–6 mm (thickness: pencil lead)</li>
+        <li>Flesh/Creamy white; smooth, striated cuticles</li>
+        <li>Pointed tail</li>
+        <li>⅔ of posterior contains reproductive organs</li>
+        <li>Pair of lateral lines along full body length</li>
+        <li>3 denticulate lips</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sub-title">Life Cycle</div>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Ingestion of infective eggs</strong>Embryonated egg with L3 larva taken into mouth (also possibly nasopharynx).</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Small intestine</strong>Eggs hatch; larvae penetrate intestinal wall → enter bloodstream. Survives digestive juices via <strong>pepsin inhibitor 3</strong> and <strong>phospholiporin</strong>.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Liver → Right heart → Lungs</strong>(Portal circulation) Larvae burrow into alveoli → bronchioles.</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Trachea → Pharynx</strong>Larvae cause coughing → carried by mucus → swallowed back into SI.</div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Molting in SI</strong>L3 → L4 → adult worm in lumen of SI.</div></div>
+    <div class="step"><div class="step-num">6</div><div class="step-body"><strong>Copulation</strong>After ~8–9 weeks, female lays fertilized eggs passed in feces.</div></div>
+    <div class="step"><div class="step-num">7</div><div class="step-body"><strong>Embryonation in soil</strong>Larva inside egg molts twice → L3 (infective). Survives better in heavy/clay soil.</div></div>
+  </div>
+
+  <div class="sub-title">Clinical Manifestations &amp; Treatment</div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Clinical</div>
+      <ul class="clean">
+        <li>Asymptomatic (light infections)</li>
+        <li>Allergic manifestations, eosinophilia</li>
+        <li><strong>Loeffler syndrome</strong> (Ascaris pneumonitis) — eosinophilic pneumonia; larvae in sputum/gastric washings</li>
+        <li>Lactose intolerance &amp; malabsorption</li>
+        <li><span class="tag tag-amber">Ball of spaghetti</span> — bolus formation, spontaneous passing of adult worms</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Treatment</div>
+      <ul class="clean">
+        <li>Albendazole · Mebendazole · Pyrantel pamoate</li>
+        <li>Ivermectin · Acelazinide</li>
+      </ul>
+      <div class="card-title" style="margin-top:10px">Prevention</div>
+      <ul class="clean">
+        <li>Water sanitation · Education · Deworming</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  V. TOXOCARA SPP.                          -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="toxocara">
+  <div class="section-header">
+    <span class="section-number">05</span>
+    <h2 class="section-title">Toxocara spp.</h2>
+  </div>
+
+  <div class="hbox hbox-purple">
+    Zoonotic disease. <strong>T. canis</strong> = dog ascarid; <strong>T. cati</strong> = cat ascarid. Humans are accidental hosts. Cannot diagnose by fecalysis in humans — Toxocara does not excrete eggs in accidental hosts.
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="two-col">
+      <div>
+        <div class="fact-row"><div class="fact-label">Disease</div><div>Toxocariasis</div></div>
+        <div class="fact-row"><div class="fact-label">Definitive host</div><div>Cats, Dogs</div></div>
+        <div class="fact-row"><div class="fact-label">Accidental host</div><div>Humans</div></div>
+        <div class="fact-row"><div class="fact-label">Infective (humans)</div><div>Embryonated eggs with L3 larva</div></div>
+        <div class="fact-row"><div class="fact-label">Infective (pets)</div><div>Larvae</div></div>
+      </div>
+      <div>
+        <div class="fact-row"><div class="fact-label">Diagnostic (humans)</div><div>L3 larvae in tissues (tissue biopsy)</div></div>
+        <div class="fact-row"><div class="fact-label">Habitat (humans)</div><div>Liver, heart, lungs, brain, muscle, eyes</div></div>
+        <div class="fact-row"><div class="fact-label">Transmission</div><div>Ingestion of eggs in contaminated soil/food/meat · Mammary (kittens/puppies) · Transplacental (pregnant dogs)</div></div>
+        <div class="fact-row"><div class="fact-label">Distribution</div><div>Cosmopolitan; highest in developing countries</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-title">Morphology Comparison</div>
+  <table class="diff-table">
+    <thead><tr><th>Feature</th><th class="pink">T. canis (dog)</th><th class="blue">T. cati (cat)</th></tr></thead>
+    <tbody>
+      <tr><td>Egg size</td><td>85 × 75 μm (<strong>BIGGER</strong>)</td><td>65 × 70 μm (smaller)</td></tr>
+      <tr><td>Egg shell</td><td>Thick, corrugated; course &amp; large pits; <strong>crater-like</strong> egg pits; subglobose; dark brown</td><td>Thin corrugated; cave-like egg pits; subglobose; superficially pitted</td></tr>
+      <tr><td>Cervical alae</td><td>Spear-shaped; longer than broad</td><td>Arrow-shaped; pair of broad lateral alae</td></tr>
+      <tr><td>Tail</td><td>Finger-like</td><td>Has Esophageal Ventriculation</td></tr>
+      <tr><td>Precloacal papillae</td><td>20–30 pairs</td><td>19–20 pairs</td></tr>
+      <tr><td>Spicules</td><td>Thick wing spicules</td><td>2 or more delicate wing spicules</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">Life Cycle (Human Host)</div>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Ingestion of infective eggs</strong>From contaminated soil, food, or meat.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Larvae released</strong>Penetrate intestinal wall → migrate through veins → liver.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Erratic larval migration</strong>May go to lungs, trachea, esophagus → back to intestine, OR other organs (brain, eyes, muscles, heart). Remains as <strong>infective-stage larva with no change in size/morphology</strong> in humans.</div></div>
+  </div>
+
+  <div class="hbox hbox-amber">
+    <strong>Egg resilience:</strong> Embryonated eggs last ≥1 year. Resistant to freezing, moisture, extreme pH, chemicals. Similar to A. lumbricoides.
+  </div>
+
+  <div class="sub-title">Clinical Manifestations</div>
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--accent2)">(1) Visceral Larva Migrans</div>
+      <p style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">Mainly young children · Hypereosinophilia</p>
+      <ul class="clean">
+        <li>Liver enlargement, necrosis, splenomegaly</li>
+        <li>Lungs: wheezing → pneumonia</li>
+        <li>Lymphadenopathy · Myocarditis</li>
+        <li>Fever, weight loss, cough, rashes</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--red)">(2) Ocular Larva Migrans</div>
+      <p style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">Older children / young adults</p>
+      <ul class="clean">
+        <li>Strabismus ("libat")</li>
+        <li>Ophthalmologic lesions</li>
+        <li>Diffuse unilateral subacute neuroretinitis</li>
+        <li>Unilateral visual impairment</li>
+        <li>Permanent visual damage / blindness</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--teal)">(3) Overt Toxocariasis</div>
+      <ul class="clean">
+        <li>Reddish skin/rash; vasculitis-like</li>
+        <li>Swelling/edema of hands</li>
+        <li>Joint pain (mono/polyarthralgia)</li>
+        <li>Chronic infection: fatigue, fever, eosinophilia</li>
+        <li>May lead to encephalitis</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sub-title">Diagnosis &amp; Treatment</div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Diagnostic Methods</div>
+      <ul class="clean">
+        <li><strong>Larvae detection via tissue biopsy</strong> — definitive diagnosis</li>
+        <li><strong>ELISA</strong> — detects IgG antibodies against Toxocara excretory antigens</li>
+        <li><strong>Western blot</strong> — when ELISA unavailable; more specific but cannot differentiate old vs new infection</li>
+        <li><strong>TES Antigen Kit</strong> — same principle as pregnancy/COVID rapid test</li>
+        <li>PCR</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Treatment</div>
+      <ul class="clean">
+        <li>Albendazole · Mebendazole</li>
+        <li><strong>Anti-hemolytic treatment mandatory</strong> if with complications</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="text-align:center; padding: 40px 0 0; border-top: 1px solid var(--border);">
+  <p style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-muted); letter-spacing:.15em; text-transform:uppercase;">
+    LEC 8B · Phasmids Part 2 &amp; 3 · Justin Chen, RMT · Da Duo Bertz Transes Group
+  </p>
+</div>
+
+</div><!-- /content -->
+</div><!-- /panel-study -->
+
+<!-- ══════════════════════════════════════════ -->
+<!--  QUIZ PANEL                                -->
+<!-- ══════════════════════════════════════════ -->
+<div id="panel-quiz" class="panel">
+<div class="content">
+
+  <div class="quiz-intro">
+    <div class="quiz-intro-icon">🧠</div>
+    <div>
+      <div class="quiz-intro-title">Self-Test: Phasmids</div>
+      <div class="quiz-intro-sub">Click any card to reveal the answer. Cover the answers and test yourself before your boards.</div>
+    </div>
+    <div class="quiz-score-box">
+      <div class="quiz-score-label">Score</div>
+      <div class="quiz-score-val"><span id="score-num">0</span> / <span id="score-total">0</span></div>
+    </div>
+  </div>
+
+  <!-- HOOKWORMS -->
+  <div class="quiz-group-label">Hookworms</div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">What is the predominant human hookworm species in the Philippines, and what percentage of infections does it account for? <span class="q-icon">+</span></div>
+    <div class="q-answer"><strong>Necator americanus</strong> — accounts for <strong>90%</strong> of hookworm infections in the Philippines. It is also known as the New World hookworm or "American murderer" (from Latin <em>necator</em> = killer/murderer).</div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">Compare A. duodenale and N. americanus: shape, buccal capsule, copulatory bursa rays, spicules, and female tail spine. <span class="q-icon">+</span></div>
+    <div class="q-answer">
+      <strong>A. duodenale:</strong> C-shaped · 4 hook-like (ventral) + 2 knob-like (dorsal) <em>cutting teeth</em> · <strong>13 rays</strong>, dorsal ray <em>tripartite</em> · 2 separate, bristle-like, not fused spicules · Female tail spine <strong>present</strong> · More pathogenic.<br><br>
+      <strong>N. americanus:</strong> S-shaped · 4 ventral semi-lunar <em>cutting plates</em> · <strong>14 rays</strong>, dorsal ray <em>bipartite</em> · 2 spicules fused at tips (bifid/barb) · Female tail spine <strong>absent</strong> · Less pathogenic.
+    </div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">Why can you NOT identify hookworm species from eggs or larvae alone? What is the correct reporting practice? <span class="q-icon">+</span></div>
+    <div class="q-answer">Eggs and rhabditiform/filariform larvae of <em>A. duodenale</em> and <em>N. americanus</em> are morphologically <strong>indistinguishable</strong>. Eggs are oval, colorless (not bile-stained), 55–76 × 34–45 μm, with a transparent hyaline double-layered shell (no albumin layer) and 2–8 blastomeres. When found in fecal specimens, they are reported simply as <strong>"hookworm"</strong> — species ID requires examination of adult worms.</div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">How do you differentiate hookworm rhabditiform larvae from Strongyloides stercoralis rhabditiform larvae microscopically? <span class="q-icon">+</span></div>
+    <div class="q-answer">
+      <strong>Hookworm rhabditiform:</strong> <em>Longer</em> buccal cavity and canal · Smaller genital primordium · More tapered posteriorly · Larger overall size.<br><br>
+      <strong>S. stercoralis rhabditiform:</strong> <em>Short</em> buccal canal (key differentiator) · More prominent genital primordium.<br><br>
+      Memory tip: Hookworm = <strong>Long</strong> buccal canal; Strongyloides = <strong>Short</strong>.
+    </div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">Trace the hookworm life cycle from skin penetration to egg excretion. What clinical sign occurs at the skin entry site? <span class="q-icon">+</span></div>
+    <div class="q-answer">L3 filariform penetrates unprotected skin → enters lymphatics &amp; blood → right heart → lungs → breaks into alveoli → bronchioles → pharynx (coughed up &amp; swallowed) → small intestine (matures into adult) → copulation → eggs pass in feces → hatch to L1 rhabditiform in soil → molt × 2 → L3 ready to re-infect.<br><br>
+    Skin entry site: <strong>maculopapular lesions + localized edema</strong> = <strong>Cutaneous Larva Migrans (CLM)</strong> with intense pruritus (serpiginous, creeping eruption).
+    </div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">What type of anemia do hookworms cause and why? Name the classic systemic complications. <span class="q-icon">+</span></div>
+    <div class="q-answer"><strong>Microcytic hypochromic iron-deficiency anemia</strong> — blood-sucking nematodes chronically extract blood from intestinal mucosa; loss of iron leads to low hemoglobin; RBCs are smaller than normal and their cytoplasm loses central pallor (hypochromic).<br><br>Other complications: <strong>Hypoalbuminemia</strong> · Eosinophilia · Protein malnutrition · Bronchitis/pneumonitis · Children: stunted growth, mental retardation.</div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">What is the Kato-Katz method, and what is its major disadvantage for hookworm diagnosis? <span class="q-icon">+</span></div>
+    <div class="q-answer">Kato-Katz is a <strong>quantitative fecal examination</strong> — uses a metal screen mesh pressed against feces; quantifies intensity of infection in eggs per gram (epg) of stool and estimates worm burden.<br><br><strong>Major disadvantage:</strong> Rapid clearance of hookworm eggs within <strong>30–60 minutes</strong> when glycerine is used as the clearing agent — slides must be read promptly. Direct fecal smear is only useful for heavy infections (>400 epg).</div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <!-- ANGIOSTRONGYLUS -->
+  <div class="quiz-group-label">Angiostrongylus cantonensis</div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">What disease does A. cantonensis cause in humans, and why does it cause this instead of a pulmonary infection like in its definitive host? <span class="q-icon">+</span></div>
+    <div class="q-answer"><strong>Eosinophilic meningitis</strong>. In rats (definitive host), larvae complete their cycle by migrating to the brain briefly, then returning to the pulmonary arteries to mature. In humans (accidental host), larvae undergo <strong>erratic migration</strong> — they get "lost" and cannot complete their normal cycle. They primarily target the <strong>brain</strong>, causing intense eosinophilic inflammation of the meninges. They may also go to the eyes or lungs.</div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">What are the hosts of A. cantonensis, and what is the infective stage for each? Name three intermediate host species. <span class="q-icon">+</span></div>
+    <div class="q-answer">
+      <strong>Definitive host:</strong> Domestic rats — infective stage: <strong>L3 larva</strong><br>
+      <strong>Intermediate host:</strong> Mollusks — infective stage inside them: <strong>L1 larva</strong> (molts to L3 inside)<br>
+      <strong>Accidental host:</strong> Humans — infective stage: <strong>L3 larva</strong><br>
+      <strong>Paratenic hosts:</strong> Crabs, freshwater prawns, lizards, frogs (L3 resides but doesn't develop further)<br><br>
+      Three mollusk IH examples: <em>Achatina fulica</em>, <em>Vaginulus plebius</em>, <em>Helicostoma macrostoma</em>.
+    </div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">What is the CSF profile in A. cantonensis infection? What are the Charcot-Leyden crystals and why do they appear? <span class="q-icon">+</span></div>
+    <div class="q-answer">CSF profile: <strong>Increased WBC (pleocytosis)</strong> with eosinophilia making up <strong>&gt;10% of WBC</strong> — often reaching <strong>90%</strong> in A. cantonensis cases (diagnostic threshold for eosinophilic meningitis).<br><br><strong>Charcot-Leyden crystals</strong> are slender, bipyramidal crystals that are byproducts of <strong>eosinophil breakdown</strong>. They appear in the CSF as a hallmark of eosinophilic inflammation. Occasional multinucleated giant cells may also appear.</div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">Why is anthelmintic treatment controversial in A. cantonensis infection? What non-drug intervention relieves severe headache dramatically? <span class="q-icon">+</span></div>
+    <div class="q-answer">Killing worms in the CNS can <strong>theoretically increase the inflammatory reaction</strong>, as dying larvae trigger stronger granuloma formation — potentially worsening the patient's condition. Since the disease is usually <strong>self-limiting (4–6 weeks)</strong>, anthelmintics are often unnecessary. When used: albendazole ± corticosteroids.<br><br>For severe headache: <strong>spinal puncture with removal of ~10 mL of CSF</strong> relieves headache dramatically.</div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <!-- ENTEROBIUS -->
+  <div class="quiz-group-label">Enterobius vermicularis</div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">Describe the egg of Enterobius vermicularis. What is the method of choice for collecting the diagnostic specimen, and when should it be done? <span class="q-icon">+</span></div>
+    <div class="q-answer">Egg is <strong>D-shaped (asymmetrical)</strong> — flattened on one side, convex on the other; 50–60 × 20–30 μm; elongated-ovoidal; colorless; thick double-layered shell (outer triple albuminous covering + inner lipoidal membrane).<br><br><strong>Method of choice: Graham's Scotch Adhesive Tape Swab</strong>. Press sticky tape firmly on perianal skin → mount sticky side down on a glass slide → add toluene/glycerol (clears debris, makes eggs refractive). Must be collected in the <strong>morning BEFORE the patient passes stool or takes a bath</strong> (eggs deposited nocturnally).</div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">Why does E. vermicularis deposit eggs on perianal skin rather than inside the bowel? What is retroinfection? <span class="q-icon">+</span></div>
+    <div class="q-answer">Eggs require <strong>oxygen</strong> for final development into the infective stage — inside the anaerobic bowel, they cannot mature. The gravid female migrates <strong>nocturnally</strong> down the colon, exits through the anus, and deposits all her eggs on the perianal/perineal skin (aerobic environment), then dies. Eggs become infective within a few hours and remain viable up to 13 days.<br><br><strong>Retroinfection:</strong> eggs hatch in the anal mucosa; larvae emerge and <strong>migrate back into the rectum</strong>, reinfecting the same host without the egg leaving the body. Life span via retroinfection: 14–18 days.</div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">What distinguishes the adult male from the adult female Enterobius? Which one is rarely seen in practice and why? <span class="q-icon">+</span></div>
+    <div class="q-answer">
+      <strong>Female (Pinworm):</strong> 9–13 mm long · Sharply pointed posterior tail resembling a pin (hence "pinworm") · Vulva opens in <strong>mid-third</strong> of body · Prominent posterior esophageal bulb (unique to <em>Enterobius</em>).<br><br>
+      <strong>Male (Seatworm):</strong> 2–5 mm long · Strongly curved posterior end · <strong>Single</strong> copulatory spicule (contrast: Ascaris has 2!) · No gubernaculum.<br><br>
+      The <strong>male is rarely seen</strong> because it dies immediately after copulation and is then <em>eaten by the female</em> for nutrients.
+    </div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">How many swabs are needed with the non-adhesive cellophane anal swab to achieve 90% and 97% sensitivity? When is a patient considered free of infection? <span class="q-icon">+</span></div>
+    <div class="q-answer">
+      <strong>3 swabs</strong> → 90% positive detection<br>
+      <strong>5 swabs</strong> → 97% positive detection<br>
+      <strong>6 swabs</strong> → very high chance the ovum will be collected<br>
+      <strong>7 consecutive days yielding negative results</strong> → patient is considered <strong>free of infection</strong>.
+    </div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <!-- ASCARIS -->
+  <div class="quiz-group-label">Ascaris lumbricoides</div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">Describe the four egg types of Ascaris lumbricoides. Which one does NOT float, and why? <span class="q-icon">+</span></div>
+    <div class="q-answer">
+      <strong>Fertilized:</strong> 45–70 × 35–50 μm; brownish (bile-stained); round/oval; trilayered shell (inner vitelline + thick chorionic + outer mammillated albuminous); coarse lecithin granules. <span style="color:var(--accent3)">Floats.</span><br><br>
+      <strong>Unfertilized:</strong> 88–94 × 28 μm; narrow and elongated; double-layered (inner chorionic + outer albuminous); vitelline membrane <strong>ABSENT</strong> → <span style="color:var(--red)">does NOT float</span> (lacks vitelline membrane needed for buoyancy); disorganized refractile mass inside.<br><br>
+      <strong>Decorticated:</strong> Fertilized/unfertilized egg lacking the outer mammillated albuminoid coat → smoother outer layer; developing embryos inside.<br><br>
+      <strong>Embryonated:</strong> Infective stage; coiled L3 embryo inside; 3-layer shell (outer coat may be lost).
+    </div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">How does Ascaris survive digestive juices in the small intestine? What is "Loeffler syndrome"? <span class="q-icon">+</span></div>
+    <div class="q-answer">Ascaris survives the SI's digestive environment by secreting <strong>pepsin inhibitor 3</strong> and <strong>phospholiporin</strong>, which neutralize the host's proteolytic enzymes.<br><br><strong>Loeffler syndrome (Ascaris pneumonitis)</strong> is a type of <strong>eosinophilic pneumonia</strong> that occurs during larval lung migration — eosinophils accumulate in the lungs in response to larval antigens. It mimics immunity-acquired pneumonia and asthma. Diagnosed by finding larvae in <strong>sputum</strong> or gastric washings. Occurs most in areas with highly seasonal transmission.</div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">What is "ball of spaghetti" in the context of Ascaris? How many spicules does the adult male have — and why does this matter for board exams? <span class="q-icon">+</span></div>
+    <div class="q-answer"><strong>"Ball of spaghetti"</strong> refers to the spontaneous passing of adult Ascaris worms — when heavily infected, worms gather and twist together in the intestine forming a bolus, which is then expelled as a tangled mass resembling spaghetti.<br><br>The adult male Ascaris has <strong>2 spicules</strong>. This is a classic boards trap — students confuse it with <em>Enterobius vermicularis</em> which has only <strong>1 spicule</strong>. Both are intestinal nematodes, making this distinction a frequent exam question.</div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <!-- TOXOCARA -->
+  <div class="quiz-group-label">Toxocara spp.</div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">Why can fecalysis NOT be used to diagnose toxocariasis in humans? What are the three recommended diagnostic methods? <span class="q-icon">+</span></div>
+    <div class="q-answer">Humans are <strong>accidental hosts</strong> — Toxocara larvae undergo erratic migration through tissues but <strong>never mature into egg-laying adults</strong> in the human GI tract. Therefore, no eggs are produced or excreted in human feces.<br><br><strong>Three diagnostic methods:</strong><br>
+    1. <strong>Tissue biopsy with larval detection</strong> — definitive diagnosis<br>
+    2. <strong>ELISA</strong> — detects IgG antibodies against Toxocara excretory antigens<br>
+    3. <strong>Western blot</strong> — more specific than ELISA but cannot differentiate old vs new infection; used when ELISA is unavailable. Also: TES Antigen Kit and PCR.</div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">Compare the three clinical presentations of toxocariasis. Which age group is affected by each? <span class="q-icon">+</span></div>
+    <div class="q-answer">
+      <strong>(1) Visceral Larva Migrans (VLM)</strong> — mainly <strong>young children</strong>. Larvae invade multiple tissues (liver, lungs, skeletal muscle, heart). Hypereosinophilia. Features: hepatosplenomegaly, wheezing → pneumonia, lymphadenopathy, myocarditis, fever, weight loss, cough, rashes.<br><br>
+      <strong>(2) Ocular Larva Migrans (OLM)</strong> — <strong>older children or young adults</strong>. Strabismus ("libat"), ophthalmologic lesions, diffuse unilateral subacute neuroretinitis. Can cause <strong>permanent blindness</strong>. Visceral manifestations uncommon.<br><br>
+      <strong>(3) Overt Toxocariasis</strong> — any age; chronic. Reddish skin/rash (vasculitis-like), edema of hands, joint pain (mono/polyarthralgia), chronic fatigue, fever, eosinophilia. May lead to encephalitis.
+    </div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">What are the egg differences between T. canis and T. cati? Which species is transmitted more through lactation vs. transplacental route? <span class="q-icon">+</span></div>
+    <div class="q-answer">
+      <strong>T. canis (dog):</strong> Larger — 85 × 75 μm · Thick, corrugated shell · Course and large egg pits · <strong>Crater-like</strong> egg pits · Subglobose · Dark brown · Spear-shaped cervical alae.<br><br>
+      <strong>T. cati (cat):</strong> Smaller — 65 × 70 μm · Thin corrugated shell · <strong>Cave-like</strong> egg pits · Subglobose · Superficially pitted · Arrow-shaped cervical alae.<br><br>
+      <strong>Transmission route:</strong><br>
+      <em>T. canis</em> → primarily <strong>transplacental</strong> (puppies) + transmammary<br>
+      <em>T. cati</em> → vertical transmission attributed more to <strong>lactation</strong> (less frequent environmental contamination due to cat defecation patterns)
+    </div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <!-- RAPID FIRE -->
+  <div class="quiz-group-label">⚡ Rapid Fire — High-Yield Comparisons</div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">Number of copulatory spicules: A. duodenale · N. americanus · A. lumbricoides · E. vermicularis <span class="q-icon">+</span></div>
+    <div class="q-answer">
+      <strong>A. duodenale:</strong> 2 spicules — separate, long, bristle-like, NOT fused<br>
+      <strong>N. americanus:</strong> 2 spicules — FUSED at distal ends (bifid tips / barb)<br>
+      <strong>A. lumbricoides:</strong> 2 spicules<br>
+      <strong>E. vermicularis:</strong> <span style="color:var(--red)">1 spicule</span> — single conspicuous copulatory spicule (the odd one out!)
+    </div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">Match each organism to its diagnostic stage: Hookworms · A. cantonensis · E. vermicularis · A. lumbricoides · Toxocara (in humans) <span class="q-icon">+</span></div>
+    <div class="q-answer">
+      <strong>Hookworms:</strong> Egg in feces (reported as "hookworm" — no species ID from eggs)<br>
+      <strong>A. cantonensis:</strong> L3 larvae inside rat lungs (in humans: L3 larvae or young adult worms in CSF)<br>
+      <strong>E. vermicularis:</strong> Ovum on perianal folds (Graham's tape swab — NOT feces)<br>
+      <strong>A. lumbricoides:</strong> Fertilized egg, unfertilized egg, decorticated egg, or adult worms in SI<br>
+      <strong>Toxocara (humans):</strong> L3 larvae in tissues (tissue biopsy) — NO eggs in feces
+    </div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">What organism causes each: Eosinophilic meningitis · Loeffler syndrome · Cutaneous Larva Migrans · Ocular Larva Migrans · Barber-pole appearance <span class="q-icon">+</span></div>
+    <div class="q-answer">
+      <strong>Eosinophilic meningitis</strong> → <em>Angiostrongylus cantonensis</em><br>
+      <strong>Loeffler syndrome (eosinophilic pneumonia)</strong> → <em>Ascaris lumbricoides</em><br>
+      <strong>Cutaneous Larva Migrans (CLM)</strong> → Hookworms (filariform L3 skin penetration)<br>
+      <strong>Ocular Larva Migrans (OLM)</strong> → <em>Toxocara</em> spp. (T. canis / T. cati)<br>
+      <strong>Barber-pole appearance</strong> → Adult female <em>A. cantonensis</em> (uterine tubules wound spirally around the intestine)
+    </div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">Which organisms from this lecture have NO intermediate host? <span class="q-icon">+</span></div>
+    <div class="q-answer">
+      <strong>Hookworms</strong> (A. duodenale, N. americanus) — no intermediate host<br>
+      <strong>Enterobius vermicularis</strong> — no intermediate host<br>
+      <strong>Ascaris lumbricoides</strong> — no intermediate host<br><br>
+      <em>A. cantonensis</em> has mollusks (IH) · <em>Toxocara</em> technically uses cats/dogs as definitive hosts and humans only as accidental hosts.
+    </div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <div class="q-card" onclick="toggleQ(this)">
+    <div class="q-question">Treatment of choice for each: Hookworm · Pinworm · Ascaris · A. cantonensis · Toxocara <span class="q-icon">+</span></div>
+    <div class="q-answer">
+      <strong>Hookworm:</strong> Single dose <strong>Albendazole</strong> or <strong>Mebendazole</strong> (benzimidazoles; note: resistance emerging)<br>
+      <strong>Pinworm (E. vermicularis):</strong> <strong>Mebendazole</strong> (treatment of choice) · Albendazole · Pyrantel pamoate · Piperazine citrate<br>
+      <strong>Ascaris:</strong> Albendazole · Mebendazole · Pyrantel pamoate · Ivermectin · Acelazinide<br>
+      <strong>A. cantonensis:</strong> Usually self-limiting — no specific drug universally recommended; Albendazole ± corticosteroids; spinal puncture for headache<br>
+      <strong>Toxocara:</strong> Albendazole · Mebendazole · Anti-hemolytic treatment if with complications
+    </div>
+    <div class="q-check"><button class="q-btn q-btn-right" onclick="markScore(event, this, true)">✓ Got it</button><button class="q-btn q-btn-wrong" onclick="markScore(event, this, false)">✗ Missed</button></div>
+  </div>
+
+  <!-- Footer in quiz -->
+  <div style="text-align:center; padding: 40px 0 0; border-top: 1px solid var(--border); margin-top: 30px;">
+    <p style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-muted); letter-spacing:.15em; text-transform:uppercase;">
+      LEC 8B · Phasmids Part 2 &amp; 3 · Justin Chen, RMT · Da Duo Bertz Transes Group
+    </p>
+  </div>
+
+</div><!-- /content -->
+</div><!-- /panel-quiz -->
+
+<script>
+  // ── TAB SWITCHING ──
+  function showPanel(id, btn) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    btn.classList.add('active');
+    // show/hide anchor links
+    const anchors = document.querySelectorAll('.toc-anchor');
+    anchors.forEach(a => a.style.display = id === 'study' ? '' : 'none');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── QUIZ TOGGLE ──
+  function toggleQ(card) {
+    card.classList.toggle('open');
+    updateTotal();
+  }
+
+  // ── SCORE TRACKING ──
+  let scores = {};
+  function markScore(e, btn, correct) {
+    e.stopPropagation();
+    const card = btn.closest('.q-card');
+    const id = Array.from(document.querySelectorAll('.q-card')).indexOf(card);
+    scores[id] = correct;
+    card.querySelectorAll('.q-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    updateTotal();
+  }
+  function updateTotal() {
+    const total = document.querySelectorAll('#panel-quiz .q-card').length;
+    const answered = Object.keys(scores).length;
+    const correct = Object.values(scores).filter(Boolean).length;
+    document.getElementById('score-num').textContent = correct;
+    document.getElementById('score-total').textContent = total;
+  }
+
+  // Initialize total count on load
+  window.addEventListener('DOMContentLoaded', () => {
+    updateTotal();
+  });
+</script>
+</body>
+</html>
