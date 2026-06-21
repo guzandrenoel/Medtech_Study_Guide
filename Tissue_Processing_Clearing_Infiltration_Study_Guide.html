@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tissue Processing: Clearing &amp; Infiltration — Study Guide</title>
+<style>
+  :root{
+    --paper:#f3efe6;
+    --paper-deep:#ece5d6;
+    --ink:#2b2620;
+    --ink-soft:#5a5347;
+    --slide:#8a5a44;       /* terracotta-brown, like a stained slide */
+    --slide-deep:#6e4232;
+    --reagent:#4f6e62;     /* lab-glass green */
+    --reagent-deep:#33493f;
+    --line:#d8cfba;
+    --warn:#a5402f;
+    --good:#3f6b4f;
+    --card:#fbf8f1;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Georgia","Palatino Linotype",Palatino,"Iowan Old Style",serif;
+    font-weight:500;
+    font-size:17px;
+    line-height:1.65;
+  }
+  p, li, td{font-weight:500;}
+  strong, b{font-weight:800;}
+  .texture{
+    position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(138,90,68,0.05), transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(79,110,98,0.06), transparent 45%);
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px 120px;position:relative;z-index:1;}
+
+  /* HERO */
+  header.hero{
+    padding:64px 28px 40px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  .eyebrow{
+    font-family:"Courier New",monospace;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-size:13px;
+    font-weight:700;
+    color:var(--reagent-deep);
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--slide);display:inline-block;}
+  .hero h1{
+    font-family:"Didot","Iowan Old Style",Georgia,serif;
+    font-weight:400;
+    font-size:clamp(34px,5vw,56px);
+    margin:14px 0 6px;
+    color:var(--ink);
+    letter-spacing:.2px;
+  }
+  .hero h1 em{
+    font-style:italic;color:var(--slide-deep);
+  }
+  .hero .sub{
+    color:var(--ink-soft);
+    font-size:18.5px;
+    font-weight:500;
+    max-width:620px;
+    margin-top:8px;
+  }
+  .hero .meta{
+    margin-top:22px;display:flex;gap:24px;flex-wrap:wrap;
+    font-family:"Courier New",monospace;font-size:13.5px;font-weight:700;color:var(--ink-soft);
+  }
+  .hero .meta b{color:var(--ink);font-weight:700;}
+
+  /* progress / flow ribbon */
+  .flow{
+    max-width:920px;margin:0 auto;padding:18px 28px 0;
+    display:flex;align-items:center;gap:0;flex-wrap:wrap;
+    font-family:"Courier New",monospace;font-size:13px;font-weight:700;letter-spacing:.04em;
+  }
+  .flow .step{
+    background:var(--card);
+    border:1px solid var(--line);
+    padding:6px 12px;border-radius:3px;color:var(--ink-soft);
+  }
+  .flow .step.active{border-color:var(--reagent);color:var(--reagent-deep);background:#eef1ea;}
+  .flow .arrow{color:var(--line);padding:0 8px;font-size:14px;}
+
+  /* SECTION HEADERS */
+  section{margin-top:56px;}
+  .sec-head{
+    display:flex;align-items:baseline;gap:14px;margin-bottom:18px;
+  }
+  .sec-num{
+    font-family:"Courier New",monospace;font-size:13px;color:var(--slide);
+    border:1px solid var(--slide);padding:2px 8px;border-radius:2px;
+  }
+  .sec-head h2{
+    font-family:"Didot","Iowan Old Style",Georgia,serif;font-weight:400;
+    font-size:28px;margin:0;color:var(--ink);
+  }
+  .sec-intro{color:var(--ink-soft);font-size:17px;font-weight:500;max-width:680px;margin-bottom:22px;}
+
+  h3.sub-head{
+    font-family:"Iowan Old Style",Georgia,serif;font-style:italic;font-weight:600;
+    font-size:19px;color:var(--reagent-deep);margin:30px 0 10px;
+    border-left:3px solid var(--reagent);padding-left:10px;
+  }
+
+  p{margin:8px 0;font-size:17px;}
+  ul{margin:6px 0 14px 0;padding-left:22px;}
+  li{margin:5px 0;font-size:17px;}
+  section > p:not(.sec-intro), section > ul, section > blockquote, section > .note, section > .question{max-width:780px;}
+
+  /* Characteristic cards */
+  .grid-cards{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:14px;margin:14px 0 6px;
+  }
+  .care-card{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:4px;padding:14px 16px;
+  }
+  .care-card .num{font-family:"Courier New",monospace;font-size:12px;font-weight:700;color:var(--slide);}
+  .care-card p{font-size:16px;font-weight:500;margin:4px 0 0;}
+
+  /* table of agents */
+  table{
+    width:100%;border-collapse:collapse;margin:16px 0 26px;
+    font-size:16px;font-weight:500;background:var(--card);
+  }
+  caption{text-align:left;font-family:"Courier New",monospace;font-size:12.5px;font-weight:700;
+    color:var(--ink-soft);margin-bottom:6px;letter-spacing:.05em;text-transform:uppercase;}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top;}
+  th{background:var(--paper-deep);font-family:"Courier New",monospace;font-size:12.5px;
+    text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);font-weight:800;}
+  tr:hover td{background:#f7f3ea;}
+
+  /* agent profile card */
+  .agent{
+    background:var(--card);border:1px solid var(--line);border-radius:6px;
+    padding:20px 22px;margin:16px 0;position:relative;
+    border-left:4px solid var(--slide);
+  }
+  .agent h4{
+    margin:0 0 4px;font-family:"Didot",Georgia,serif;font-size:20px;font-weight:400;color:var(--ink);
+  }
+  .agent .tag{font-family:"Courier New",monospace;font-size:12.5px;font-weight:700;color:var(--ink-soft);}
+  .agent .body{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:12px;}
+  @media(max-width:640px){.agent .body{grid-template-columns:1fr;}}
+  .agent .colhead{font-family:"Courier New",monospace;font-size:12.5px;font-weight:800;text-transform:uppercase;
+    letter-spacing:.06em;margin-bottom:6px;}
+  .agent .adv .colhead{color:var(--good);}
+  .agent .dis .colhead{color:var(--warn);}
+  .agent ul{margin:0;padding-left:20px;font-size:16px;font-weight:500;}
+
+  .note{
+    background:#fbf3e2;border:1px dashed #c9a45f;border-radius:4px;
+    padding:12px 16px;font-size:16px;font-weight:500;color:#4a3a1c;margin:14px 0;
+  }
+  .note b{color:#8a5a1f;}
+
+  .question{
+    background:#eef1ea;border-left:3px solid var(--reagent);
+    padding:10px 16px;font-size:16px;font-weight:500;margin:14px 0;border-radius:0 4px 4px 0;
+  }
+  .question b{color:var(--reagent-deep);}
+
+  blockquote{
+    border-left:3px solid var(--slide);margin:14px 0;padding:4px 18px;
+    color:var(--ink-soft);font-style:italic;font-size:17px;font-weight:500;
+  }
+
+  /* recap / flashcards */
+  .recap-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;}
+  .flash{
+    background:var(--card);border:1px solid var(--line);border-radius:5px;
+    padding:14px 18px;cursor:pointer;transition:background .15s ease;
+    position:relative;
+  }
+  .flash:hover{background:#f6f1e6;}
+  .flash .q{font-weight:700;color:var(--ink);font-size:17px;}
+  .flash .a{
+    display:none;margin-top:8px;color:var(--reagent-deep);font-size:16.5px;font-weight:600;
+    border-top:1px dashed var(--line);padding-top:8px;
+  }
+  .flash.open .a{display:block;}
+  .flash::after{
+    content:"tap to reveal";
+    position:absolute;right:18px;top:14px;font-family:"Courier New",monospace;
+    font-size:11px;font-weight:700;color:var(--ink-soft);letter-spacing:.05em;
+  }
+  .flash.open::after{content:"";}
+
+  /* quick reference comparison strip */
+  .compare{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0;
+  }
+  @media(max-width:640px){.compare{grid-template-columns:1fr;}}
+  .compare .col{
+    background:var(--card);border:1px solid var(--line);border-radius:6px;padding:16px;text-align:center;
+  }
+  .compare .col h5{margin:0 0 6px;font-family:"Courier New",monospace;font-size:13px;font-weight:700;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);}
+  .compare .col .val{font-family:"Didot",Georgia,serif;font-size:24px;color:var(--slide-deep);}
+
+  footer{
+    margin-top:70px;padding-top:24px;border-top:1px solid var(--line);
+    font-family:"Courier New",monospace;font-size:12.5px;font-weight:700;color:var(--ink-soft);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+
+  /* nav */
+  nav.toc{
+    background:var(--card);border:1px solid var(--line);border-radius:6px;
+    padding:18px 22px;margin-top:36px;
+  }
+  nav.toc h6{margin:0 0 10px;font-family:"Courier New",monospace;font-size:12px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);}
+  nav.toc ol{margin:0;padding-left:18px;columns:2;font-size:16px;font-weight:500;}
+  @media(max-width:640px){nav.toc ol{columns:1;}}
+  nav.toc a{color:var(--reagent-deep);text-decoration:none;border-bottom:1px dotted var(--reagent);}
+  nav.toc a:hover{color:var(--slide-deep);border-bottom-color:var(--slide);}
+
+  mark{background:#f0dba9;padding:0 3px;border-radius:2px;}
+
+  /* ===== Master comparison table ===== */
+  .table-scroll{
+    overflow-x:auto;margin:18px 0 30px;
+    border:1px solid var(--line);border-radius:8px;
+    box-shadow:0 1px 0 rgba(0,0,0,.02);
+  }
+  table.master{
+    width:100%;min-width:980px;border-collapse:separate;border-spacing:0;
+    font-size:15px;background:var(--card);margin:0;
+  }
+  table.master caption{padding:14px 18px 0;}
+  table.master th, table.master td{
+    border:none;border-bottom:1px solid var(--line);border-right:1px solid var(--line);
+    padding:12px 14px;vertical-align:top;
+  }
+  table.master th:last-child, table.master td:last-child{border-right:none;}
+  table.master thead th{
+    background:var(--reagent-deep);color:#f3efe6;font-family:"Courier New",monospace;
+    font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;font-weight:800;
+    position:sticky;top:0;
+  }
+  table.master tbody th{
+    background:var(--paper-deep);text-align:left;font-family:"Didot",Georgia,serif;
+    font-weight:400;font-size:17px;color:var(--ink);white-space:nowrap;
+    position:sticky;left:0;border-right:2px solid var(--slide);
+  }
+  table.master td{font-weight:500;}
+  table.master td.fit, table.master th.fit{white-space:nowrap;}
+  table.master tbody tr:nth-child(even) td, table.master tbody tr:nth-child(even) th{background:#f6f1e6;}
+  table.master tbody tr:hover td{background:#efe6d2;}
+
+  .badge{
+    display:inline-block;padding:3px 10px;border-radius:20px;
+    font-family:"Courier New",monospace;font-size:12px;font-weight:800;
+    letter-spacing:.02em;white-space:nowrap;
+  }
+  .badge-good{background:#dcebe1;color:var(--good);}
+  .badge-bad{background:#f3dcd7;color:var(--warn);}
+  .badge-warn{background:#f7e9c9;color:#8a5a1f;}
+  .badge-neutral{background:#e7e2d3;color:var(--ink-soft);}
+  .cell-note{display:block;font-size:13px;color:var(--ink-soft);margin-top:3px;font-weight:500;}
+  .legend{
+    display:flex;flex-wrap:wrap;gap:10px 18px;margin:10px 0 4px;
+    font-size:13.5px;color:var(--ink-soft);align-items:center;
+  }
+  .legend span.sw{display:inline-flex;align-items:center;gap:6px;}
+</style>
+</head>
+<body>
+<div class="texture"></div>
+
+<header class="hero">
+  <div class="wrap" style="padding:0;">
+    <div class="eyebrow"><span class="dot"></span> HISTOPATHOLOGIC &amp; CYTOGENETIC TECHNIQUES · LECTURE 03</div>
+    <h1>Tissue Processing:<br><em>Clearing &amp; Infiltration</em></h1>
+    <p class="sub">A study guide covering the bridge between dehydration and embedding — how tissue is made transparent, then filled with a supporting medium so it can be cut into sections thin enough for the microscope.</p>
+    <div class="meta">
+      <span><b>Lecturer:</b> Ms. Khelly Villarin, RMT</span>
+      <span><b>Source:</b> Faldas &amp; Bruce-Gregorios (2017); Bancroft (2012)</span>
+    </div>
+  </div>
+</header>
+
+<div class="flow">
+  <span class="step">Fixation</span><span class="arrow">→</span>
+  <span class="step">Dehydration</span><span class="arrow">→</span>
+  <span class="step active">Clearing</span><span class="arrow">→</span>
+  <span class="step active">Infiltration</span><span class="arrow">→</span>
+  <span class="step">Embedding</span><span class="arrow">→</span>
+  <span class="step">Sectioning</span>
+</div>
+
+<div class="wrap">
+
+<nav class="toc">
+  <h6>Contents</h6>
+  <ol>
+    <li><a href="#clearing">Clearing / Dealcoholization</a></li>
+    <li><a href="#characteristics">Ideal clearing agent</a></li>
+    <li><a href="#agents">The 10 clearing agents</a></li>
+    <li><a href="#substitutes">Other xylene substitutes</a></li>
+    <li><a href="#infiltration">Impregnation / Infiltration</a></li>
+    <li><a href="#paraffin">Paraffin wax &amp; methods</a></li>
+    <li><a href="#paraffin-subs">Paraffin substitutes</a></li>
+    <li><a href="#celloidin">Celloidin</a></li>
+    <li><a href="#gelatin">Gelatin</a></li>
+    <li><a href="#plastic">Plastic (resin)</a></li>
+    <li><a href="#numbers">Key numbers cheat-sheet</a></li>
+    <li><a href="#recap">Recap &amp; self-test</a></li>
+  </ol>
+</nav>
+
+<!-- ===================== CLEARING ===================== -->
+<section id="clearing">
+  <div class="sec-head"><span class="sec-num">I</span><h2>Clearing / Dealcoholization</h2></div>
+  <p class="sec-intro">Clearing is the step where the dehydrating agent (usually alcohol) is removed from the tissue and replaced by a substance that makes the tissue receptive to the infiltrating medium. Alcohol and paraffin wax are both immiscible with each other — clearing is the necessary bridge.</p>
+
+  <h3 class="sub-head">Why clearing exists — four key ideas</h3>
+  <div class="grid-cards">
+    <div class="care-card"><div class="num">01 / RECALL: DEHYDRATION</div><p>Dehydration removes water because water is immiscible with paraffin. But the dehydrating agent (alcohol) is <em>also</em> immiscible with wax — so you can't go straight from dehydration to infiltration.</p></div>
+    <div class="care-card"><div class="num">02 / BRIDGE</div><p>The clearing agent is an intermediate solvent: miscible with alcohol on one side and with the infiltrating medium (or mounting agent) on the other.</p></div>
+    <div class="care-card"><div class="num">03 / OPTICAL CLARITY</div><p>Clearing gives tissue transparency — most clearing agents have a high refractive index. Tissue clarity under the microscope is the visual cue that clearing is complete.</p></div>
+    <div class="care-card"><div class="num">04 / VOLUME</div><p>Ideal ratio of clearing agent to tissue is <mark>10:1</mark>.</p></div>
+  </div>
+
+  <blockquote>Not all clearing agents make tissue transparent — clarity is the hallmark of <em>most</em>, not a strict requirement of the process itself.</blockquote>
+</section>
+
+<!-- ===================== CHARACTERISTICS ===================== -->
+<section id="characteristics">
+  <div class="sec-head"><span class="sec-num">I.A</span><h2>Characteristics of an Ideal Clearing Agent</h2></div>
+  <table>
+    <tr><th>Should</th><th>Should NOT</th></tr>
+    <tr>
+      <td>
+        <ul>
+          <li>Be miscible with alcohol (removes the dehydrating agent easily)</li>
+          <li>Be miscible with, and easily removed by, melted paraffin wax / mounting agent</li>
+          <li>Make tissue transparent</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>Produce excessive shrinkage, hardening, or tissue damage</li>
+          <li>Dissolve out aniline dyes</li>
+          <li>Evaporate quickly in a water bath</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<!-- ===================== AGENTS ===================== -->
+<section id="agents">
+  <div class="sec-head"><span class="sec-num">I.B</span><h2>The 10 Common Clearing Agents</h2></div>
+  <p class="sec-intro">Listed in the order most labs reach for them — fast, cheap solvents first, gentler oil-based agents for delicate tissue, then the "universal" agents that skip a step entirely.</p>
+
+  <p class="legend">
+    <span class="sw"><span class="badge badge-good">good / favorable</span></span>
+    <span class="sw"><span class="badge badge-warn">moderate / caution</span></span>
+    <span class="sw"><span class="badge badge-bad">poor / hazardous</span></span>
+    <span class="sw"><span class="badge badge-neutral">not specified in source</span></span>
+  </p>
+
+  <div class="table-scroll">
+    <table class="master">
+      <caption>Master comparison — all 10 agents at a glance</caption>
+      <thead>
+        <tr>
+          <th>Agent</th>
+          <th>Relative Speed</th>
+          <th>Flammable</th>
+          <th>Toxicity / Hazard</th>
+          <th>Makes Transparent</th>
+          <th>Effect on Tissue</th>
+          <th>Relative Cost</th>
+          <th>Best Used For</th>
+          <th>Avoid / Limitation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>1 · Xylene</th>
+          <td><span class="badge badge-good">Very fast</span><span class="cell-note">15–30 min</span></td>
+          <td><span class="badge badge-bad">Yes</span></td>
+          <td><span class="badge badge-warn">Irritant</span><span class="cell-note">eyes / resp. tract; pollutant</span></td>
+          <td><span class="badge badge-good">Yes</span></td>
+          <td>Hardens &amp; shrinks if &gt;3 hrs</td>
+          <td><span class="badge badge-good">Cheap</span></td>
+          <td>Routine tissue &lt;5mm; mounting/coverslipping; urgent biopsies</td>
+          <td>Nervous tissue, lymph nodes (too harsh)</td>
+        </tr>
+        <tr>
+          <th>2 · Benzene</th>
+          <td><span class="badge badge-good">Fast</span><span class="cell-note">15–60 min</span></td>
+          <td><span class="badge badge-bad">Yes</span></td>
+          <td><span class="badge badge-bad">Severe</span><span class="cell-note">carcinogen, aplastic anemia</span></td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td>Shrinkage with prolonged exposure</td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td>Historically, a rapid xylene substitute</td>
+          <td>Routine use — toxicity outweighs speed</td>
+        </tr>
+        <tr>
+          <th>3 · Toluene</th>
+          <td><span class="badge badge-warn">Moderate</span><span class="cell-note">1–2 hrs</span></td>
+          <td><span class="badge badge-bad">Yes</span></td>
+          <td><span class="badge badge-warn">Lower than xylene</span><span class="cell-note">not carcinogenic; irritant fumes</span></td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td>Gentle — not excessively hard/brittle</td>
+          <td><span class="badge badge-bad">Expensive</span></td>
+          <td>Embedding &amp; mounting where less toxicity matters</td>
+          <td>Cost-sensitive routine labs</td>
+        </tr>
+        <tr>
+          <th>4 · Chloroform</th>
+          <td><span class="badge badge-warn">Slow</span><span class="cell-note">slower than xylene</span></td>
+          <td><span class="badge badge-good">No</span></td>
+          <td><span class="badge badge-warn">Hepatotoxic</span><span class="cell-note">prolonged inhalation</span></td>
+          <td><span class="badge badge-bad">No</span></td>
+          <td>Gentle — less brittleness</td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td>Large/tough tissue; delicate tissue (nervous, lymph nodes, embryos)</td>
+          <td>Slow wax impregnation afterward</td>
+        </tr>
+        <tr>
+          <th>5 · Cedarwood Oil</th>
+          <td><span class="badge badge-bad">Extremely slow</span><span class="cell-note">2–3 days paraffin / 5–6 days celloidin</span></td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td><span class="badge badge-good">Gentle</span></td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td>Gentle — minimal damage</td>
+          <td><span class="badge badge-bad">Very expensive</span></td>
+          <td>CNS tissue, cytological studies (smooth muscle, skin)</td>
+          <td>Routine/urgent work — far too slow</td>
+        </tr>
+        <tr>
+          <th>6 · Aniline Oil</th>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td><span class="badge badge-good">Gentle</span></td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td>Gentle</td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td>Embryos, insects, very delicate specimens</td>
+          <td>Not used in routine processing</td>
+        </tr>
+        <tr>
+          <th>7 · Clove Oil</th>
+          <td><span class="badge badge-warn">Slow</span><span class="cell-note">wax impregnation difficult</span></td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td>Minimal shrinkage, but tissue becomes brittle</td>
+          <td><span class="badge badge-bad">Expensive</span></td>
+          <td>Cases needing minimum shrinkage</td>
+          <td>Reused reagent baths (adulterates fast); dissolves celloidin</td>
+        </tr>
+        <tr>
+          <th>8 · Carbon Tetrachloride</th>
+          <td><span class="badge badge-warn">Slow</span><span class="cell-note">same as chloroform</span></td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td><span class="badge badge-bad">High</span><span class="cell-note">prolonged exposure</span></td>
+          <td><span class="badge badge-bad">No</span></td>
+          <td>Considerable hardening</td>
+          <td><span class="badge badge-good">Cheaper than chloroform</span></td>
+          <td>Embedding only (not mounting)</td>
+          <td>Mounting use; toxic exposure</td>
+        </tr>
+        <tr>
+          <th>9 · Tetrahydrofuran (THF)</th>
+          <td><span class="badge badge-good">Fast</span><span class="cell-note">universal agent</span></td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td><span class="badge badge-warn">Irritant</span><span class="cell-note">offensive odor; toxic if ingested/inhaled</span></td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td>Dehydrates AND clears — shortens total processing time</td>
+          <td>Poorly ventilated areas</td>
+        </tr>
+        <tr>
+          <th>10 · Dioxane</th>
+          <td><span class="badge badge-good">Fast</span><span class="cell-note">embed within 4 hrs of fixation</span></td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td><span class="badge badge-bad">High</span><span class="cell-note">carcinogenic potential</span></td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td>Greater tissue shrinkage</td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td>Time-critical processing — universal agent</td>
+          <td>Routine use — carcinogenicity is dangerous</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note"><b>Exam shortcut:</b> only two agents are explicitly stated to <em>not</em> make tissue transparent — chloroform and carbon tetrachloride — even though both are valid clearing agents. Don't assume "clearing agent" always equals "transparent result."</div>
+
+  <!-- XYLENE -->
+  <div class="agent">
+    <h4>1 · Xylene</h4>
+    <span class="tag">THE LAB DEFAULT</span>
+    <p>Colorless, most commonly used clearing agent — used both for embedding and for mounting/coverslipping. Only suitable for tissue blocks <mark>&lt;5 mm</mark>.</p>
+    <p><strong>Two moments clearing happens:</strong></p>
+    <ul>
+      <li><strong>Before infiltration/embedding</strong> — removes the dehydrating agent so tissue is receptive to wax.</li>
+      <li><strong>Before mounting/coverslipping</strong> — removes residual alcohol left by certain stains.</li>
+    </ul>
+    <p>Other uses: cytohistology, coverslipping, cleaning processors &amp; microscope objectives, recycling slides.</p>
+    <div class="body">
+      <div class="adv"><div class="colhead">Advantage</div><ul>
+        <li>Cheap and relatively stable</li>
+        <li>Most rapid agent — clears urgent biopsies in 15–30 min</li>
+      </ul></div>
+      <div class="dis"><div class="colhead">Disadvantage</div><ul>
+        <li>Highly flammable</li>
+        <li>Tissue becomes hard/brittle if left &gt;3 hours</li>
+        <li>Considerable hardening &amp; shrinkage — avoid on nervous tissue, lymph nodes</li>
+        <li>Turns milky if tissue was incompletely dehydrated (fix: filter)</li>
+        <li>Irritates eyes, nose, respiratory tract; toxic/polluting</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <!-- BENZENE -->
+  <div class="agent">
+    <h4>2 · Benzene</h4>
+    <span class="tag">XYLENE SUBSTITUTE — RARELY USED</span>
+    <div class="body">
+      <div class="adv"><div class="colhead">Advantage</div><ul>
+        <li>Rapid — clears in 15–60 min</li>
+      </ul></div>
+      <div class="dis"><div class="colhead">Disadvantage</div><ul>
+        <li>Highly flammable</li>
+        <li>Considerable shrinkage if prolonged exposure</li>
+        <li>Extremely toxic: linked to <strong>cancer</strong> and <strong>aplastic anemia</strong></li>
+      </ul></div>
+    </div>
+    <div class="note"><b>Aplastic anemia in brief:</b> bone marrow damage halts production of all blood cell types — RBC loss → anemia, WBC loss → immunodeficiency, platelet loss → bleeding risk. This is why benzene has fallen out of routine use.</div>
+  </div>
+
+  <!-- TOLUENE -->
+  <div class="agent">
+    <h4>3 · Toluene</h4>
+    <span class="tag">SAFER, PRICIER</span>
+    <p>Less toxic than xylene and benzene; tolerates small amounts of residual water better. More expensive, so used less often despite being safer (Gregorios, 2017).</p>
+    <div class="body">
+      <div class="adv"><div class="colhead">Advantage</div><ul>
+        <li>Acts fairly rapidly (1–2 hrs)</li>
+        <li>Doesn't make tissue excessively hard/brittle</li>
+        <li>Not carcinogenic</li>
+      </ul></div>
+      <div class="dis"><div class="colhead">Disadvantage</div><ul>
+        <li>More expensive</li>
+        <li>Slower than xylene/benzene</li>
+        <li>Flammable; irritant fumes with prolonged exposure</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <!-- CHLOROFORM -->
+  <div class="agent">
+    <h4>4 · Chloroform</h4>
+    <span class="tag">GENTLE AGENT</span>
+    <p>Slower-acting than xylene but causes far less brittleness.</p>
+    <div class="body">
+      <div class="adv"><div class="colhead">Advantage</div><ul>
+        <li>Good for large, tough tissues</li>
+        <li>Good for delicate tissues: nervous tissue, lymph nodes, embryos</li>
+        <li>Not inflammable</li>
+      </ul></div>
+      <div class="dis"><div class="colhead">Disadvantage</div><ul>
+        <li>Hepatotoxic with prolonged inhalation</li>
+        <li>Low volatility → slow wax impregnation afterward</li>
+        <li>Does not make tissue transparent</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <!-- CEDARWOOD OIL -->
+  <div class="agent">
+    <h4>5 · Cedarwood Oil</h4>
+    <span class="tag">GENTLE, OIL-BASED</span>
+    <p>Clears both paraffin and celloidin sections. Used for CNS tissue and cytological studies (smooth muscle, skin) because of its gentle nature.</p>
+    <div class="note"><b>Pattern to remember:</b> oil-based clearing agents are generally gentle — less tissue damage, but slower and pricier than solvent-based ones.</div>
+    <div class="body">
+      <div class="dis" style="grid-column:1/-1;"><div class="colhead">Disadvantage</div><ul>
+        <li>Extremely slow — 2–3 days (paraffin), 5–6 days (celloidin)</li>
+        <li>Slow wax impregnation (low volatility, high viscosity)</li>
+        <li>Becomes milky on prolonged storage (fix: filter before use)</li>
+        <li>Very expensive</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <!-- ANILINE OIL -->
+  <div class="agent">
+    <h4>6 · Aniline Oil</h4>
+    <span class="tag">SPECIALTY / DELICATE SPECIMENS</span>
+    <p>Used for clearing embryos, insects, and very delicate specimens. Not part of routine processing; another gentle agent.</p>
+  </div>
+
+  <!-- CLOVE OIL -->
+  <div class="agent">
+    <h4>7 · Clove Oil</h4>
+    <span class="tag">MINIMUM SHRINKAGE, HIGH MAINTENANCE</span>
+    <div class="body">
+      <div class="dis" style="grid-column:1/-1;"><div class="colhead">Disadvantage</div><ul>
+        <li>Expensive</li>
+        <li>Degrades rapidly with reuse → becomes adulterated/contaminated</li>
+        <li>Slow, difficult wax impregnation</li>
+        <li>Tissue becomes brittle; removes aniline dyes</li>
+        <li>Dissolves celloidin — incompatible with that technique</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <!-- CCl4 -->
+  <div class="agent">
+    <h4>8 · Carbon Tetrachloride (CCl₄)</h4>
+    <span class="tag">CHEAPER CHLOROFORM</span>
+    <p>Used for clearing in <strong>embedding only</strong> (not mounting). Shares chloroform's properties but costs less.</p>
+    <div class="body">
+      <div class="dis" style="grid-column:1/-1;"><div class="colhead">Disadvantage</div><ul>
+        <li>Considerable tissue hardening</li>
+        <li>Highly toxic on prolonged exposure</li>
+        <li>Same drawbacks as chloroform: slow impregnation, toxic, not transparent</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <!-- THF -->
+  <div class="agent">
+    <h4>9 · Tetrahydrofuran (THF)</h4>
+    <span class="tag">UNIVERSAL AGENT</span>
+    <p>Capable of <strong>both dehydration and clearing</strong>, shortening total processing time. Non-toxic but has an offensive odor.</p>
+    <div class="note"><b>Caution:</b> THF is toxic if ingested/inhaled. Vapors cause nausea, dizziness, headache, and anesthesia; it's an eye and skin irritant. Prolonged exposure (up to 6 months) may cause conjunctival irritation — process in a well-ventilated area (Gregorios, 2017).</div>
+  </div>
+
+  <!-- DIOXANE -->
+  <div class="agent">
+    <h4>10 · Dioxane</h4>
+    <span class="tag">UNIVERSAL AGENT — USE WITH CAUTION</span>
+    <p>Also a universal (dehydrating + clearing) agent that significantly reduces processing time — tissues can be embedded in paraffin within 4 hours of fixation.</p>
+    <div class="body">
+      <div class="dis" style="grid-column:1/-1;"><div class="colhead">Disadvantage</div><ul>
+        <li>Greater tissue shrinkage</li>
+        <li>High carcinogenic potential — dangerous to use</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SUBSTITUTES ===================== -->
+<section id="substitutes">
+  <div class="sec-head"><span class="sec-num">I.B.11</span><h2>Other Xylene Substitutes</h2></div>
+  <div class="grid-cards">
+    <div class="care-card">
+      <div class="num">i · LIMONENE</div>
+      <p>Clear, colorless, citrus-scented — a natural oil extracted from lemon/citrus peel. A gentle clearing agent.</p>
+    </div>
+    <div class="care-card">
+      <div class="num">ii · COCONUT OIL</div>
+      <p><strong>Advantages:</strong> non-hazardous, less expensive, less tissue shrinkage.<br><strong>Disadvantage:</strong> may solidify at lower temperatures — clear inside an incubator to keep it molten.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INFILTRATION ===================== -->
+<section id="infiltration">
+  <div class="sec-head"><span class="sec-num">II</span><h2>Impregnation / Infiltration</h2></div>
+  <p class="sec-intro">The clearing agent is completely removed and replaced by a medium that fills all tissue cavities, giving the specimen a firm consistency suitable for sectioning.</p>
+
+  <div class="compare">
+    <div class="col"><h5>Ideal ratio</h5><div class="val">25 : 1</div><p style="font-size:13px;color:var(--ink-soft);">wax to tissue volume</p></div>
+    <div class="col"><h5>Goal</h5><div class="val">Uniform</div><p style="font-size:13px;color:var(--ink-soft);">infiltration throughout</p></div>
+    <div class="col"><h5>If uneven</h5><div class="val">Crumbles</div><p style="font-size:13px;color:var(--ink-soft);">block fails at microtome</p></div>
+  </div>
+
+  <h3 class="sub-head">Embedding vs. Infiltration</h3>
+  <table>
+    <tr><th>Embedding</th><th>Infiltration</th></tr>
+    <tr><td>Provides <strong>external</strong> support</td><td>Medium penetrates tissue to provide <strong>internal</strong> support</td></tr>
+  </table>
+  <p style="font-size:14.5px;color:var(--ink-soft);">The same medium is typically used for both steps.</p>
+
+  <h3 class="sub-head">Characteristics of an Ideal Impregnating Agent</h3>
+  <ul>
+    <li>Soluble in processing fluids — miscible with the clearing agent</li>
+    <li>Suitable for sectioning and ribboning, providing rigidity/support</li>
+    <li>Molten/liquid between 30–60°C to facilitate infiltration</li>
+    <li>Translucent / transparent and colorless</li>
+    <li>Chemically stable and inert</li>
+    <li>Homogenous</li>
+    <li>Capable of flattening after ribboning</li>
+    <li>Non-toxic, odorless, easy to handle, inexpensive</li>
+  </ul>
+
+  <h3 class="sub-head">Four Types of Infiltrating Agents</h3>
+  <div class="grid-cards">
+    <div class="care-card"><div class="num">1</div><p><strong>Paraffin Wax</strong> — simplest, most common, best all-around medium</p></div>
+    <div class="care-card"><div class="num">2</div><p><strong>Celloidin (Collodion)</strong> — for hard/dense/large tissue</p></div>
+    <div class="care-card"><div class="num">3</div><p><strong>Gelatin</strong> — water-miscible, gentle, skips dehydration/clearing</p></div>
+    <div class="care-card"><div class="num">4</div><p><strong>Plastic (Resin)</strong> — for electron microscopy, ultra-thin sections</p></div>
+  </div>
+
+  <div class="table-scroll">
+    <table class="master">
+      <caption>Master comparison — the four infiltration media</caption>
+      <thead>
+        <tr>
+          <th>Medium</th>
+          <th>Section Thickness</th>
+          <th>Heat Required</th>
+          <th>Pre-step Needed</th>
+          <th>Relative Speed</th>
+          <th>Best Used For</th>
+          <th>Key Drawback</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Paraffin Wax</th>
+          <td><span class="badge badge-good">3–5 µm</span></td>
+          <td><span class="badge badge-warn">Yes</span><span class="cell-note">~60°C, 2°C above MP</span></td>
+          <td>Dehydration + Clearing</td>
+          <td><span class="badge badge-good">Very fast</span></td>
+          <td>Routine tissue — most common, best all-around</td>
+          <td>Damages delicate/dense/mineralized tissue; shrinkage</td>
+        </tr>
+        <tr>
+          <th>Celloidin</th>
+          <td><span class="badge badge-warn">≥10 µm</span></td>
+          <td><span class="badge badge-good">No</span><span class="cell-note">dissolves in ether + alcohol</span></td>
+          <td>Dehydration + Clearing</td>
+          <td><span class="badge badge-bad">Very slow</span><span class="cell-note">days</span></td>
+          <td>Large hollow cavities; hard/dense tissue; whole embryos</td>
+          <td>Thin sections &amp; ribbons hard to cut; ether is explosive-flammable</td>
+        </tr>
+        <tr>
+          <th>Gelatin</th>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td><span class="badge badge-good">No</span><span class="cell-note">refrigerated, not heated</span></td>
+          <td><span class="badge badge-good">None</span><span class="cell-note">water-miscible</span></td>
+          <td><span class="badge badge-warn">Moderate</span><span class="cell-note">~24–36 hrs total</span></td>
+          <td>Histochemical/enzyme studies; delicate specimens; frozen sections</td>
+          <td>Nutrient-rich — prone to microbial growth (needs 1% phenol)</td>
+        </tr>
+        <tr>
+          <th>Plastic (Resin)</th>
+          <td><span class="badge badge-good">50–100 nm</span></td>
+          <td><span class="badge badge-neutral">—</span></td>
+          <td>Dehydration + Clearing</td>
+          <td>Varies by type</td>
+          <td>Electron microscopy; ultra-thin sections; undecalcified bone</td>
+          <td>Epoxy: hydrophobic, may destroy antigenicity (no IHC)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===================== PARAFFIN ===================== -->
+<section id="paraffin">
+  <div class="sec-head"><span class="sec-num">II.B.1</span><h2>Paraffin Wax</h2></div>
+
+  <p class="sec-intro">A polycrystalline mixture of solid hydrocarbons produced during the refining of coal and mineral oils — the simplest, most common, and best infiltration medium.</p>
+
+  <div class="compare">
+    <div class="col"><h5>Melting point</h5><div class="val">56–58°C</div></div>
+    <div class="col"><h5>Use at</h5><div class="val">≥2°C above MP</div></div>
+    <div class="col"><h5>Recommended temp</h5><div class="val">60°C</div></div>
+  </div>
+  <p style="font-size:14px;color:var(--ink-soft);">Used slightly above its melting point to stay fully liquid and less viscous for infiltration — too high a temperature can cook or damage the tissue. Section thickness with paraffin: <mark>3–5 µm</mark>. Tissue blocks and unstained mounted sections may be stored indefinitely.</p>
+
+  <div class="agent">
+    <h4>Paraffin Wax — Pros &amp; Cons</h4>
+    <div class="body">
+      <div class="adv"><div class="colhead">Advantage</div><ul>
+        <li>Very rapid process</li>
+        <li>Thin serial sections cut with ease</li>
+        <li>Indefinite storage of blocks/unstained sections</li>
+      </ul></div>
+      <div class="dis"><div class="colhead">Disadvantage</div><ul>
+        <li>Overheating causes brittleness, degrades wax quality</li>
+        <li>Considerable tissue shrinkage/hardening</li>
+        <li>Not recommended: delicate tissue (embryos, lymph nodes, mucous tissue)</li>
+        <li>Not recommended: dense/fatty/mineralized tissue (brain, bone)</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">Methods of Paraffin Impregnation</h3>
+  <table>
+    <tr><th>Method</th><th>Key parameter</th><th>Notable trait</th></tr>
+    <tr><td><strong>a) Manual processing</strong></td><td>≥4 wax changes, 15-min intervals; oven at 55–60°C</td><td>Slowest method — extra changes compensate</td></tr>
+    <tr><td><strong>b) Automatic processing</strong></td><td>Wax bath ≥3°C above melting point</td><td>Only 2–3 changes; built-in agitation speeds infiltration ("Dip and Dunk")</td></tr>
+    <tr><td><strong>c) Vacuum embedding</strong></td><td>Water-jacketed vacuum chamber, 2–4°C above MP</td><td>Reduces impregnation time 25–75%; fastest, gentlest result</td></tr>
+  </table>
+
+  <div class="note"><b>Vacuum embedding is preferred for:</b> urgent biopsies and delicate tissue — lung, brain, connective tissue, decalcified bone, eyes, spleen, central nervous system. It avoids high heat exposure, fully removes transitional solvents, and extends wax life by reducing solvent contamination.</div>
+</section>
+
+<!-- ===================== PARAFFIN SUBSTITUTES ===================== -->
+<section id="paraffin-subs">
+  <div class="sec-head"><span class="sec-num">II.B.1.ii</span><h2>Substitutes for Paraffin Wax</h2></div>
+  <p class="sec-intro">Still paraffin-based, but modified — not pure paraffin.</p>
+
+  <table>
+    <caption>Comparison at a glance</caption>
+    <tr><th>Substitute</th><th>Melting point</th><th>Defining trait</th></tr>
+    <tr><td>Paraplast</td><td>56–57°C</td><td>Paraffin + synthetic polymer; good for large dense blocks (bone, brain); more elastic, better ribboning</td></tr>
+    <tr><td>Embeddol (Bio/aid, Tissue Mat)</td><td>56–58°C</td><td>Bio/aid → gentle, for eyes; Tissue Mat → paraffin + rubber, more elastic</td></tr>
+    <tr><td>Ester Wax</td><td>46–48°C</td><td>Harder than paraffin; soluble in 95% ethanol → <strong>skips clearing</strong></td></tr>
+    <tr><td>Water-Soluble Wax (Carbowax)</td><td>38–42°C / 45–56°C</td><td>Plastic polymer + DMSO; soluble in water → <strong>skips dehydration AND clearing</strong></td></tr>
+  </table>
+
+  <h3 class="sub-head">Ester Wax — the shortcut it enables</h3>
+  <p>Ester wax is insoluble in water but soluble in 95% ethanol and other clearing agents. Because the dehydrating agent (alcohol) can already dissolve it, clearing becomes unnecessary.</p>
+  <table>
+    <tr><th>Step</th><th>Status</th></tr>
+    <tr><td>1. Fixation</td><td>Contains water</td></tr>
+    <tr><td>2. Dehydration</td><td>Organic solvent (e.g., alcohol)</td></tr>
+    <tr><td>3. Clearing</td><td><strong>Skipped</strong> — already soluble in the dehydrating agent</td></tr>
+    <tr><td>4. Infiltration</td><td>Wax</td></tr>
+  </table>
+
+  <h3 class="sub-head">Carbowax (water-soluble wax) — the bigger shortcut</h3>
+  <p>Soluble and miscible with water itself, so neither dehydration nor clearing is needed — fixation can lead straight into infiltration.</p>
+  <table>
+    <tr><th>Step</th><th>Status</th></tr>
+    <tr><td>1. Fixation</td><td>Contains water</td></tr>
+    <tr><td>2. Dehydration</td><td><strong>Skipped</strong> — wax is already soluble in water</td></tr>
+    <tr><td>3. Clearing</td><td><strong>Skipped</strong> — no organic solvent left to remove</td></tr>
+    <tr><td>4. Infiltration</td><td>Wax</td></tr>
+  </table>
+  <p style="font-size:14px;color:var(--ink-soft);">Applicable for enzyme histochemical studies, where preserving native chemistry matters more than speed of the older alcohol-based route.</p>
+</section>
+
+<!-- ===================== CELLOIDIN ===================== -->
+<section id="celloidin">
+  <div class="sec-head"><span class="sec-num">II.B.2</span><h2>Celloidin (Collodion)</h2></div>
+  <p class="sec-intro">A purified form of nitrocellulose, soluble in many solvents, available in thin/medium/thick concentrations. Requires sections of <mark>≥10 µm</mark> — much thicker than paraffin's 3–5 µm.</p>
+
+  <p><strong>Best suited for:</strong> specimens with large hollow cavities, hard/dense tissue, and large sections of whole embryos.</p>
+
+  <div class="agent">
+    <h4>Celloidin — Pros &amp; Cons</h4>
+    <div class="body">
+      <div class="adv"><div class="colhead">Advantage</div><ul>
+        <li>Cuts very hard tissue without undue distortion</li>
+        <li>Avoids crumbling of dense tissue during sectioning</li>
+        <li>No heat required — dissolves in equal parts ether and alcohol</li>
+      </ul></div>
+      <div class="dis"><div class="colhead">Disadvantage</div><ul>
+        <li>Very slow impregnation</li>
+        <li>Thin sections and ribbons are difficult to prepare</li>
+        <li>Ether solvent is very flammable; the medium itself is volatile</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <h3 class="sub-head">Wet vs. Dry Celloidin Method</h3>
+  <table>
+    <tr><th></th><th>Wet Celloidin</th><th>Dry Celloidin</th></tr>
+    <tr><td><strong>Recommended for</strong></td><td>Bones, teeth, large brain sections, whole organs</td><td>Whole eye sections</td></tr>
+    <tr><td><strong>After embedding</strong></td><td>Store block in 70–80% alcohol (kept moist)</td><td>Block is left to dry, then treated with Gilson's mixture</td></tr>
+    <tr><td><strong>Cutting</strong></td><td>Block and knife moistened with 70–80% alcohol to avoid dehydration/shrinkage</td><td>—</td></tr>
+  </table>
+
+  <h3 class="sub-head">Wet Celloidin — full procedure</h3>
+  <table>
+    <tr><th>Step</th><th>Action</th></tr>
+    <tr><td>1</td><td>Equal parts ether and alcohol, 12–24 hrs</td></tr>
+    <tr><td>2</td><td>Increasing celloidin concentration: thin (2–4%) 5–7 days → medium (4–6%) 5–7 days → thick (8–12%) 3–5 days</td></tr>
+    <tr><td>3</td><td>Transfer to fresh celloidin as the embedding medium</td></tr>
+    <tr><td>4</td><td>Store the tissue block in 70–80% alcohol</td></tr>
+  </table>
+
+  <div class="note"><b>Gilson's mixture</b> (used in the dry method) = equal parts chloroform and cedarwood oil — both clearing agents, added to make the tissue transparent.</div>
+
+  <h3 class="sub-head">Low-Viscosity Nitrocellulose</h3>
+  <p>A lower-viscosity form of celloidin — can be used at higher concentrations while still penetrating tissue rapidly.</p>
+  <table>
+    <tr><th>Advantage</th><th>Disadvantage</th></tr>
+    <tr><td>Harder tissue block; thinner sections than pure celloidin</td><td>Explosive</td></tr>
+  </table>
+</section>
+
+<!-- ===================== GELATIN ===================== -->
+<section id="gelatin">
+  <div class="sec-head"><span class="sec-num">II.B.3</span><h2>Gelatin</h2></div>
+  <p class="sec-intro">Used in producing sections of whole organs via a modified Gough-Wentworth technique combined with agar as a pre-embedding medium, and in frozen sectioning.</p>
+
+  <p>Like water-soluble wax, gelatin is miscible with water — <strong>dehydration and clearing are not needed</strong>; infiltration follows fixation directly.</p>
+
+  <p><strong>Used for:</strong> histochemical and enzyme studies, delicate specimens, and frozen tissue sections — it's a gentle agent that won't induce much shrinkage or damage.</p>
+
+  <table>
+    <tr><th>Step</th><th>Action</th></tr>
+    <tr><td>1</td><td>Fixation</td></tr>
+    <tr><td>2</td><td>10% gelatin + 1% phenol, 24 hrs</td></tr>
+    <tr><td>3</td><td>20% gelatin + 1% phenol, 12 hrs</td></tr>
+    <tr><td>4</td><td>Fresh 20% gelatin + 1% phenol, then cool in a refrigerator</td></tr>
+  </table>
+
+  <div class="question"><b>Why 1% phenol?</b> It prevents/reduces microbial growth — gelatin is nutrient-rich and ideal for microbes. Concentration is capped at 1%, since higher levels can damage tissue.</div>
+</section>
+
+<!-- ===================== PLASTIC ===================== -->
+<section id="plastic">
+  <div class="sec-head"><span class="sec-num">II.B.4</span><h2>Plastic (Resin)</h2></div>
+  <p class="sec-intro">Used for embedding in electron microscopy — plastic-infiltrated tissue is so well supported it allows ultra-thin sections to be cut. Also used for undecalcified bone. Typical thickness: <mark>50–100 nm</mark>.</p>
+
+  <h3 class="sub-head">a) Epoxy</h3>
+  <table>
+    <tr><th>Disadvantage</th><th>Why it matters</th></tr>
+    <tr><td>Hydrophobic</td><td>Residual water in tissue makes infiltration ineffective</td></tr>
+    <tr><td>May reduce tissue antigenicity</td><td>Antigens become undetectable — not usable for IHC</td></tr>
+    <tr><td>Possibly toxic</td><td>—</td></tr>
+  </table>
+
+  <table>
+    <caption>Three epoxy types — viscosity vs. speed</caption>
+    <tr><th>Type</th><th>Viscosity</th><th>Infiltration rate</th></tr>
+    <tr><td>Bisphenol A (Araldite)</td><td>Largest molecule, highest viscosity</td><td>Slowest of the three</td></tr>
+    <tr><td>Glycerol (Epon)</td><td>Lower than Araldite</td><td>Slightly higher</td></tr>
+    <tr><td>Cyclohexene Dioxide (Spurr)</td><td>Lowest viscosity</td><td>Fastest</td></tr>
+  </table>
+
+  <div class="note">Epoxy resins remain the most common embedding media for semi-thin/ultrathin sections; acrylic resins are used instead where immunohistochemistry is required. Thicker resin sections (0.35–5 µm) can also be cut for light microscopy.</div>
+
+  <h3 class="sub-head">b) Polyester Plastics</h3>
+  <p>Originally introduced for electron microscopy; once popular but found inferior to epoxides. Today its use is limited to electron microscopy.</p>
+
+  <h3 class="sub-head">c) Acrylic Plastics</h3>
+  <p>Esters of acrylic or methacrylic acid, used extensively for light microscopy. Examples: Glycol Methacrylate (GMA), Methyl Methacrylate (MMA).</p>
+
+  <h3 class="sub-head">Tissue Thickness — final comparison</h3>
+  <div class="compare">
+    <div class="col"><h5>Paraffin</h5><div class="val">3–5 µm</div></div>
+    <div class="col"><h5>Celloidin</h5><div class="val">&gt;10 µm</div></div>
+    <div class="col"><h5>Resin</h5><div class="val">50–100 nm</div></div>
+  </div>
+  <p style="font-size:13.5px;color:var(--ink-soft);">For electron microscopy specifically, only cryosections and thin resin sections (~60–500 nm depending on application) preserve the cell's 3-D structure and molecular integrity well enough to be usable.</p>
+</section>
+
+<!-- ===================== KEY NUMBERS ===================== -->
+<section id="numbers">
+  <div class="sec-head"><span class="sec-num">IV</span><h2>Key Numbers Cheat-Sheet</h2></div>
+  <p class="sec-intro">The figures examiners love to ask about, gathered in one place.</p>
+  <div class="table-scroll">
+    <table class="master">
+      <caption>Ratios, temperatures, and timings worth memorizing</caption>
+      <thead>
+        <tr><th>Value</th><th>What it refers to</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>10 : 1</th><td>Ideal ratio of <strong>clearing agent</strong> to tissue volume</td></tr>
+        <tr><th>25 : 1</th><td>Ideal ratio of <strong>infiltrating wax</strong> to tissue volume</td></tr>
+        <tr><th>56–58°C</th><td>Melting point of standard paraffin wax (histological use)</td></tr>
+        <tr><th>60°C</th><td>Recommended working temperature for paraffin wax</td></tr>
+        <tr><th>55–60°C</th><td>Paraffin oven/incubator temp — manual processing</td></tr>
+        <tr><th>≥3°C above MP</th><td>Wax bath thermostat — automatic processing</td></tr>
+        <tr><th>2–4°C above MP</th><td>Vacuum chamber temperature — vacuum embedding</td></tr>
+        <tr><th>25–75%</th><td>Time reduction achieved by vacuum embedding</td></tr>
+        <tr><th>3–5 µm</th><td>Section thickness — paraffin</td></tr>
+        <tr><th>≥10 µm</th><td>Section thickness — celloidin</td></tr>
+        <tr><th>50–100 nm</th><td>Section thickness — plastic/resin</td></tr>
+        <tr><th>56–57°C</th><td>Melting point — Paraplast</td></tr>
+        <tr><th>56–58°C</th><td>Melting point — Embeddol</td></tr>
+        <tr><th>46–48°C</th><td>Melting point — Ester wax (lower than paraffin)</td></tr>
+        <tr><th>38–42°C / 45–56°C</th><td>Melting point — Water-soluble wax (Carbowax)</td></tr>
+        <tr><th>2–4% / 4–6% / 8–12%</th><td>Thin / medium / thick celloidin concentrations</td></tr>
+        <tr><th>5–7 days / 5–7 days / 3–5 days</th><td>Time in thin / medium / thick celloidin respectively</td></tr>
+        <tr><th>70–80%</th><td>Alcohol concentration for storing wet celloidin blocks &amp; moistening during cutting</td></tr>
+        <tr><th>10% → 20% → 20%</th><td>Gelatin concentration progression (each + 1% phenol)</td></tr>
+        <tr><th>1%</th><td>Phenol concentration added to gelatin (prevents microbial growth)</td></tr>
+        <tr><th>2–3 days / 5–6 days</th><td>Cedarwood oil clearing time — paraffin / celloidin sections</td></tr>
+        <tr><th>15–30 min</th><td>Xylene clearing time for urgent biopsies</td></tr>
+        <tr><th>&lt;5 mm</th><td>Maximum tissue block size suitable for xylene clearing</td></tr>
+        <tr><th>4 hours</th><td>Time from fixation to paraffin embedding when using dioxane</td></tr>
+        <tr><th>0.35–5 µm</th><td>Thicker resin sections cut for light microscopy</td></tr>
+        <tr><th>60–500 nm</th><td>Cryosection / thin resin section range suitable for electron microscopy</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===================== RECAP ===================== -->
+<section id="recap">
+
+  <div class="sec-head"><span class="sec-num">V</span><h2>Recap &amp; Self-Test</h2></div>
+  <p class="sec-intro">Click each card to check yourself before flipping.</p>
+  <div class="recap-grid" id="flashcards">
+    <div class="flash"><div class="q">1. What are the 4 different types of infiltration medium?</div><div class="a">Paraffin, Celloidin, Gelatin, Plastic (Resin)</div></div>
+    <div class="flash"><div class="q">2. Which medium is most ideal for electron microscopy?</div><div class="a">Plastic (Resin)</div></div>
+    <div class="flash"><div class="q">3. What is most ideal for dense tissues?</div><div class="a">Celloidin</div></div>
+    <div class="flash"><div class="q">4. What is the most commonly used and most rapid medium?</div><div class="a">Paraffin</div></div>
+    <div class="flash"><div class="q">5. Which medium is prone to microbial growth?</div><div class="a">Gelatin</div></div>
+    <div class="flash"><div class="q">6. What is added to gelatin to prevent microbial growth?</div><div class="a">1% Phenol</div></div>
+  </div>
+</section>
+
+<footer>
+  <span>Tissue Processing: Clearing &amp; Infiltration — Study Guide</span>
+  <span>Sources: Faldas &amp; Bruce-Gregorios (2017); Survarna, Layton &amp; Bancroft (2012)</span>
+</footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.flash').forEach(function(card){
+    card.addEventListener('click', function(){
+      card.classList.toggle('open');
+    });
+  });
+</script>
+</body>
+</html>
