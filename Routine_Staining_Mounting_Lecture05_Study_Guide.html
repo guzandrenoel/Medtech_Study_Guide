@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Routine Staining & Mounting — Study Guide</title>
+<style>
+  :root{
+    --paper:#f5f1eb;
+    --paper-deep:#ece6d8;
+    --ink:#26211c;
+    --ink-soft:#5c5348;
+    --rose:#8c3f50;
+    --rose-deep:#6b2d3c;
+    --teal:#3e6b67;
+    --teal-deep:#2a4a47;
+    --line:#ddd5c2;
+    --warn:#a04030;
+    --good:#3a6645;
+    --card:#faf7f1;
+    --blue-result:#1a3f7a;
+    --pink-result:#8c2060;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Palatino Linotype",Palatino,serif;
+    font-weight:500;
+    font-size:17px;
+    line-height:1.65;
+  }
+  strong,b{font-weight:800;}
+  .texture{
+    position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:
+      radial-gradient(circle at 15% 15%,rgba(140,63,80,.05),transparent 40%),
+      radial-gradient(circle at 85% 75%,rgba(62,107,103,.06),transparent 45%);
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px 120px;position:relative;z-index:1;}
+
+  /* HERO */
+  header.hero{padding:60px 28px 36px;border-bottom:1px solid var(--line);}
+  .eyebrow{
+    font-family:"Courier New",monospace;letter-spacing:.14em;text-transform:uppercase;
+    font-size:13px;font-weight:700;color:var(--teal-deep);
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--rose);display:inline-block;}
+  .hero h1{
+    font-family:Georgia,serif;font-weight:400;font-style:italic;
+    font-size:clamp(32px,5vw,54px);margin:14px 0 6px;color:var(--ink);
+  }
+  .hero h1 strong{font-style:normal;font-weight:800;color:var(--rose-deep);}
+  .hero .sub{color:var(--ink-soft);font-size:17.5px;max-width:660px;margin-top:8px;font-weight:500;}
+  .hero .meta{
+    margin-top:20px;display:flex;gap:24px;flex-wrap:wrap;
+    font-family:"Courier New",monospace;font-size:13px;font-weight:700;color:var(--ink-soft);
+  }
+
+  /* PROCESS RIBBON */
+  .ribbon{
+    max-width:1180px;margin:0 auto;padding:14px 28px 0;
+    display:flex;align-items:center;flex-wrap:wrap;
+    font-family:"Courier New",monospace;font-size:12.5px;font-weight:700;
+  }
+  .ribbon .step{
+    background:var(--card);border:1px solid var(--line);
+    padding:5px 12px;border-radius:3px;color:var(--ink-soft);
+  }
+  .ribbon .step.active{border-color:var(--rose);color:var(--rose-deep);background:#f5e8eb;}
+  .ribbon .arrow{color:var(--line);padding:0 7px;font-size:14px;}
+
+  /* TOC */
+  nav.toc{
+    background:var(--card);border:1px solid var(--line);border-radius:6px;
+    padding:18px 22px;margin-top:36px;
+  }
+  nav.toc h6{
+    margin:0 0 10px;font-family:"Courier New",monospace;font-size:12px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);
+  }
+  nav.toc ol{margin:0;padding-left:18px;columns:2;font-size:16px;font-weight:500;}
+  @media(max-width:600px){nav.toc ol{columns:1;}}
+  nav.toc a{color:var(--teal-deep);text-decoration:none;border-bottom:1px dotted var(--teal);}
+  nav.toc a:hover{color:var(--rose-deep);}
+
+  /* SECTIONS */
+  section{margin-top:56px;}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:16px;}
+  .sec-num{
+    font-family:"Courier New",monospace;font-size:13px;color:var(--rose);
+    border:1px solid var(--rose);padding:2px 9px;border-radius:2px;font-weight:700;
+  }
+  .sec-head h2{
+    font-family:Georgia,serif;font-weight:400;font-style:italic;
+    font-size:28px;margin:0;color:var(--ink);
+  }
+  .sec-intro{color:var(--ink-soft);font-size:17px;font-weight:500;max-width:720px;margin-bottom:20px;}
+  h3.sub{
+    font-family:Georgia,serif;font-weight:700;font-size:19px;color:var(--teal-deep);
+    margin:30px 0 10px;border-left:3px solid var(--teal);padding-left:10px;
+  }
+  p{margin:8px 0 10px;font-size:17px;max-width:800px;}
+  ul{margin:6px 0 14px;padding-left:22px;}
+  li{margin:5px 0;font-size:17px;}
+
+  /* CARDS */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:14px 0;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:15px 17px;}
+  .card .num{font-family:"Courier New",monospace;font-size:11.5px;font-weight:700;color:var(--rose);}
+  .card p{font-size:15.5px;margin:4px 0 0;max-width:100%;}
+  .card h4{margin:6px 0 4px;font-size:17px;}
+
+  /* ===== MASTER TABLES ===== */
+  .t-scroll{
+    overflow-x:auto;margin:18px 0 28px;
+    border:1px solid var(--line);border-radius:8px;
+  }
+  table.master{
+    width:100%;min-width:860px;border-collapse:separate;border-spacing:0;
+    font-size:15.5px;font-weight:500;background:var(--card);margin:0;
+  }
+  table.master caption{
+    text-align:left;padding:13px 16px 4px;
+    font-family:"Courier New",monospace;font-size:12px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);
+  }
+  table.master th,table.master td{
+    border:none;border-bottom:1px solid var(--line);border-right:1px solid var(--line);
+    padding:11px 14px;vertical-align:top;
+  }
+  table.master th:last-child,table.master td:last-child{border-right:none;}
+  table.master thead th{
+    background:var(--rose-deep);color:#faf7f1;
+    font-family:"Courier New",monospace;font-size:11.5px;text-transform:uppercase;
+    letter-spacing:.05em;font-weight:800;position:sticky;top:0;
+  }
+  table.master tbody th{
+    background:var(--paper-deep);font-family:Georgia,serif;font-style:italic;
+    font-weight:400;font-size:17px;color:var(--ink);
+    position:sticky;left:0;border-right:2px solid var(--rose);white-space:nowrap;
+  }
+  table.master tbody tr:nth-child(even) td,
+  table.master tbody tr:nth-child(even) th{background:#f2eee5;}
+  table.master tbody tr:hover td{background:#ede4d4;}
+  .cn{display:block;font-size:13px;color:var(--ink-soft);margin-top:3px;font-weight:500;}
+
+  /* BADGES */
+  .b{display:inline-block;padding:3px 10px;border-radius:20px;
+    font-family:"Courier New",monospace;font-size:11.5px;font-weight:800;white-space:nowrap;}
+  .bg{background:#d8ece0;color:var(--good);}
+  .br{background:#f3dcd7;color:var(--warn);}
+  .bw{background:#f7e9c9;color:#8a5a1f;}
+  .bn{background:#e7e2d3;color:var(--ink-soft);}
+  .bp{background:#e8d5e8;color:#6b2882;}
+  .bbl{background:#d5e0f0;color:var(--blue-result);}
+
+  /* SIMPLE TABLES */
+  table.plain{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:16px;font-weight:500;background:var(--card);}
+  table.plain th,table.plain td{border:1px solid var(--line);padding:10px 13px;vertical-align:top;text-align:left;}
+  table.plain th{background:var(--paper-deep);font-family:"Courier New",monospace;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);}
+  table.plain tr:hover td{background:#f2eee5;}
+
+  /* PROCEDURE STEPS */
+  .steps{margin:14px 0 22px;counter-reset:step;}
+  .step-row{
+    display:grid;grid-template-columns:42px 1fr;gap:0;
+    margin-bottom:4px;align-items:stretch;
+  }
+  .step-n{
+    background:var(--rose-deep);color:#fff;font-family:"Courier New",monospace;
+    font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;
+    border-radius:4px 0 0 4px;min-height:42px;
+  }
+  .step-body{
+    background:var(--card);border:1px solid var(--line);border-left:none;
+    padding:10px 15px;font-size:16px;font-weight:500;border-radius:0 4px 4px 0;
+  }
+  .step-body strong{display:block;color:var(--rose-deep);font-size:14px;font-weight:800;
+    font-family:"Courier New",monospace;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px;}
+
+  /* NOTE / QUESTION / RESULT boxes */
+  .note{background:#fdf4e0;border:1px dashed #c9a45f;border-radius:4px;
+    padding:12px 16px;font-size:16px;font-weight:500;color:#4a3a1c;margin:14px 0;}
+  .note b{color:#8a5a1f;}
+  .q-box{background:#edf1ee;border-left:3px solid var(--teal);padding:11px 16px;
+    font-size:16px;font-weight:500;margin:14px 0;border-radius:0 4px 4px 0;}
+  .q-box b{color:var(--teal-deep);}
+  .result-box{
+    display:inline-flex;gap:30px;flex-wrap:wrap;
+    background:var(--card);border:2px solid var(--line);border-radius:6px;
+    padding:16px 24px;margin:14px 0;
+  }
+  .result-item{text-align:center;}
+  .result-item .label{font-family:"Courier New",monospace;font-size:12px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);}
+  .result-item .color-chip{
+    font-size:22px;font-weight:800;margin-top:4px;
+  }
+  .blue-c{color:var(--blue-result);}
+  .pink-c{color:var(--pink-result);}
+  blockquote{
+    border-left:3px solid var(--rose);margin:14px 0;padding:4px 18px;
+    color:var(--ink-soft);font-style:italic;font-size:17px;font-weight:500;max-width:720px;
+  }
+
+  /* FLASHCARDS */
+  .flash-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;}
+  .flash{
+    background:var(--card);border:1px solid var(--line);border-radius:5px;
+    padding:14px 18px 14px 18px;cursor:pointer;position:relative;transition:background .15s;
+  }
+  .flash:hover{background:#f2eee5;}
+  .flash .fq{font-weight:700;color:var(--ink);font-size:17px;padding-right:100px;}
+  .flash .fa{
+    display:none;margin-top:8px;color:var(--teal-deep);font-size:16.5px;font-weight:600;
+    border-top:1px dashed var(--line);padding-top:8px;
+  }
+  .flash.open .fa{display:block;}
+  .flash::after{
+    content:"tap to reveal";position:absolute;right:16px;top:14px;
+    font-family:"Courier New",monospace;font-size:11px;font-weight:700;color:var(--ink-soft);
+  }
+  .flash.open::after{content:"";}
+
+  /* LEGEND ROW */
+  .legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin:10px 0 4px;font-size:14px;color:var(--ink-soft);align-items:center;}
+
+  footer{
+    margin-top:70px;padding-top:22px;border-top:1px solid var(--line);
+    font-family:"Courier New",monospace;font-size:12.5px;font-weight:700;color:var(--ink-soft);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+</style>
+</head>
+<body>
+<div class="texture"></div>
+
+<header class="hero">
+  <div class="wrap" style="padding:0;">
+    <div class="eyebrow"><span class="dot"></span> HISTOPATHOLOGIC TECHNIQUES · LECTURE 05 · MIDYEAR TERM</div>
+    <h1><strong>Routine Staining</strong> &amp; Mounting</h1>
+    <p class="sub">A complete study guide covering staining theory, dye chemistry, H&amp;E procedure, hematoxylin types, eosin, and coverslipping — Parts 1, 2, and 3.</p>
+    <div class="meta">
+      <span><b>Lecturer:</b> Ms. Cleofin Zyrielle Uy, RMT</span>
+      <span><b>Sources:</b> Bancroft (2010); Gregorios (2005); Lo et al. (2015)</span>
+    </div>
+  </div>
+</header>
+
+<div class="ribbon">
+  <span class="step">Fixation</span><span class="arrow">→</span>
+  <span class="step">Processing</span><span class="arrow">→</span>
+  <span class="step">Sectioning</span><span class="arrow">→</span>
+  <span class="step active">Deparaffinization</span><span class="arrow">→</span>
+  <span class="step active">Staining</span><span class="arrow">→</span>
+  <span class="step active">Mounting</span>
+</div>
+
+<div class="wrap">
+<nav class="toc">
+  <h6>Contents</h6>
+  <ol>
+    <li><a href="#intro">Introduction to staining</a></li>
+    <li><a href="#mechanism">Staining mechanism</a></li>
+    <li><a href="#dyes">Dyes — components &amp; chemistry</a></li>
+    <li><a href="#classification">Classification of dyes</a></li>
+    <li><a href="#methods">Methods of staining</a></li>
+    <li><a href="#differentiation">Differentiation / Decolorization</a></li>
+    <li><a href="#hematoxylin">Hematoxylin — types &amp; ripening</a></li>
+    <li><a href="#eosin">Eosin — counterstain</a></li>
+    <li><a href="#he-procedure">Full H&amp;E procedure</a></li>
+    <li><a href="#troubleshoot">Problems &amp; remedies</a></li>
+    <li><a href="#mounting">Mounting &amp; coverslipping</a></li>
+    <li><a href="#recap">Self-test flashcards</a></li>
+  </ol>
+</nav>
+
+<!-- ===================== INTRO ===================== -->
+<section id="intro">
+  <div class="sec-head"><span class="sec-num">I</span><h2>Introduction to Staining</h2></div>
+  <p class="sec-intro">Staining renders different tissue components visible by conferring color variation — enabling optical differentiation and identification of cells and tissue structures that would otherwise be colorless and transparent after processing.</p>
+
+  <h3 class="sub">Key definitions</h3>
+  <div class="grid">
+    <div class="card"><div class="num">STAINING</div><p>A process that renders tissue components more visible through variation in color. End product: stained elements appear <strong>transparent</strong> and uniformly colored — <em>no visible dye particles (no precipitates)</em>.</p></div>
+    <div class="card"><div class="num">STAINS / DYES</div><p>Chemical substances used to achieve visible color contrast in the microscopic picture of a prepared tissue. Imparts characteristic color to usually transparent tissue.</p></div>
+  </div>
+
+  <h3 class="sub">Purpose of staining</h3>
+  <ul>
+    <li>Outlines tissue and cellular components</li>
+    <li>Identification of tissues</li>
+    <li>Establishes presence/absence of disease processes (congenital, inflammatory, degenerative, neoplastic)</li>
+  </ul>
+
+  <h3 class="sub">Common staining methods by department</h3>
+  <table class="plain">
+    <tr><th>Stain</th><th>Department</th></tr>
+    <tr><td><strong>Hematoxylin &amp; Eosin (H&amp;E)</strong></td><td>Histopathology</td></tr>
+    <tr><td>Gram's Stain</td><td>Microbiology</td></tr>
+    <tr><td>Ziehl-Neelsen Staining</td><td>Microbiology</td></tr>
+    <tr><td>Romanowsky Staining</td><td>Hematology</td></tr>
+    <tr><td>Giemsa Staining</td><td>Parasitology</td></tr>
+    <tr><td>Papanicolaou Staining</td><td>Cytology</td></tr>
+  </table>
+
+  <h3 class="sub">General procedure before staining</h3>
+  <div class="steps">
+    <div class="step-row"><div class="step-n">1</div><div class="step-body"><strong>Deparaffinization</strong>Heat slides at 60°C ≥30 min to soften/melt wax, exposing the tissue surface.</div></div>
+    <div class="step-row"><div class="step-n">2</div><div class="step-body"><strong>Xylene washes</strong>Immerse in 2 changes of xylene to fully remove paraffin.</div></div>
+    <div class="step-row"><div class="step-n">3</div><div class="step-body"><strong>Rehydration</strong>Descending concentrations of alcohol → distilled water. Required because most stains are water-based. <em>Opposite of dehydration which is ascending.</em></div></div>
+  </div>
+</section>
+
+<!-- ===================== MECHANISM ===================== -->
+<section id="mechanism">
+  <div class="sec-head"><span class="sec-num">II</span><h2>Staining Mechanism</h2></div>
+  <p class="sec-intro">The principles of histological staining are based on two core alterations — contrast and color — to differentiate tissue components under the microscope.</p>
+
+  <h3 class="sub">Two types of staining based on target</h3>
+  <div class="t-scroll">
+    <table class="master">
+      <caption>Nuclear vs. Cytoplasmic staining — charge-based logic</caption>
+      <thead>
+        <tr><th>Type</th><th>Target</th><th>Charge of target</th><th>Dye charge needed</th><th>Reaction name</th><th>Result color</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Nuclear Staining</th>
+          <td>Nucleus (DNA)</td>
+          <td><span class="b br">Acidic / Anionic / Negative</span><span class="cn">Phosphate backbone of DNA</span></td>
+          <td><span class="b bg">Basic / Cationic / Positive</span></td>
+          <td>Basophilic — dye-salt union</td>
+          <td><strong class="blue-c">Darker blue to purple</strong></td>
+        </tr>
+        <tr>
+          <th>Cytoplasmic Staining (below pH 6)</th>
+          <td>Cytoplasm proteins</td>
+          <td><span class="b bg">Net Positive</span><span class="cn">Amino group accepts H⁺ → ammonium ion</span></td>
+          <td><span class="b br">Acidic / Anionic / Negative</span><span class="cn">e.g., Eosin</span></td>
+          <td>Acidophilic</td>
+          <td><strong class="pink-c">Reddish to orange</strong></td>
+        </tr>
+        <tr>
+          <th>Cytoplasmic Staining (above pH 6)</th>
+          <td>Cytoplasm proteins</td>
+          <td><span class="b br">Net Negative</span><span class="cn">Carboxyl group donates H⁺ → carboxylate</span></td>
+          <td><span class="b bg">Basic / Cationic / Positive</span></td>
+          <td>Basophilic</td>
+          <td><strong class="blue-c">Purplish to lighter blue</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note"><b>Memory trick — "opposites attract":</b> Acidic tissue components attract basic (cationic) dyes. Basic tissue components attract acidic (anionic) dyes. The nucleus is acidic → stained by basic dyes (hematoxylin) → blue. Cytoplasm (at low pH) is positive → stained by acidic dyes (eosin) → pink.</div>
+</section>
+
+<!-- ===================== DYES ===================== -->
+<section id="dyes">
+  <div class="sec-head"><span class="sec-num">III</span><h2>Dyes — Chemistry &amp; Components</h2></div>
+  <p class="sec-intro">All dyes are organic compounds — mostly coal tar derivatives centered on aromatic benzene rings (C₆H₆). Benzene alone is colorless (absorbs only UV at ~214 nm); it needs chemical modification to absorb visible light (400–700 nm).</p>
+
+  <h3 class="sub">Three integral components of a dye</h3>
+  <div class="t-scroll">
+    <table class="master">
+      <caption>Building a dye: Benzene ring → Chromophore → Auxochrome → Chromogen → Dye</caption>
+      <thead>
+        <tr><th>Component</th><th>What it does</th><th>Key groups / examples</th><th>Does it give color?</th><th>Does it bind tissue?</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Chromophore</th>
+          <td>Alters light resonance so unequal light absorption occurs — confers color</td>
+          <td>C=C, C=O, C=S, C=N, N=N, N=O, NO₂<br><span class="cn">Quinoid group; Quinone-imine group</span></td>
+          <td><span class="b bg">Yes</span></td>
+          <td><span class="b br">Not necessarily</span></td>
+        </tr>
+        <tr>
+          <th>Auxochrome</th>
+          <td>Imparts net electrical charge by conferring electrolytic dissociation — enables tissue binding</td>
+          <td>–NH₂ (amino) → cationic<br>–OH (hydroxyl) → anionic<br>–COOH (carboxyl) → anionic</td>
+          <td><span class="b br">No</span></td>
+          <td><span class="b bg">Yes — via charge</span></td>
+        </tr>
+        <tr>
+          <th>Chromogen</th>
+          <td>Benzene ring + chromophore alone (color, no binding)</td>
+          <td>Chromophore + Benzene Ring = Chromogen<br><span class="cn">e.g., Stilbene (colorless), Azobenzene (orange)</span></td>
+          <td><span class="b bg">Yes</span></td>
+          <td><span class="b br">No</span></td>
+        </tr>
+        <tr>
+          <th>Dye (complete)</th>
+          <td>Full functional stain that both colors and binds</td>
+          <td>Chromophore + Auxochrome + Benzene Ring</td>
+          <td><span class="b bg">Yes</span></td>
+          <td><span class="b bg">Yes</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub">Chromophore types</h3>
+  <div class="grid">
+    <div class="card">
+      <div class="num">1 · QUINOID GROUP</div>
+      <h4>Synthetic dyes</h4>
+      <p>Two H atoms on benzene replaced by oxygen. May occur alone or as a whole structure.</p>
+      <p><strong>Examples:</strong> Triphenylmethane → Basic Fuchsin · AZO → Congo Red · Xanthene → Eosin</p>
+    </div>
+    <div class="card">
+      <div class="num">2 · QUINONE-IMINE GROUP</div>
+      <h4>Interbenzene bonds</h4>
+      <p>Two benzene rings attached. <strong>Oxazines</strong> incorporate O₂ atoms; <strong>Thiazines</strong> incorporate sulfur atoms.</p>
+      <p><strong>Examples:</strong> Oxazines → Cresyl Fast Violet · Thiazines → Toluidine Blue</p>
+    </div>
+  </div>
+
+  <h3 class="sub">Qualities of a successful staining</h3>
+  <div class="grid">
+    <div class="card"><div class="num">SPECIFICITY / SELECTIVITY</div><p>Stains specific target components — e.g., Periodic Acid-Schiff stains carbohydrates only.</p></div>
+    <div class="card"><div class="num">SENSITIVITY</div><p>Detects even tiny/low concentrations of the target — e.g., Perl's Prussian Blue detects few iron granules, enabling early detection of disease.</p></div>
+  </div>
+</section>
+
+<!-- ===================== CLASSIFICATION ===================== -->
+<section id="classification">
+  <div class="sec-head"><span class="sec-num">IV</span><h2>Classification of Dyes</h2></div>
+
+  <h3 class="sub">By charge / tissue interaction — the most exam-relevant classification</h3>
+  <div class="t-scroll">
+    <table class="master">
+      <caption>Acid, basic, and neutral dyes</caption>
+      <thead>
+        <tr><th>Type</th><th>Charge</th><th>Stains</th><th>Examples</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>Acidic Dyes</th><td><span class="b br">Negative / Anionic</span></td><td>Basic components: cytoplasm, acidophil granules</td><td>Eosin, Acid Fuchsin</td></tr>
+        <tr><th>Basic Dyes</th><td><span class="b bg">Positive / Cationic</span></td><td>Acidic components: nucleus, basophil granules</td><td>Hematoxylin, Basic Fuchsin, Methylene Blue</td></tr>
+        <tr><th>Neutral Dyes</th><td><span class="b bw">Both</span></td><td>Both cations and anions; staining depends on solution pH</td><td>Romanowsky stain (polychrome methylene blue + eosin)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub">By origin</h3>
+  <div class="grid">
+    <div class="card"><div class="num">NATURAL DYES</div><p>Extracted from plants/animals: <strong>Hematoxylin, Cochineal, Orcein, Saffron, Carmine, Brazilin</strong></p></div>
+    <div class="card"><div class="num">SYNTHETIC / ARTIFICIAL DYES</div><p>Lab-made from coal tar / hydrocarbon benzene. Collectively called <strong>Aniline Dyes</strong> or <em>Coal Tar Dyes.</em></p></div>
+  </div>
+
+  <h3 class="sub">Synthetic dye families</h3>
+  <div class="t-scroll">
+    <table class="master">
+      <caption>The five major synthetic dye families</caption>
+      <thead><tr><th>Family</th><th>Key use</th><th>Examples</th></tr></thead>
+      <tbody>
+        <tr><th>AZO Dyes</th><td>Textiles, cosmetics; stains muscle fibers</td><td>Azocarmine, Janus Green, Congo Red, Sudan Dyes</td></tr>
+        <tr><th>Triphenylmethane</th><td>Polyamide/wool fibers; metachromatic tissue stains</td><td>Aniline Blue, Crystal Violet, Acid &amp; Basic Fuchsin</td></tr>
+        <tr><th>Xanthene Dyes</th><td>Fluorescent stains; tumor markers</td><td>Eosin, Pyronine, Phloxine, Fluoresceins</td></tr>
+        <tr><th>Thiazine Dyes</th><td>Differential stains — histology, cytology, hematology</td><td>Methylene Blue, Toluidine Blue</td></tr>
+        <tr><th>Oxazine Dyes</th><td>Organic fluorescent dyes; chemotherapy/radioactive labels</td><td>Brilliant Cresyl Blue, Cresyl Violet, Celestine Blue</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub">Major classification by function / tissue interaction</h3>
+  <div class="t-scroll">
+    <table class="master">
+      <caption>Three staining categories by what they demonstrate</caption>
+      <thead><tr><th>Category</th><th>Principle</th><th>Key examples</th></tr></thead>
+      <tbody>
+        <tr><th>Histologic / Micro-anatomical</th><td>Direct dye interaction demonstrates general tissue/cell relationships — differentiates nucleus and cytoplasm</td><td>H&amp;E, PAP, Bacterial stains, Muscle/CT/Neurological stains</td></tr>
+        <tr><th>Histochemical</th><td>Chemical reactions permit microscopic localization of specific tissue substances</td><td>Perl's Prussian Blue (hemosiderin), PAS (carbohydrates)</td></tr>
+        <tr><th>Immunohistochemical</th><td>Immunologic + histochemical combination — detects phenotypic/tumor markers</td><td>Polyclonal/monoclonal antibodies, Fluorescent-labeled antibodies</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===================== METHODS ===================== -->
+<section id="methods">
+  <div class="sec-head"><span class="sec-num">V</span><h2>Methods of Staining</h2></div>
+  <div class="t-scroll">
+    <table class="master">
+      <caption>All 9 general staining methods — with examples</caption>
+      <thead><tr><th>#</th><th>Method</th><th>How it works</th><th>Examples</th></tr></thead>
+      <tbody>
+        <tr><th>1</th><td><strong>Vital Staining</strong></td><td>Selective staining of living cell constituents. Intravital = dye injected into the body. Supravital = cells stained immediately after removal from body.</td><td>Intravital: India Ink, Carmine, Lithium<br>Supravital: Neutral Red (best), Janus Green (mitochondria)</td></tr>
+        <tr><th>2</th><td><strong>Specific / Special / Selective</strong></td><td>Basis of histochemistry. Little or no affinity for other tissue elements — highly targeted.</td><td>Oil Red O (fats), Perl's (hemosiderin), PAS (polysaccharides), Weigert's (elastic fibers)</td></tr>
+        <tr><th>3</th><td><strong>Routine Staining</strong></td><td>Day-to-day staining. Stains various elements with little differentiation except nucleus vs. cytoplasm.</td><td>H&amp;E — nuclei: blue; cytoplasm: pink</td></tr>
+        <tr><th>4</th><td><strong>Progressive Staining</strong></td><td>Staining continued until desired color intensity achieved. Time = major factor. Longer = more color. Mordant precedes or is combined with the stain.</td><td>Cole's Hematoxylin, Phosphotungstic Acid Hematoxylin</td></tr>
+        <tr><th>5</th><td><strong>Regressive Staining</strong></td><td>Tissue is <em>overstained</em> then excess dye selectively removed (differentiated) until desired intensity reached.</td><td>Alum Hematoxylin (recommended), Harris, Mayer's, Iron Hematoxylin</td></tr>
+        <tr><th>6</th><td><strong>Direct Staining</strong></td><td>Simple aqueous or alcoholic dye solution applied to tissue — no mordant needed.</td><td>Methylene Blue</td></tr>
+        <tr><th>7</th><td><strong>Indirect Staining</strong></td><td>Mordant or accentuator added to intensify dye action.</td><td>Gram's Stain</td></tr>
+        <tr><th>8</th><td><strong>Metachromatic Staining</strong></td><td>Dye stains target in a color or hue different from the stain itself (metachromasia).</td><td>Crystal Violet, Toluidine Blue, Thionine</td></tr>
+        <tr><th>9</th><td><strong>Counterstaining</strong></td><td>Second stain applied to provide contrast and background to primary stained structures.</td><td>Eosin (after hematoxylin), Ziehl-Neelsen</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===================== DIFFERENTIATION ===================== -->
+<section id="differentiation">
+  <div class="sec-head"><span class="sec-num">VI</span><h2>Differentiation / Decolorization</h2></div>
+  <p class="sec-intro">After regressive staining, differentiation selectively removes excess stain from the tissue using a weak acid or alcohol until desired intensity is achieved. Controlled by exact timing or microscopic examination.</p>
+
+  <h3 class="sub">Three types of differentiators</h3>
+  <div class="t-scroll">
+    <table class="master">
+      <caption>How each differentiator type works</caption>
+      <thead><tr><th>Type</th><th>Mechanism</th><th>Examples</th></tr></thead>
+      <tbody>
+        <tr><th>Acid Differentiator</th><td>Combines with the metal in the dye-tissue complex, breaking that union</td><td>HCl, Acetic Acid</td></tr>
+        <tr><th>Oxidizing Differentiator</th><td>Oxidizes dye to a colorless substance (leukoform). Components with least dye bleached first.</td><td>KMnO₄, K₂Cr₂O₇, Chromic Acid, Picric Acid, Potassium Ferricyanide</td></tr>
+        <tr><th>Mordant Differentiator</th><td>Mass action: binds dye to tissue while removing same dye from less-stained structures. Structures with most dye (nuclear chromatin) remain deeply stained.</td><td>Ferric salts in iron hematoxylin</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub">Four related agents — critical distinctions</h3>
+  <div class="t-scroll">
+    <table class="master">
+      <caption>Mordant vs. Accentuator vs. Accelerator vs. Trapping Agent</caption>
+      <thead><tr><th>Agent</th><th>What it does</th><th>Forms lake with stain?</th><th>Examples</th></tr></thead>
+      <tbody>
+        <tr><th>Mordant</th><td>Polyvalent metal ion that bridges tissue and dye — forms a colored "lake" complex (tissue-mordant-dye). Insoluble in aqueous &amp; alcoholic solvents. Increases affinity between dye and tissue.</td><td><span class="b bg">Yes — forms lake</span></td><td>Aluminum (most common), Iron, Potassium, Ammonium alum</td></tr>
+        <tr><th>Accentuator</th><td>No chemical union with tissue/dye. NOT a mordant. Hastens speed, intensity, and selectivity of the dye — but doesn't change the stain itself.</td><td><span class="b br">No</span></td><td>KOH in Löffler's Methylene Blue, Phenol in Carbon Thionin, Glacial Acetic Acid, Aniline with Gentian Violet</td></tr>
+        <tr><th>Accelerator</th><td>Increases the rate of staining action. NOT a mordant — does not form lakes. Used in metallic impregnation for the nervous system.</td><td><span class="b br">No</span></td><td>Chloral Hydrate</td></tr>
+        <tr><th>Trapping Agent</th><td>Holds dye combination with tissue or bacteria — used to differentiate target/extracellular components (bacteria, fungi, parasites).</td><td><span class="b bn">N/A</span></td><td>Tannic Acid, Iodine</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note"><b>Exam trap:</b> Only mordant forms a "lake." Accentuators and accelerators improve staining speed but are NOT mordants. Do not confuse them.</div>
+</section>
+
+<!-- ===================== HEMATOXYLIN ===================== -->
+<section id="hematoxylin">
+  <div class="sec-head"><span class="sec-num">VII</span><h2>Hematoxylin</h2></div>
+  <p class="sec-intro">A natural dye extracted from the heartwood of <em>Haematoxylon campechianum</em> (logwood). Its major oxidation product is <strong>Hematein</strong> — the actual dye responsible for color properties. Hematoxylin itself is a poor dye; it must be oxidized to hematein and paired with a mordant.</p>
+
+  <div class="grid">
+    <div class="card"><div class="num">ETYMOLOGY</div><p>"Haimato" = blood · "Xylon" = wood (Greek)</p></div>
+    <div class="card"><div class="num">SOURCE</div><p>Heartwood of <em>Haematoxylon campechianum</em>. Extracted with hot water, precipitated with urea.</p></div>
+    <div class="card"><div class="num">HISTORY MILESTONES</div><p>1862 – Waldeyer established its use · 1864 – Böhmer + alum mordant · 1891 – Heidenhain iron-alum method · 1900s – Ehrlich overcame instability with glacial acetic acid.</p></div>
+  </div>
+
+  <h3 class="sub">Ripening — oxidizing hematoxylin to hematein</h3>
+  <div class="t-scroll">
+    <table class="master">
+      <caption>Natural vs. Chemical oxidation compared</caption>
+      <thead><tr><th>Property</th><th>Natural Oxidation</th><th>Chemical Oxidation</th></tr></thead>
+      <tbody>
+        <tr><th>Method</th><td>Exposure to light and air</td><td>Addition of oxidizing agent (mercuric oxide, KMnO₄)</td></tr>
+        <tr><th>Speed</th><td><span class="b br">Slow — 3–4 months</span></td><td><span class="b bg">Fast — 1–24 hours</span></td></tr>
+        <tr><th>Shelf life</th><td><span class="b bg">Longer</span></td><td><span class="b br">Shorter</span></td></tr>
+        <tr><th>Advantage</th><td>Once oxidized, solution lasts longer; with right mordant = sensitive &amp; specific stain</td><td>Immediate use; rapid availability</td></tr>
+        <tr><th>Disadvantage</th><td>Requires considerable time; batch variation possible</td><td>Over-oxidation → oxyhematein (inhibits staining); involves carcinogenic substances</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub">Bluing / Blueing</h3>
+  <p>Converts the initial soluble <strong>red</strong> color of hematoxylin-stained nuclei to an insoluble <strong>blue</strong>. The alkaline pH of the bluing solution causes the mordant-dye lake to reform permanently in the tissue.</p>
+  <div class="grid">
+    <div class="card"><div class="num">SIX BLUING SOLUTIONS (all alkaline)</div>
+      <ul style="font-size:15px;margin:6px 0 0;">
+        <li>Ammonia water (routine H&amp;E)</li>
+        <li>Warm/Distilled H₂O (40–50°C)</li>
+        <li>Lithium carbonate (carbonate ion = alkaline)</li>
+        <li>Bicarbonate (sodium bicarbonate = mild alkaline)</li>
+        <li>Potassium/Sodium Acetate</li>
+        <li>Scott's tap H₂O substitute (Na + K Bicarbonate + MgSO₄)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="sub">Classification of hematoxylin solutions</h3>
+  <div class="t-scroll">
+    <table class="master">
+      <caption>Six classes based on mordant used</caption>
+      <thead><tr><th>Class</th><th>Mordant</th><th>Key examples</th><th>Notable uses</th></tr></thead>
+      <tbody>
+        <tr><th>Alum Hematoxylin</th><td>Aluminum (potash-alum or ammonium-alum)</td><td><strong>Harris</strong>, Ehrlich's, Delafield's, Mayer's, Gill's, Cole's</td><td>Routine H&amp;E; good nuclear staining; can be used progressively or regressively</td></tr>
+        <tr><th>Iron Hematoxylin</th><td>Ferric chloride / Ferric ammonium sulfate</td><td>Weigert's, Heidenhain's</td><td>Wider range of tissue structures; solutions prepared separately, mixed fresh. Time-consuming; needs microscopic control.</td></tr>
+        <tr><th>Tungsten Hematoxylin</th><td>Phosphotungstic acid</td><td>PTAH</td><td>CNS tissues; muscle striations (dark blue), myelin sheath (brownish red), cytoplasm (pale pink)</td></tr>
+        <tr><th>Molybdenum Hematoxylin</th><td>Molybdic acid</td><td>—</td><td>Rare/expensive; demonstrates collagen, coarse reticulin, argentaffin cell granules</td></tr>
+        <tr><th>Lead Hematoxylin</th><td>Lead</td><td>—</td><td>Endocrine cell granules, gastrin-secreting cells; identifies endocrine cells in tumors of doubtful origin</td></tr>
+        <tr><th>Hematoxylin Without Mordant</th><td>None</td><td>Freshly prepared</td><td>Demonstrates minerals in tissue sections; low specificity/sensitivity — mostly replaced</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub">Harris Hematoxylin — composition &amp; procedure</h3>
+  <div class="note"><b>Used in the lab.</b> Regressive alum hematoxylin — tissue is overstained then differentiated with acid alcohol.</div>
+  <table class="plain">
+    <tr><th>#</th><th>Component</th><th>Role</th></tr>
+    <tr><td>1</td><td>Hematoxylin</td><td>The stain (results in hematein after oxidation)</td></tr>
+    <tr><td>2</td><td>95% Ethyl Alcohol</td><td>Stain solvent — dissolves hematoxylin</td></tr>
+    <tr><td>3</td><td>Ammonium/Potassium Alum</td><td>Mordant — provides the aluminum ion (positively charged)</td></tr>
+    <tr><td>4</td><td>Distilled H₂O</td><td>Mordant solvent</td></tr>
+    <tr><td>5</td><td>Mercuric Oxide</td><td>Oxidizing agent — oxidizes hematoxylin to hematein</td></tr>
+    <tr><td>6</td><td>Glacial Acetic Acid</td><td>Accentuator — improves nuclear staining; optional but used in lab; filter before use</td></tr>
+  </table>
+
+  <h3 class="sub">Ehrlich's vs. Delafield's — key differences</h3>
+  <div class="t-scroll">
+    <table class="master">
+      <caption>Two naturally ripened alum hematoxylin solutions</caption>
+      <thead><tr><th></th><th>Ehrlich's</th><th>Delafield's</th></tr></thead>
+      <tbody>
+        <tr><th>Oxidizing agent</th><td>Sodium iodate (safer than mercuric oxide)</td><td>Natural oxidation — light and air</td></tr>
+        <tr><th>Preservative</th><td>Glycerin (slows oxidation, longer shelf life)</td><td>Glycerin + 95% alcohol</td></tr>
+        <tr><th>Ripening time</th><td>~2 months naturally; or chemical ripening (emergency: 50 mg sodium iodate per gram hematoxylin)</td><td>5 days initial + 3–4 months to sufficient darkness in light</td></tr>
+        <tr><th>Best for</th><td>Bouin's-fixed tissue; NOT ideal for frozen sections</td><td>Similar longevity to Ehrlich's</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub">Weigert's vs. Heidenhain's Iron Hematoxylin</h3>
+  <div class="t-scroll">
+    <table class="master">
+      <caption>Two iron mordant hematoxylin solutions</caption>
+      <thead><tr><th></th><th>Weigert's Iron Hematoxylin</th><th>Heidenhain's Hematoxylin</th></tr></thead>
+      <tbody>
+        <tr><th>Solution A (Mordant)</th><td>30% anhydrous ferric chloride + HCl + distilled H₂O</td><td>Ferric ammonium sulfate + distilled H₂O</td></tr>
+        <tr><th>Solution B (Stain)</th><td>Hematoxylin + absolute ethyl alcohol</td><td>Hematoxylin + 95% ethyl alcohol + distilled H₂O</td></tr>
+        <tr><th>Mixing</th><td>Mix equal volumes A + B before use — best results when fresh</td><td>Solutions NOT pre-mixed (stain deteriorates faster when mixed). A precedes B when staining.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===================== EOSIN ===================== -->
+<section id="eosin">
+  <div class="sec-head"><span class="sec-num">VIII</span><h2>Eosin — The Counterstain</h2></div>
+  <p class="sec-intro">A synthetic acidic (anionic) dye used as a counterstain after hematoxylin. Stains cytoplasm and connective tissue components pink to red by binding to positively charged amino groups.</p>
+
+  <h3 class="sub">Factors affecting eosin staining</h3>
+  <div class="t-scroll">
+    <table class="master">
+      <caption>Four critical factors that influence eosin binding</caption>
+      <thead><tr><th>Factor</th><th>Effect</th><th>Remedy</th></tr></thead>
+      <tbody>
+        <tr><th>Fixative used</th><td>Zenker's mercuric salts attach to negatively charged tissue groups → increases eosin attraction to positive groups</td><td>For formalin-fixed tissue: pre-treat with saturated mercuric chloride 2–3 min before counterstaining</td></tr>
+        <tr><th>pH of eosin solution</th><td>Best at slightly acidic pH 5.4–5.6. Too basic → proteins less positive → weaker pink stain</td><td>Maintain acidic medium; check pH regularly</td></tr>
+        <tr><th>Stability</th><td>Acidified counterstain effective for ~2 weeks then pH rises and stain fails</td><td>Prepare fresh eosin; Hematoxylin needs more lead time — prepare ahead</td></tr>
+        <tr><th>Dehydration</th><td>Eosin is highly soluble in ethanol — rapidly removed during 95% and absolute alcohol steps</td><td>Slightly overstain, then rapidly dehydrate through alcohols to the clearing agent</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub">Forms of Eosin</h3>
+  <div class="t-scroll">
+    <table class="master">
+      <caption>Three eosin forms — differences in color and solubility</caption>
+      <thead><tr><th>Form</th><th>Color imparted</th><th>Solubility</th><th>Routine use</th></tr></thead>
+      <tbody>
+        <tr><th>Eosin Y (Yellowish)</th><td>Pink to pink-orange cytoplasm</td><td>Water-soluble; also soluble in ethanol</td><td><span class="b bg">Most common — routinely used</span>; also in Pap stain (transparent pink) and Gram-Weigert method</td></tr>
+        <tr><th>Eosin B / Erythrosin B (Bluish)</th><td>Deeper red in tissue; bluish in concentrated form</td><td>Alcohol-soluble</td><td>Used if Eosin Y unavailable — rarely used due to carcinogenic effects on specific tissue components</td></tr>
+        <tr><th>Ethyl Eosin</th><td>—</td><td>Alcohol-soluble</td><td>Rarely used</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub">Other counterstains (beyond eosin)</h3>
+  <table class="plain">
+    <tr><th>Counterstain</th><th>Color</th><th>Target</th></tr>
+    <tr><td>Acid Fuchsin</td><td>Magenta</td><td>Trichrome stain for connective tissue</td></tr>
+    <tr><td>Aniline Blue</td><td>Blue</td><td>Collagen</td></tr>
+    <tr><td>Congo Red</td><td>Red</td><td>Amyloid</td></tr>
+    <tr><td>Orange G</td><td>Orange</td><td>Pap's stain</td></tr>
+    <tr><td>Phloxine B</td><td>Red-Purple</td><td>—</td></tr>
+  </table>
+</section>
+
+<!-- ===================== H&E PROCEDURE ===================== -->
+<section id="he-procedure">
+  <div class="sec-head"><span class="sec-num">IX</span><h2>Full H&amp;E Staining Procedure</h2></div>
+
+  <div class="result-box">
+    <div class="result-item"><div class="label">Nuclei</div><div class="color-chip blue-c">BLUE</div></div>
+    <div class="result-item"><div class="label">Cytoplasm</div><div class="color-chip pink-c">PINK</div></div>
+    <div class="result-item"><div class="label">Stain used</div><div class="color-chip" style="font-size:14px;font-weight:800;">Hematoxylin + Eosin</div></div>
+  </div>
+
+  <h3 class="sub">8 major steps — overview</h3>
+  <div class="t-scroll">
+    <table class="master">
+      <caption>Step-by-step overview with reagents and purpose</caption>
+      <thead><tr><th>#</th><th>Step</th><th>Reagent</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><th>1</th><td><strong>Deparaffinization</strong></td><td>2× Xylene, 2 min each</td><td>Remove paraffin wax so stain can penetrate. Xylene used because wax is hydrophobic.</td></tr>
+        <tr><th>2</th><td><strong>Hydration</strong></td><td>Absolute alcohol → 95% → 80% → 70% → H₂O (descending)</td><td>Removes xylene; brings tissue to aqueous solvent of the stain. Prevents rapid fluid movement and section loss.</td></tr>
+        <tr><th>3</th><td><strong>Nuclear Staining</strong></td><td>Harris Hematoxylin — 15 min</td><td>Stains nuclei deep blue via basophilic reaction.</td></tr>
+        <tr><th>4</th><td><strong>Differentiation</strong></td><td>1% Acid Alcohol — 3–10 dips</td><td>Selectively removes excess hematoxylin; creates clear background so only nucleus remains stained.</td></tr>
+        <tr><th>5</th><td><strong>Bluing</strong></td><td>Ammonia water / Saturated Lithium Carbonate — 6 dips</td><td>Converts initial soluble red-stained nucleus to insoluble blue. Followed by water rinse 10–20 min.</td></tr>
+        <tr><th>6</th><td><strong>Counterstaining</strong></td><td>5% Aqueous Eosin — 15 sec to 2 min</td><td>Stains cytoplasm and connective tissue pink. Shorter than hematoxylin because eosin binds faster to amino groups.</td></tr>
+        <tr><th>7</th><td><strong>Dehydration</strong></td><td>70% → 95% → Absolute alcohol (ascending), 1 min/10 dips each</td><td>Removes water so tissue is compatible with xylene and mounting media. Do quickly — eosin fades in long alcohol exposure.</td></tr>
+        <tr><th>8</th><td><strong>Clearing &amp; Mounting</strong></td><td>2–3× Xylene; then Permount/Balsam</td><td>Xylene removes alcohol, makes tissue transparent. Mounting seals the coverslip permanently.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub">Full liver H&amp;E protocol (10 slides)</h3>
+  <table class="plain" style="max-width:520px;">
+    <tr><th>#</th><th>Step</th><th>Time / Dips</th></tr>
+    <tr><td>1</td><td>Xylene 1</td><td>5 dips</td></tr>
+    <tr><td>2</td><td>Xylene 2</td><td>5 dips</td></tr>
+    <tr><td>3</td><td>Absolute Alcohol</td><td>10 dips</td></tr>
+    <tr><td>4</td><td>90% Alcohol</td><td>5 dips</td></tr>
+    <tr><td>5</td><td>70% Alcohol</td><td>5 dips</td></tr>
+    <tr><td>6</td><td>Wash in running water</td><td>—</td></tr>
+    <tr><td>7</td><td>Harris Hematoxylin</td><td>5 minutes</td></tr>
+    <tr><td>8</td><td>Wash in running water</td><td>—</td></tr>
+    <tr><td>9</td><td>1% Acid Alcohol</td><td>10–30 sec</td></tr>
+    <tr><td>10</td><td>Wash in running water</td><td>—</td></tr>
+    <tr><td>11</td><td>Ammonia Water</td><td>—</td></tr>
+    <tr><td>12</td><td>Wash in running water</td><td>—</td></tr>
+    <tr><td>13</td><td>5% Aqueous Eosin</td><td>5 minutes</td></tr>
+    <tr><td>14</td><td>70% Alcohol</td><td>5 dips</td></tr>
+    <tr><td>15</td><td>90% Alcohol</td><td>5 dips</td></tr>
+    <tr><td>16</td><td>Absolute Alcohol</td><td>10 dips</td></tr>
+    <tr><td>17</td><td>Xylene 1</td><td>5 dips</td></tr>
+    <tr><td>18</td><td>Xylene 2</td><td>5 dips</td></tr>
+    <tr><td>19</td><td>Mount</td><td>—</td></tr>
+  </table>
+
+  <h3 class="sub">Factors influencing chemical staining</h3>
+  <div class="t-scroll">
+    <table class="master">
+      <caption>Five factors that affect staining quality</caption>
+      <thead><tr><th>Factor</th><th>Effect</th><th>Key rule</th></tr></thead>
+      <tbody>
+        <tr><th>Concentration of stain</th><td>↑ concentration → ↑ ionization → ↑ deeper stain. But ↑ dissolved salts → ↓ staining (salt ions compete for reactive tissue sites)</td><td>Never dilute stain with water; drain sections before staining</td></tr>
+        <tr><th>Ionization of stain</th><td>More ionized = more intensified color; creates charge that enables dye to bind</td><td>Ensure proper pH to maintain ionization</td></tr>
+        <tr><th>pH of environment</th><td>At isoelectric point (IEP), net charge = zero (zwitterion) → little affinity for charged dye. pH determines whether tissue components accept basic or acidic dyes.</td><td>H&amp;E at pH 7.0: nucleus (net −) attracts hematoxylin (+); cytoplasm (net +) attracts eosin (−)</td></tr>
+        <tr><th>Fixation</th><td>May reorganize tissue chemistry, change permeability, or bind certain components leaving others free for staining. Formalin ↑ affinity of tissue to basic stains.</td><td>Fixative must be compatible with stain used; fixation is first and most critical step</td></tr>
+        <tr><th>Temperature</th><td>↑ temperature → ↑ stain penetration rate, ↑ staining action (swells tissue, facilitates dye diffusion)</td><td>Lab uses RT → prolong staining time to compensate</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===================== TROUBLESHOOT ===================== -->
+<section id="troubleshoot">
+  <div class="sec-head"><span class="sec-num">X</span><h2>Problems &amp; Remedies</h2></div>
+
+  <h3 class="sub">Reasons sections fail to stay on slide during staining</h3>
+  <table class="plain">
+    <tr><th>Problem</th><th>Cause</th></tr>
+    <tr><td>Dirty or oily slide — wash out</td><td>Poor tissue mounting technique</td></tr>
+    <tr><td>Faulty hematoxylin</td><td>Improperly or insufficiently ripened stain</td></tr>
+    <tr><td>Residual paraffin / fixative / decalcifying solution</td><td>Not thoroughly washed out and removed</td></tr>
+  </table>
+  <div class="note"><b>Domino effect:</b> Errors in earlier steps propagate — incomplete deparaffinization will ruin hydration, which ruins staining.</div>
+
+  <h3 class="sub">12 considerations for quality staining</h3>
+  <div class="grid">
+    <div class="card"><p>1. Use accurate timing<br>2. Monitor quality with control slides<br>3. Standardize staining conditions<br>4. Ensure complete dewaxing<br>5. Renew reagents regularly<br>6. Hydrate sections thoroughly</p></div>
+    <div class="card"><p>7. Monitor hematoxylin quality<br>8. Ensure complete nuclear bluing<br>9. Avoid uneven eosin staining<br>10. Monitor eosin pH<br>11. Thoroughly dehydrate before clearing &amp; coverslipping<br>12. Avoid drying &amp; crystal formation</p></div>
+  </div>
+
+  <h3 class="sub">Re-staining old / faded sections — 8-step procedure</h3>
+  <div class="steps">
+    <div class="step-row"><div class="step-n">1</div><div class="step-body">Immerse slide in xylene for 24 hours <em>or</em> gently heat until mounting begins to bubble</div></div>
+    <div class="step-row"><div class="step-n">2</div><div class="step-body">Remove coverslip by lifting with a dissecting needle</div></div>
+    <div class="step-row"><div class="step-n">3</div><div class="step-body">Place section in xylene 30 min to remove remaining balsam (mounting media), then bring down to water</div></div>
+    <div class="step-row"><div class="step-n">4</div><div class="step-body">Place in 0.5% potassium permanganate for 5–10 minutes</div></div>
+    <div class="step-row"><div class="step-n">5</div><div class="step-body">Rinse in tap water</div></div>
+    <div class="step-row"><div class="step-n">6</div><div class="step-body">Immerse in 5% oxalic acid 5 min or until section is decolorized (using accentuators &amp; accelerators)</div></div>
+    <div class="step-row"><div class="step-n">7</div><div class="step-body">Wash in running tap water for 5 min</div></div>
+    <div class="step-row"><div class="step-n">8</div><div class="step-body">Re-stain with the appropriate staining technique</div></div>
+  </div>
+</section>
+
+<!-- ===================== MOUNTING ===================== -->
+<section id="mounting">
+  <div class="sec-head"><span class="sec-num">XI</span><h2>Mounting &amp; Coverslipping</h2></div>
+  <p class="sec-intro">Mounting is the placement of a coverslip over the stained tissue using a syrupy mounting medium to secure the section, protect it from physical damage and oxidation, and provide a refractive index match for clear microscopy.</p>
+
+  <h3 class="sub">Why refractive index matters</h3>
+  <div class="q-box">
+    <b>Refractive indices:</b> Air = 1.0 · Water = 1.33 · Tissue = 1.33–1.34 · Glass = 1.52–1.53 · Mounting medium = 1.52<br>
+    Without mounting: glass + air + tissue → light scatters → blurry image.<br>
+    With mounting: glass + medium + tissue + coverslip all ≈ same RI → less scatter → sharp image. Target RI: <strong>n = 1.518</strong> (glass &amp; tissue must be ~1.53–1.54).
+  </div>
+
+  <h3 class="sub">Characteristics of a good mounting medium</h3>
+  <div class="t-scroll">
+    <table class="master">
+      <caption>Should / should not properties</caption>
+      <thead><tr><th>Should</th><th>Should NOT</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><ul><li>Have RI near glass (n = 1.518)</li><li>Be freely miscible with xylene &amp; toluene</li><li>Set hard → permanent mounting</li></ul></td>
+          <td><ul><li>Quickly dry (causing cracks or artifactual granularity)</li><li>Dissolve out or fade tissue sections</li><li>Cause shrinkage or distortion of tissue</li><li>Bleach or affect staining</li><li>Cause changes in color or pH</li></ul></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub">Types of mounting media</h3>
+  <div class="t-scroll">
+    <table class="master">
+      <caption>Permanent vs. aqueous/temporary mounting media</caption>
+      <thead><tr><th>Type</th><th>Medium</th><th>RI</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><th rowspan="4">Permanent / Resinous / Water-Insoluble</th><td>Canada Balsam (natural)</td><td>1.524</td><td>Medium of choice until 1939</td></tr>
+        <tr><td>Gum Damar (natural)</td><td>—</td><td>—</td></tr>
+        <tr><td><strong>Permount / Clarite</strong> (synthetic)</td><td>1.544</td><td>Most widely used in North America</td></tr>
+        <tr><td>Eukitt (synthetic)</td><td>—</td><td><span class="b bg">Used in the lab</span></td></tr>
+        <tr><th rowspan="4">Temporary / Aqueous / Water-Soluble</th><td>Kaiser's Glycerol Jelly</td><td>1.47</td><td>—</td></tr>
+        <tr><td>Von Apathy's Gum Syrup</td><td>1.52</td><td>—</td></tr>
+        <tr><td>Farrant's Medium (Gum Arabic)</td><td>1.43</td><td>—</td></tr>
+        <tr><td>Liquid Paraffin</td><td>—</td><td>Best for Romanowsky stains</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub">Three hand-coverslipping methods</h3>
+  <div class="t-scroll">
+    <table class="master">
+      <caption>Coverslipping techniques used in the lab</caption>
+      <thead><tr><th>Method</th><th>Tool used</th><th>Key steps</th></tr></thead>
+      <tbody>
+        <tr><th>Forceps Method</th><td>Forceps to handle coverslip</td><td>1. Add 1–2 drops mounting medium over section. 2. Place coverslip with forceps next to tissue. 3. Slowly lower down. 4. Let spread via capillary action. 5. Dry.</td></tr>
+        <tr><th>Inverted Slide Method <span class="b bg">Lab use</span></th><td>Forceps / hands</td><td>1. Add 2–3 drops medium on center of coverslip. 2. Position inverted slide tissue-side facing coverslip at the side. 3. Drop slide down until attached. 4. Invert to right position. 5. Dry.</td></tr>
+        <tr><th>Inverted Coverslip Method <span class="b bg">Lab use</span></th><td>Dissecting/teasing needle</td><td>1. Apply 2–3 drops medium directly on tissue. 2. Position coverslip at side, let medium spread like a smear. 3. Slowly lower coverslip using needle. 4. Center coverslip over tissue. 5. Dry.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note"><b>Common mounting problem:</b> Cloudy areas = incomplete dehydration → moisture trapped. Remedy: remount or remove coverslip and repeat dehydration. Perform coverslipping ASAP after clearing to prevent debris/crystal formation from room temperature exposure.</div>
+  <div class="note"><b>Too much mounting medium</b> → oozes from edges (wipe carefully with xylene-dampened cloth). <b>Too little / dilute</b> → draws away from edges (must remount).</div>
+</section>
+
+<!-- ===================== RECAP ===================== -->
+<section id="recap">
+  <div class="sec-head"><span class="sec-num">XII</span><h2>Self-Test Flashcards</h2></div>
+  <p class="sec-intro">Click each card to reveal the answer. Based on the reinforcement activity from the lecture.</p>
+  <div class="flash-grid">
+    <div class="flash"><div class="fq">1. What is the process that renders tissue components visible through variation in color?</div><div class="fa">Staining</div></div>
+    <div class="flash"><div class="fq">2. T or F: Auxochromes alter the light resonance properties so that unequal absorption occurs when white light passes through.</div><div class="fa">FALSE — that is the function of Chromophores. Auxochromes are responsible for tissue binding via electrical charge.</div></div>
+    <div class="flash"><div class="fq">3. What dyes came from nature and are found in plants/animals?</div><div class="fa">Natural dyes (e.g., Hematoxylin, Carmine, Orcein, Brazilin, Saffron, Cochineal)</div></div>
+    <div class="flash"><div class="fq">4. What substance enhances the combination of the dye with the tissue?</div><div class="fa">Mordant — it forms an insoluble colored "lake" complex that bridges dye and tissue. The most common mordant is aluminum.</div></div>
+    <div class="flash"><div class="fq">5. Who first firmly established the use of hematoxylin in histology?</div><div class="fa">Waldeyer (1862)</div></div>
+    <div class="flash"><div class="fq">6. At the isoelectric point (IEP), what is the net algebraic charge of the molecule?</div><div class="fa">Zero — the molecule is called a zwitterion at IEP, with little affinity for charged stain molecules.</div></div>
+    <div class="flash"><div class="fq">7. Which dyes are commonly used in intravital staining? (India Ink, Thionine, Carmine)</div><div class="fa">India Ink and Carmine (Both A &amp; C). Thionine is supravital, not intravital.</div></div>
+    <div class="flash"><div class="fq">8. What synthetic stain is used as a counterstain to the nuclear stain (hematoxylin)?</div><div class="fa">Eosin — specifically Eosin Y (most routinely used, water-soluble, imparts pink to pink-orange color)</div></div>
+    <div class="flash"><div class="fq">9. T or F: In order to become a dye, hematin must be oxidized to hematein.</div><div class="fa">FALSE — it is the reverse. Hematoxylin is oxidized to form Hematein (the actual dye). Hematin is a different compound.</div></div>
+    <div class="flash"><div class="fq">10. What is the main factor in progressive staining that determines depth of color?</div><div class="fa">Time — the longer the tissue is left in the stain, the more color it develops. Overstaining is prevented by monitoring time carefully.</div></div>
+    <div class="flash"><div class="fq">11. What is the recommended pH for eosin staining and why?</div><div class="fa">Optimum pH 5.4–5.6 (slightly acidic). At this pH, cytoplasmic amino groups accept H⁺ to become positively charged, attracting the negatively charged eosin. Too basic → proteins less positive → weaker staining.</div></div>
+    <div class="flash"><div class="fq">12. What does bluing (blueing) do in H&E staining, and why is it needed?</div><div class="fa">It converts the initial soluble red color of hematoxylin-stained nuclei to an insoluble blue. The alkaline bluing solution causes the mordant-dye lake to reform permanently in the tissue. Ammonia water is the standard bluing agent in routine H&E.</div></div>
+    <div class="flash"><div class="fq">13. What is the refractive index target for mounting medium, and why does it matter?</div><div class="fa">n ≈ 1.518 (glass and tissue ≈ 1.53–1.54). Matching RI minimizes light scatter between glass, medium, tissue, and coverslip, producing a sharp microscopic image. Air (n=1) causes scattering and blur.</div></div>
+    <div class="flash"><div class="fq">14. What are the three reasons for section failure during staining?</div><div class="fa">1. Dirty or oily slide (poor tissue mounting). 2. Faulty / incompletely ripened hematoxylin. 3. Residual paraffin, fixative, or decalcifying solution not thoroughly removed.</div></div>
+    <div class="flash"><div class="fq">15. What is the difference between regressive and progressive staining?</div><div class="fa">Progressive: stain is applied until desired intensity is reached — no overstaining, time controls depth. Regressive: tissue is OVERSTAINED first, then excess dye is selectively removed (differentiated) until the desired result is achieved. Harris Hematoxylin can be used for both but is typically regressive in routine H&E.</div></div>
+  </div>
+</section>
+
+<footer>
+  <span>Routine Staining &amp; Mounting — Lecture 05 Study Guide</span>
+  <span>Bancroft (2010) · Gregorios (2005) · Lo et al. (2015) · Lamberg</span>
+</footer>
+</div>
+
+<script>
+  document.querySelectorAll('.flash').forEach(function(c){
+    c.addEventListener('click',function(){c.classList.toggle('open');});
+  });
+</script>
+</body>
+</html>
